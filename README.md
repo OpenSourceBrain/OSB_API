@@ -1,4 +1,6 @@
 OSB_API
 =======
 
-API to access contents of OSB repository...
+APIs in various languages to access contents of Open Source Brain repository.
+
+
