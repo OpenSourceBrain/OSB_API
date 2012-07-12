@@ -18,4 +18,10 @@ p = res.get('/projects.json')
 jp = json.loads(p.body_string())
 
 for project in jp["projects"]:
-    print "Project: "+ project["name"]+" was last updated on "+ project["updated_on"]
+    print "--------   Project: "+ project["name"] + "\n"
+    print "    Last updated on:  "+ project["updated_on"]
+    for cf in project["custom_fields"]:
+        if cf['name'] == 'GitHub repository' and cf.has_key('value'):
+            print "    GitHub repository: "+ cf['value']
+    #print project
+    print
