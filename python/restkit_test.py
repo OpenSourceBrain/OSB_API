@@ -3,7 +3,7 @@ Preliminary tests using restkit...
 '''
 
 from restkit import Resource
-res = Resource('http://www.opensourcebrain.org:8080')
+res = Resource('http://www.opensourcebrain.org')
 r = res.get('/users/4.json')
 
 import json
