@@ -22,6 +22,9 @@ for project in jp["projects"]:
     status_found = 0
     github = 0
     category = ""
+    spine_check = 0
+    
+    #print project["custom_fields"]
     
     for cf in project["custom_fields"]:
         if cf['name'] == 'GitHub repository' and cf.has_key('value'):
@@ -31,11 +34,25 @@ for project in jp["projects"]:
             status_found = 1
         if cf['name'] == 'Category' and cf.has_key('value'):
             category = cf['value']
+        if cf['name'] == 'Spine classification' and cf.has_key('value'):
+            spine_check = 1
+            
+            
+        #  README & AUTHORS
+        
+        #  Sci Coord, developers, Sci Advisor
+        
+        # NML statuses 
+        
+        
            
-    if  status_found == 0 and category == "Project":
-        print "No status!"
-       
-        passed = 0
+    if category == "Project":
+        if  status_found == 0:
+            print "No status!"
+            passed = 0
+        if  spine_check == 0:
+            print "Neither vertebrate nor invertebrate!"
+            passed = 0
 
     
 print
