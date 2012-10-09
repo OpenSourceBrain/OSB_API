@@ -14,10 +14,10 @@ jp = json.loads(p.body_string())
 
 passed = 1
 
-
+import urllib
 
 for project in jp["projects"]:
-    print "--------   Project: "+ project["name"] + "\n"
+    print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
     #print "    Last updated on:  "+ project["updated_on"]
     status_found = 0
     github = 0
@@ -41,10 +41,14 @@ for project in jp["projects"]:
         #  README & AUTHORS
         
         #  Sci Coord, developers, Sci Advisor
+
+        # NML statuses
+
+        # Simulator statuses
+
+        # NML 1/2 native files?
         
-        # NML statuses 
-        
-        
+    
            
     if category == "Project":
         if  status_found == 0:
@@ -53,6 +57,14 @@ for project in jp["projects"]:
         if  spine_check == 0:
             print "Neither vertebrate nor invertebrate!"
             passed = 0
+
+        if github == 1:
+            f = urllib.urlopen("http://www.opensourcebrain.org/projects/"+project["identifier"]+"/repository/changes/README")
+            if "The entry or revision was not found in the repository" in f.read():
+                print "No README!"
+                passed = 0
+            w = urllib.urlopen("https://api.github.com/repos/OpenSourceBrain/"+project["identifier"])
+            #print w.read()
 
     
 print
