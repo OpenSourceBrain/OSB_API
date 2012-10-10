@@ -20,7 +20,7 @@ for project in jp["projects"]:
     print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
     #print "    Last updated on:  "+ project["updated_on"]
     status_found = 0
-    github = 0
+    github_repo = None
     category = ""
     spine_check = 0
     
@@ -29,7 +29,7 @@ for project in jp["projects"]:
     for cf in project["custom_fields"]:
         if cf['name'] == 'GitHub repository' and cf.has_key('value'):
             #print "    GitHub repository: "+ cf['value']
-            github = 1
+            github_repo = cf['value']
         if cf['name'] == 'Status info' and cf.has_key('value'):
             status_found = 1
         if cf['name'] == 'Category' and cf.has_key('value'):
@@ -58,13 +58,25 @@ for project in jp["projects"]:
             print "Neither vertebrate nor invertebrate!"
             passed = 0
 
-        if github == 1:
+        if github_repo is not None:
             f = urllib.urlopen("http://www.opensourcebrain.org/projects/"+project["identifier"]+"/repository/changes/README")
             if "The entry or revision was not found in the repository" in f.read():
                 print "No README!"
                 passed = 0
-            w = urllib.urlopen("https://api.github.com/repos/OpenSourceBrain/"+project["identifier"])
-            #print w.read()
+            repo = "https://api.github.com/repos/"+github_repo[19:]
+            w = urllib.urlopen(repo)
+            gh = json.loads(w.read())
+            if len(gh) == 1:
+                print("Problem locating repository: "+repo)
+            else:
+                if gh["has_wiki"] and "openworm" not in repo:
+                    print "A wiki is present!"
+                    passed = 0
+                if gh["has_issues"] and "openworm" not in repo:
+                    print "Issues are present!"
+                    passed = 0
+                    
+            
 
     
 print
