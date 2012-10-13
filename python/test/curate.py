@@ -16,6 +16,13 @@ passed = 1
 
 import urllib
 
+def checkFileInRepository(projectId, filename):
+    f = urllib.urlopen("http://www.opensourcebrain.org/projects/"+projectId+"/repository/changes/"+filename)
+    if "The entry or revision was not found in the repository" in f.read():
+        return False
+    else:
+        return True
+
 for project in jp["projects"]:
     print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
     #print "    Last updated on:  "+ project["updated_on"]
@@ -30,7 +37,7 @@ for project in jp["projects"]:
         if cf['name'] == 'GitHub repository' and cf.has_key('value'):
             #print "    GitHub repository: "+ cf['value']
             github_repo = cf['value']
-        if cf['name'] == 'Status info' and cf.has_key('value'):
+        if cf['name'] == 'Status info' and cf.has_key('value') and len(cf['value']) > 0:
             status_found = 1
         if cf['name'] == 'Category' and cf.has_key('value'):
             category = cf['value']
@@ -59,10 +66,11 @@ for project in jp["projects"]:
             passed = 0
 
         if github_repo is not None:
-            f = urllib.urlopen("http://www.opensourcebrain.org/projects/"+project["identifier"]+"/repository/changes/README")
-            if "The entry or revision was not found in the repository" in f.read():
-                print "No README!"
+
+            if not checkFileInRepository(project["identifier"], "README") and not checkFileInRepository(project["identifier"], "README.txt"):
+                print "No README or README.txt!"
                 passed = 0
+
             repo = "https://api.github.com/repos/"+github_repo[19:]
             w = urllib.urlopen(repo)
             gh = json.loads(w.read())
