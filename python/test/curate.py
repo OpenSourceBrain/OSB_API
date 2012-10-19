@@ -65,6 +65,8 @@ for project in jp["projects"]:
             print "Neither vertebrate nor invertebrate!"
             passed = 0
 
+        #print json.dumps(project, sort_keys=True, indent=4)
+
         if github_repo is not None:
 
             if not checkFileInRepository(project["identifier"], "README") and not checkFileInRepository(project["identifier"], "README.txt"):
