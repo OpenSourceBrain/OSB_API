@@ -8,7 +8,7 @@ res = Resource('http://www.opensourcebrain.org')
 
 import json
 
-p = res.get('/projects.json')
+p = res.get('/projects.json', limit=1000)
 
 jp = json.loads(p.body_string())
 
