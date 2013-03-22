@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
 
     versionFolder = "NeuroML2"
-    nml_schema_file = urlopen("http://neuroml.svn.sourceforge.net/viewvc/neuroml/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd")
+    nml_schema_file = urlopen("https://raw.github.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta.xsd")
     suffix = ".nml"
 
     if len(sys.argv) == 2 and sys.argv[1] == '-v1':
