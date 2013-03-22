@@ -22,6 +22,13 @@ def checkFileInRepository(projectId, filename):
         return False
     else:
         return True
+    
+def knownExternalRepo(reponame):
+    if "openworm" in reponame or \
+       "neuralgorithm" in reponame:
+        return True
+    else:
+        return False
 
 for project in jp["projects"]:
     print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
@@ -69,8 +76,10 @@ for project in jp["projects"]:
 
         if github_repo is not None:
 
-            if not checkFileInRepository(project["identifier"], "README") and not checkFileInRepository(project["identifier"], "README.txt"):
-                print "No README or README.txt!"
+            if not checkFileInRepository(project["identifier"], "README") \
+               and not checkFileInRepository(project["identifier"], "README.txt") \
+               and not checkFileInRepository(project["identifier"], "README.md"):
+                print "No README or README.txt or README.md!"
                 passed = 0
 
             repo = "https://api.github.com/repos/"+github_repo[19:]
@@ -79,13 +88,14 @@ for project in jp["projects"]:
             if len(gh) == 1:
                 print("Problem locating repository: "+repo)
             else:
-                if gh["has_wiki"] and "openworm" not in repo:
+                if gh["has_wiki"] and not knownExternalRepo(repo):
                     print "A wiki is present!"
                     passed = 0
-                if gh["has_issues"] and "openworm" not in repo:
+                if gh["has_issues"] and not knownExternalRepo(repo):
                     print "Issues are present!"
                     passed = 0
                     
+
             
 
     
