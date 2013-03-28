@@ -25,7 +25,8 @@ def checkFileInRepository(projectId, filename):
     
 def knownExternalRepo(reponame):
     if "openworm" in reponame or \
-       "neuralgorithm" in reponame:
+       "neuralgorithm" in reponame or \
+       "Simon-at-Ely" in reponame:
         return True
     else:
         return False
