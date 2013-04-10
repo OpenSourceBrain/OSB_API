@@ -27,6 +27,7 @@ def listFilesInRepoDir(gh_repo, dirname):
     json_files = json.loads(w.read())
     files = []
     for entry in json_files:
+        #print entry
         files.append(entry["name"])
     return files
 
@@ -34,16 +35,18 @@ def copyFileFromUrl(url_file, target_file):
     f = urllib.urlopen(url_file)
     t = open(target_file, 'w')
     t.write(f.read())
-    print "Created: "+target_file
+    print "Created: "+target_file,
     
 
 if __name__ == "__main__":
 
     res = Resource('http://www.opensourcebrain.org')
 
-    p = res.get('/projects.json', limit=1000)
+    p = res.get('/projects.json', limit=3000)
 
     jp = json.loads(p.body_string())
+
+    local = False
 
 
     versionFolder = "NeuroML2"
@@ -56,6 +59,10 @@ if __name__ == "__main__":
         nml_schema_file = urlopen("http://neuroml.svn.sourceforge.net/viewvc/neuroml/trunk/web/NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1.xsd")
         suffix = ".xml"
 
+    if len(sys.argv) == 2 and sys.argv[1]=='-local':
+        local = True
+
+    if local: print "Only checking local NeuroML files"
 
 
     xmlschema_doc = etree.parse(nml_schema_file)
@@ -103,20 +110,33 @@ if __name__ == "__main__":
                         os.makedirs(projFolder)
 
                     remoteFolder = "neuroConstruct/generated"+versionFolder if genNmlFolder else versionFolder
-                    files = listFilesInRepoDir(github_repo[19:], remoteFolder)
+                    if not local:
+                        files = listFilesInRepoDir(github_repo[19:], remoteFolder)
+                    else:
+                        files = os.listdir(projFolder)
+
+                    #print files
 
                     for file in files:
-                        url_file = "https://raw.github.com/%s/master/%s/%s"%(github_repo[19:], remoteFolder, file)
+
                         local_file = projFolder+"/"+file
-                        copyFileFromUrl(url_file, local_file)
+
+                        if not local:
+                            url_file = "https://raw.github.com/%s/master/%s/%s"%(github_repo[19:], remoteFolder, file)
+                            copyFileFromUrl(url_file, local_file)
+                        else:
+                            print "    "+local_file,
+
 
                         if file.endswith(suffix):
                             doc = etree.parse(local_file)
                             valid = xmlschema.validate(doc)
                             if valid:
-                                print "  It is a valid %s file"%versionFolder
+                                print "                 (Valid %s file)"%versionFolder
                             else:
-                                print "  It's NOT a valid %s file!"%versionFolder
+                                print "\n\n       It's NOT a valid %s file!\n"%versionFolder
+                        else:
+                            print     "                 -----"
 
     
     print
