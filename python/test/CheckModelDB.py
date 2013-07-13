@@ -33,17 +33,11 @@ for project in jp["projects"]:
     
     if isProj:
         print "\n--------   Project: "+ project["name"] + "\n"
-        #print "    Last updated on:  "+ project["updated_on"]
-        #printCustomField(project, 'GitHub repository')
+
         if hasMDB:
             print "    OSB link:                      http://opensourcebrain.org/projects/"+project["identifier"]
             printCustomField(project, 'ModelDB reference')
         else:
             print "    No ModelDB info for model"
 
-            '''    printCustomField(project, 'Original format')
-        
-        print project["identifier"]
-        repo = res.get('/projects/'+project["identifier"]+'/repository.json')
-        jr = json.loads(repo.body_string())'''
         
