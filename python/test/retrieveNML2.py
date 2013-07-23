@@ -79,6 +79,8 @@ if __name__ == "__main__":
             if cf['name'] == 'GitHub repository' and cf.has_key('value'):
                 #print "    GitHub repository: "+ cf['value']
                 github_repo = cf['value']
+		if github_repo.endswith(".git"):
+			github_repo = github_repo[:-4]
             if cf['name'] == 'Status info' and cf.has_key('value') and len(cf['value']) > 0:
                 status_found = 1
             if cf['name'] == 'Category' and cf.has_key('value'):
