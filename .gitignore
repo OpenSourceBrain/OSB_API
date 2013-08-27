@@ -1,3 +1,2 @@
-python/test/NeuroML
-python/test/NeuroML2
+python/test/NeuroML*
 *.py~
