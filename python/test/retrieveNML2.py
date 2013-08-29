@@ -12,16 +12,17 @@ import json
 
 from lxml import etree
 from urllib import urlopen
+import subprocess
 
 
-def checkFileInRepository(projectId, filename):
+def check_file_in_repository(projectId, filename):
     f = urllib.urlopen("http://www.opensourcebrain.org/projects/%s/repository/changes/%s" % (projectId, filename))
     if "The entry or revision was not found in the repository" in f.read():
         return False
     else:
         return True
     
-def listFilesInRepoDir(gh_repo, dirname):
+def list_files_in_repo_dir(gh_repo, dirname):
     rest_url = "https://api.github.com/repos/%s/contents/%s"%(gh_repo, dirname)
     w = urllib.urlopen(rest_url)
     json_files = json.loads(w.read())
@@ -31,12 +32,21 @@ def listFilesInRepoDir(gh_repo, dirname):
         files.append(entry["name"])
     return files
 
-def copyFileFromUrl(url_file, target_file):
+def copy_file_from_url(url_file, target_file):
     f = urllib.urlopen(url_file)
     t = open(target_file, 'w')
     t.write(f.read())
     print "Created: "+target_file,
-    
+
+def check_jnml_validates_NeuroML(document):
+    p = subprocess.Popen(["jnml -validate "+ document], shell=True, stdout=subprocess.PIPE)
+    p.communicate()
+    return p.returncode
+
+def check_jnml_loads_lems(document):
+    p = subprocess.Popen(["jnml "+ document+ " -norun"], shell=True, stdout=subprocess.PIPE)
+    p.communicate()
+    return p.returncode
 
 if __name__ == "__main__":
 
@@ -51,13 +61,17 @@ if __name__ == "__main__":
 
     versionFolder = "NeuroML2"
     nml_schema_file = urlopen("https://raw.github.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta.xsd")
-    suffix = ".nml"
+    nml_suffix = ".nml"
+
+    lems_suffix = ".xml"
+    lems_prefix1 = "Run_"
+    lems_prefix2 = "LEMS_"
 
     if len(sys.argv) == 2 and sys.argv[1] == '-v1':
         print "Only looking for NeuroML v1 files"
         versionFolder = "NeuroML"
         nml_schema_file = urlopen("http://neuroml.svn.sourceforge.net/viewvc/neuroml/trunk/web/NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1.xsd")
-        suffix = ".xml"
+        nml_suffix = ".xml"
 
     if len(sys.argv) == 2 and sys.argv[1]=='-local':
         local = True
@@ -95,10 +109,10 @@ if __name__ == "__main__":
                 nmlFolder = False
                 genNmlFolder = False
 
-                if checkFileInRepository(project["identifier"], versionFolder):
+                if check_file_in_repository(project["identifier"], versionFolder):
                     print "Found %s!"%versionFolder
                     nmlFolder = True
-                if checkFileInRepository(project["identifier"], "neuroConstruct/generated"+versionFolder):
+                if check_file_in_repository(project["identifier"], "neuroConstruct/generated"+versionFolder):
                     print "Found neuroConstruct/generated%s!"%versionFolder
                     genNmlFolder = True
 
@@ -113,7 +127,7 @@ if __name__ == "__main__":
 
                     remoteFolder = "neuroConstruct/generated"+versionFolder if genNmlFolder else versionFolder
                     if not local:
-                        files = listFilesInRepoDir(github_repo[19:], remoteFolder)
+                        files = list_files_in_repo_dir(github_repo[19:], remoteFolder)
                     else:
                         files = os.listdir(projFolder)
 
@@ -125,18 +139,38 @@ if __name__ == "__main__":
 
                         if not local:
                             url_file = "https://raw.github.com/%s/master/%s/%s"%(github_repo[19:], remoteFolder, file)
-                            copyFileFromUrl(url_file, local_file)
+                            copy_file_from_url(url_file, local_file)
                         else:
                             print "    "+local_file,
 
 
-                        if file.endswith(suffix):
-                            doc = etree.parse(local_file)
-                            valid = xmlschema.validate(doc)
-                            if valid:
-                                print "                 (Valid %s file)"%versionFolder
+                        if file.endswith(nml_suffix):
+                            check = ' against schema'
+                            if os.getenv('JNML_HOME') is None:
+                                doc = etree.parse(local_file)
+                                valid = xmlschema.validate(doc)
                             else:
-                                print "\n\n       It's NOT a valid %s file!\n"%versionFolder
+                                check = ' against jNeuroML'
+                                ret = check_jnml_validates_NeuroML(local_file)
+                                valid = not bool(ret)
+
+                            if valid:
+                                print "                 (Valid %s file%s)"%(versionFolder,check)
+                            else:
+                                print "\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check)
+
+                        elif file.endswith(lems_suffix) and (file.startswith(lems_prefix1) or file.startswith(lems_prefix2)):
+                            
+                            if os.getenv('JNML_HOME') is not None:
+
+                                ret = check_jnml_loads_lems(local_file)
+                                valid = not bool(ret)
+                                if valid:
+                                    print "                 (Parsable LEMS file)"
+                                else:
+                                    print "\n\n       It's NOT a parsable LEMS file!\n"
+                            else:
+                                print     "                 ---- LEMS ----"
                         else:
                             print     "                 -----"
 
