@@ -50,6 +50,11 @@ def check_jnml_loads_lems(document):
 
 if __name__ == "__main__":
 
+    count_nml2 = 0
+    count_lems = 0
+    count_nml2_invalid = 0
+    count_lems_invalid = 0
+
     res = Resource('http://www.opensourcebrain.org')
 
     p = res.get('/projects.json', limit=3000)
@@ -145,7 +150,7 @@ if __name__ == "__main__":
 
 
                         if file.endswith(nml_suffix):
-                            check = ' against schema'
+                            check = ' against schema only'
                             if os.getenv('JNML_HOME') is None:
                                 doc = etree.parse(local_file)
                                 valid = xmlschema.validate(doc)
@@ -156,8 +161,10 @@ if __name__ == "__main__":
 
                             if valid:
                                 print "                 (Valid %s file%s)"%(versionFolder,check)
+                                count_nml2+=1
                             else:
                                 print "\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check)
+                                count_nml2_invalid+=1
 
                         elif file.endswith(lems_suffix) and (file.startswith(lems_prefix1) or file.startswith(lems_prefix2)):
                             
@@ -167,12 +174,14 @@ if __name__ == "__main__":
                                 valid = not bool(ret)
                                 if valid:
                                     print "                 (Parsable LEMS file)"
+                                    count_lems+=1
                                 else:
                                     print "\n\n       It's NOT a parsable LEMS file!\n"
+                                    count_lems_invalid+=1
                             else:
                                 print     "                 ---- LEMS ----"
                         else:
                             print     "                 -----"
-
-    
+    print
+    print "Found %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid)
     print
