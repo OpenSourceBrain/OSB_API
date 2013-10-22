@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
         if category == "Project":
 
-            if github_repo is not None:
+            if github_repo is not None and len(github_repo) > 0:
 
                 nmlFolder = False
                 genNmlFolder = False
