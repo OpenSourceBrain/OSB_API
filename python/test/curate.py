@@ -77,7 +77,7 @@ for project in jp["projects"]:
 
         #print json.dumps(project, sort_keys=True, indent=4)
 
-        if github_repo is not None:
+        if github_repo is not None and len(github_repo) > 0:
 
             if not checkFileInRepository(project["identifier"], "README") \
                and not checkFileInRepository(project["identifier"], "README.txt") \
