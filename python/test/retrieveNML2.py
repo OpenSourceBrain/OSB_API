@@ -71,12 +71,15 @@ if __name__ == "__main__":
     lems_suffix = ".xml"
     lems_prefix1 = "Run_"
     lems_prefix2 = "LEMS_"
+    
+    nml2 = True 
 
     if len(sys.argv) == 2 and sys.argv[1] == '-v1':
         print "Only looking for NeuroML v1 files"
         versionFolder = "NeuroML"
-        nml_schema_file = urlopen("http://neuroml.svn.sourceforge.net/viewvc/neuroml/trunk/web/NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1.xsd")
+        nml_schema_file = urlopen("http://www.neuroml.org/NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1.xsd")
         nml_suffix = ".xml"
+        nml2 = False
 
     if len(sys.argv) == 2 and sys.argv[1]=='-local':
         local = True
@@ -151,7 +154,7 @@ if __name__ == "__main__":
 
                         if file.endswith(nml_suffix):
                             check = ' against schema only'
-                            if os.getenv('JNML_HOME') is None:
+                            if not nml2 or os.getenv('JNML_HOME') is None:
                                 doc = etree.parse(local_file)
                                 valid = xmlschema.validate(doc)
                             else:
