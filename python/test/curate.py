@@ -91,10 +91,10 @@ for project in jp["projects"]:
             if len(gh) == 1:
                 print("Problem locating repository: "+repo)
             else:
-                if gh["has_wiki"] and not knownExternalRepo(repo):
+                if not knownExternalRepo(repo) and gh["has_wiki"]:
                     print "A wiki is present!"
                     passed = 0
-                if gh["has_issues"] and not knownExternalRepo(repo):
+                if not knownExternalRepo(repo) and gh["has_issues"]:
                     print "Issues are present!"
                     passed = 0
                     
