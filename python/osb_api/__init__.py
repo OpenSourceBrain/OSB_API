@@ -1,4 +1,11 @@
-"""Functions shared by all test scripts."""
+"""
+Functions shared by all test scripts.
+Call any script with no arguments to skip (GitHub) authentication, e.g.:
+python osb_api/curate.py
+Call with commandline arguments to enable (GitHub) authentication, e.g.:
+python osb_api/curate.py username:YOUR_USERNAME and password:YOUR_PASSWORD
+
+"""
 
 import sys
 import urllib
@@ -8,9 +15,16 @@ import json
 
 USERNAME = None
 PASSWORD = None
-if len(sys.argv)==3:
-    USERNAME = sys.argv[1]
-    PASSWORD = sys.argv[2]
+for arg in sys.argv[1:]:
+    try:
+        key,value = arg.split(":")
+    except ValueError,e:
+        print "Command line argument %s had error %s" % (arg,e.strerror)
+    else:
+        if key == "username":            
+            USERNAME = value
+        if key == "password":
+            PASSWORD = value
 
 def get_project_list(limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
@@ -117,9 +131,8 @@ def get_page(url,username=None,password=None):
         #req.add_header("Accept", "application/json")
     try:
         response = urllib2.urlopen(req)
-    except urllib2.HTTPError:
-        print "URL: %s" % url
-        raise
+    except urllib2.HTTPError as e:
+        print "URL: %s produced error %d (%s)" % (url,e.code,e.msg)
     else:
         result = response.read()
     return result
