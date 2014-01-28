@@ -1,6 +1,16 @@
 """Functions shared by all test scripts."""
 
+import sys
 import urllib
+import urllib2
+import base64
+import json
+
+USERNAME = None
+PASSWORD = None
+if len(sys.argv)==3:
+    USERNAME = sys.argv[1]
+    PASSWORD = sys.argv[2]
 
 def check_file_in_repository(projectId, filename):
     f = urllib.urlopen("http://www.opensourcebrain.org/projects/%s/repository/changes/%s" % (projectId, filename))
@@ -36,8 +46,8 @@ def get_cell_neurolex_ids(project):
 
 def list_files_in_repo_dir(gh_repo, dirname):
     rest_url = "https://api.github.com/repos/%s/contents/%s"%(gh_repo, dirname)
-    w = urllib.urlopen(rest_url)
-    json_files = json.loads(w.read())
+    page = get_page(rest_url)
+    json_files = json.loads(page)
     files = []
     for entry in json_files:
         #print entry
@@ -64,3 +74,34 @@ def check_jnml_loads_lems(document):
     p.communicate()
     return p.returncode
 
+def build_request(url):
+    if not self.is_authenticated:
+        return Request(url)
+    auth = {'Authorization': 'token %s' % (self.token)}
+    return Request(url, auth)
+
+def get_page(url,username=None,password=None):
+    if 'api.github.com' in url:
+        url = url.replace('/tree/master/neuroConstruct','')
+        # This cruft was in some of the urls.  
+    request = urllib2.Request(url)
+    if username is None:
+        username = USERNAME
+    if password is None:
+        password = PASSWORD
+    
+    result = ""
+    req = urllib2.Request(url)
+    if username and password:
+        auth = base64.urlsafe_b64encode("%s:%s" % (username, password))
+        req.add_header("Authorization", "Basic %s" % auth)
+        #req.add_header("Content-Type", "application/json")
+        #req.add_header("Accept", "application/json")
+    try:
+        response = urllib2.urlopen(req)
+    except urllib2.HTTPError:
+        print "URL: %s" % url
+        raise
+    else:
+        result = response.read()
+    return result

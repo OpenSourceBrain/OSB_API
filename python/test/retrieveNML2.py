@@ -110,7 +110,7 @@ if __name__ == "__main__":
                     if not os.path.exists(projFolder):
                         os.makedirs(projFolder)
 
-                    remoteFolder = nCversionFolder if genNmlFolder else versionFolder
+                    remoteFolder = nC_versionFolder if genNmlFolder else versionFolder
                     if not local:
                         files = list_files_in_repo_dir(github_repo[19:], remoteFolder)
                     else:

@@ -14,9 +14,7 @@ jp = json.loads(p.body_string())
 
 passed = 1
 
-import urllib
-
-from __init__ import check_file_in_repository
+from __init__ import check_file_in_repository, get_page
 
 for project in jp["projects"]:
     print "%s\tProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"])
@@ -62,8 +60,9 @@ for project in jp["projects"]:
                 passed = 0
 
             repo = "https://api.github.com/repos/"+github_repo[19:]
-            w = urllib.urlopen(repo)
-            gh = json.loads(w.read())
+            print repo
+            page = get_page(repo)
+            gh = json.loads(page)
             #print json.dumps(gh, sort_keys=True, indent=4)
             if len(gh) == 1:
                 print("Problem locating repository: "+repo)
