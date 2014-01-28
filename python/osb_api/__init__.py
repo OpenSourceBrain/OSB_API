@@ -12,6 +12,24 @@ if len(sys.argv)==3:
     USERNAME = sys.argv[1]
     PASSWORD = sys.argv[2]
 
+def get_project_list(limit=1000):
+    url = "http://www.opensourcebrain.org/projects.json"
+    page = get_page('%s?limit=%d' % (url,limit))
+    json_data = json.loads(page)
+    project_list = json_data['projects']
+    return project_list
+
+def get_project(project_identifier):
+    json_data = get_project_list()
+    project = None
+    for candidate_project in json_data:
+        if candidate_project['identifier'] == project_identifier:
+            project = candidate_project
+            break
+    if project is None:
+        print "No project found with identifier %s" % project_identifer
+    return project
+
 def check_file_in_repository(projectId, filename):
     f = urllib.urlopen("http://www.opensourcebrain.org/projects/%s/repository/changes/%s" % (projectId, filename))
     if "The entry or revision was not found in the repository" in f.read():
