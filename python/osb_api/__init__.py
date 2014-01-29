@@ -33,15 +33,16 @@ def get_project_list(limit=1000):
     project_list = json_data['projects']
     return project_list
 
-def get_project(project_identifier):
-    json_data = get_project_list()
+def get_project(project_identifier,project_list=None):
+    if project_list is None:
+        project_list = get_project_list()
     project = None
-    for candidate_project in json_data:
+    for candidate_project in project_list:
         if candidate_project['identifier'] == project_identifier:
             project = candidate_project
             break
     if project is None:
-        print "No project found with identifier %s" % project_identifer
+        print "No project found with identifier %s" % project_identifier
     return project
 
 def check_file_in_repository(projectId, filename):
