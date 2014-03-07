@@ -22,23 +22,44 @@ def check_file_in_repository(projectId, filename):
     else:
         return True
     
-def list_files_in_repo_dir(gh_repo, dirname):
-    rest_url = "https://api.github.com/repos/%s/contents/%s"%(gh_repo, dirname)
+def list_files_in_repo(gh_repo):
+    #rest_url = "https://api.github.com/repos/%s/contents/%s"%(gh_repo, dirname)
+    # GET /repos/:owner/:repo/git/trees/:sha
+    rest_url = "https://api.github.com/repos/%s/git/trees/master?recursive=1"%(gh_repo)
+    print "URL: %s"%rest_url
     w = urllib.urlopen(rest_url)
     json_files = json.loads(w.read())
+    if not json_files.has_key('tree'):
+        print("Error!")
+        print json_files
     files = []
-    for entry in json_files:
-        #print entry
-        files.append(entry["name"])
+    tree = json_files["tree"]
+    for entry in tree:
+        files.append(entry["path"])
     return files
 
 def copy_file_from_url(url_file, target_file):
+    #print("copy_file_from_url: %s, %s"%(url_file, target_file))
     f = urllib.urlopen(url_file)
+    if '/' in target_file:
+        parent_dir = target_file[:target_file.rfind('/')]
+        check_exists_dir_and_children(parent_dir)
+    
     t = open(target_file, 'w')
     t.write(f.read())
-    print "Created: "+target_file,
+    print "Created: "+target_file
+    
+def check_exists_dir_and_children(file):
+    #print("check_exists_dir_and_children: %s"%file)
+    if os.path.exists(file): return
+    if '/' in file:
+        parent_dir = file[:file.rfind('/')]
+        check_exists_dir_and_children(parent_dir)
+    if not os.path.exists(file):
+        os.makedirs(file)
+    
 
-def check_jnml_validates_NeuroML(document):
+def check_jnml_validates_neuroml(document):
     p = subprocess.Popen(["jnml -validate "+ document], shell=True, stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
@@ -47,6 +68,13 @@ def check_jnml_loads_lems(document):
     p = subprocess.Popen(["jnml "+ document+ " -norun"], shell=True, stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
+
+lems_suffix = ".xml"
+lems_prefix1 = "Run_"
+lems_prefix2 = "LEMS_"
+
+def is_lems_file(file):
+    return file.endswith(lems_suffix) and (file.startswith(lems_prefix1) or file.startswith(lems_prefix2))
 
 if __name__ == "__main__":
 
@@ -57,7 +85,7 @@ if __name__ == "__main__":
 
     res = Resource('http://www.opensourcebrain.org')
 
-    p = res.get('/projects.json', limit=3000)
+    p = res.get('/projects.json', limit=1300)
 
     jp = json.loads(p.body_string())
 
@@ -68,9 +96,6 @@ if __name__ == "__main__":
     nml_schema_file = urlopen("https://raw.github.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta.xsd")
     nml_suffix = ".nml"
 
-    lems_suffix = ".xml"
-    lems_prefix1 = "Run_"
-    lems_prefix2 = "LEMS_"
     
     nml2 = True 
 
@@ -99,7 +124,7 @@ if __name__ == "__main__":
 
         for cf in project["custom_fields"]:
             if cf['name'] == 'GitHub repository' and cf.has_key('value'):
-                #print "    GitHub repository: "+ cf['value']
+                print "    GitHub repository: "+ cf['value']
                 github_repo = cf['value']
 		if github_repo.endswith(".git"):
 			github_repo = github_repo[:-4]
@@ -108,48 +133,38 @@ if __name__ == "__main__":
             if cf['name'] == 'Category' and cf.has_key('value'):
                 category = cf['value']
 
+        ignores = []
+        ignores = ['blender-to-neuroml']
+        
 
-
-        if category == "Project":
+        if category == "Project" and project["identifier"] not in ignores:
 
             if github_repo is not None and len(github_repo) > 0:
 
-                nmlFolder = False
-                genNmlFolder = False
+                if not os.path.exists(versionFolder):
+                    os.makedirs(versionFolder)
 
-                if check_file_in_repository(project["identifier"], versionFolder):
-                    print "Found %s!"%versionFolder
-                    nmlFolder = True
-                if check_file_in_repository(project["identifier"], "neuroConstruct/generated"+versionFolder):
-                    print "Found neuroConstruct/generated%s!"%versionFolder
-                    genNmlFolder = True
+                projFolder = versionFolder+"/"+project["identifier"]
+                if not os.path.exists(projFolder):
+                    os.makedirs(projFolder)
 
+                if not local:
+                    files = list_files_in_repo(github_repo[19:])
+                else:
+                    files = os.listdir(projFolder)
 
-                if nmlFolder or genNmlFolder:
-                    if not os.path.exists(versionFolder):
-                        os.makedirs(versionFolder)
+                #print files
 
-                    projFolder = versionFolder+"/"+project["identifier"]
-                    if not os.path.exists(projFolder):
-                        os.makedirs(projFolder)
+                for file in files:
+                    print "Checking for NeuroML: %s"%file
+                    local_file = projFolder+"/"+file
 
-                    remoteFolder = "neuroConstruct/generated"+versionFolder if genNmlFolder else versionFolder
-                    if not local:
-                        files = list_files_in_repo_dir(github_repo[19:], remoteFolder)
-                    else:
-                        files = os.listdir(projFolder)
-
-                    #print files
-
-                    for file in files:
-
-                        local_file = projFolder+"/"+file
-
+                    if file.endswith(nml_suffix) and False:
                         if not local:
-                            url_file = "https://raw.github.com/%s/master/%s/%s"%(github_repo[19:], remoteFolder, file)
+                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], file)
                             copy_file_from_url(url_file, local_file)
                         else:
-                            print "    "+local_file,
+                            print "  Local file:  "+local_file,
 
 
                         if file.endswith(nml_suffix):
@@ -159,7 +174,7 @@ if __name__ == "__main__":
                                 valid = xmlschema.validate(doc)
                             else:
                                 check = ' against jNeuroML'
-                                ret = check_jnml_validates_NeuroML(local_file)
+                                ret = check_jnml_validates_neuroml(local_file)
                                 valid = not bool(ret)
 
                             if valid:
@@ -168,23 +183,34 @@ if __name__ == "__main__":
                             else:
                                 print "\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check)
                                 count_nml2_invalid+=1
+                                
+                                
+                for file in files:
+                    print "Checking for LEMS: %s"%file
+                    local_file = projFolder+"/"+file
 
-                        elif file.endswith(lems_suffix) and (file.startswith(lems_prefix1) or file.startswith(lems_prefix2)):
-                            
-                            if os.getenv('JNML_HOME') is not None:
-
-                                ret = check_jnml_loads_lems(local_file)
-                                valid = not bool(ret)
-                                if valid:
-                                    print "                 (Parsable LEMS file)"
-                                    count_lems+=1
-                                else:
-                                    print "\n\n       It's NOT a parsable LEMS file!\n"
-                                    count_lems_invalid+=1
-                            else:
-                                print     "                 ---- LEMS ----"
+                    if is_lems_file(file):
+                        if not local:
+                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], file)
+                            copy_file_from_url(url_file, local_file)
                         else:
-                            print     "                 -----"
+                            print "  Local file:  "+local_file,
+
+
+                        if os.getenv('JNML_HOME') is not None:
+
+                            ret = check_jnml_loads_lems(local_file)
+                            valid = not bool(ret)
+                            if valid:
+                                print "                 (Parsable LEMS file)"
+                                count_lems+=1
+                            else:
+                                print "\n\n       It's NOT a parsable LEMS file!\n"
+                                count_lems_invalid+=1
+                        else:
+                            print     "                 ---- LEMS ----"
+                    else:
+                        print     "                 -----"
     print
     print "Found %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid)
     print
