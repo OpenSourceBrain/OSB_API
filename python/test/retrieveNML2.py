@@ -47,7 +47,7 @@ def copy_file_from_url(url_file, target_file):
     
     t = open(target_file, 'w')
     t.write(f.read())
-    print "Created: "+target_file
+    print "Downloaded: "+target_file
     
 def check_exists_dir_and_children(file):
     #print("check_exists_dir_and_children: %s"%file)
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     res = Resource('http://www.opensourcebrain.org')
 
-    p = res.get('/projects.json', limit=1300)
+    p = res.get('/projects.json', limit=129)
 
     jp = json.loads(p.body_string())
 
@@ -121,11 +121,16 @@ if __name__ == "__main__":
         github_repo = None
         category = ""
         spine_check = 0
+        endorsed = -1
 
         for cf in project["custom_fields"]:
             if cf['name'] == 'GitHub repository' and cf.has_key('value'):
                 print "    GitHub repository: "+ cf['value']
                 github_repo = cf['value']
+            if cf['name'] == 'Endorsement' and cf.has_key('value'):
+                endorsed = int(cf['value'])
+                #print endorsed
+                
 		if github_repo.endswith(".git"):
 			github_repo = github_repo[:-4]
             if cf['name'] == 'Status info' and cf.has_key('value') and len(cf['value']) > 0:
@@ -134,10 +139,11 @@ if __name__ == "__main__":
                 category = cf['value']
 
         ignores = []
-        ignores = ['blender-to-neuroml']
+        ignores = ['blender-to-neuroml', \
+        'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012']
         
 
-        if category == "Project" and project["identifier"] not in ignores:
+        if category == "Project" and project["identifier"] not in ignores and endorsed == 1:
 
             if github_repo is not None and len(github_repo) > 0:
 
@@ -150,24 +156,27 @@ if __name__ == "__main__":
 
                 if not local:
                     files = list_files_in_repo(github_repo[19:])
+                    #print("Checking files in: %s: %s"%(github_repo[19:], files))
                 else:
                     files = os.listdir(projFolder)
+                    print("Checking local files in: %s: \n%s"%(projFolder, files))
+                    
+                
+                for full_file_path in files:
+                    
+                    file_name = full_file_path.split('/')[-1]
+                    local_file = projFolder+"/"+file_name
 
-                #print files
-
-                for file in files:
-                    print "Checking for NeuroML: %s"%file
-                    local_file = projFolder+"/"+file
-
-                    if file.endswith(nml_suffix) and False:
+                    if file_name.endswith(nml_suffix):
+                        #print "Checking NeuroML file: %s"%full_file_path
                         if not local:
-                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], file)
+                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], full_file_path)
                             copy_file_from_url(url_file, local_file)
                         else:
                             print "  Local file:  "+local_file,
 
 
-                        if file.endswith(nml_suffix):
+                        if file_name.endswith(nml_suffix):
                             check = ' against schema only'
                             if not nml2 or os.getenv('JNML_HOME') is None:
                                 doc = etree.parse(local_file)
@@ -184,14 +193,15 @@ if __name__ == "__main__":
                                 print "\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check)
                                 count_nml2_invalid+=1
                                 
-                                
-                for file in files:
-                    print "Checking for LEMS: %s"%file
-                    local_file = projFolder+"/"+file
+                             
+                for full_file_path in files:
+                    file_name = full_file_path.split('/')[-1]
+                    local_file = projFolder+"/"+file_name
 
-                    if is_lems_file(file):
+                    if is_lems_file(file_name):
+                        print "Checking LEMS file: %s"%full_file_path
                         if not local:
-                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], file)
+                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], full_file_path)
                             copy_file_from_url(url_file, local_file)
                         else:
                             print "  Local file:  "+local_file,
@@ -207,10 +217,10 @@ if __name__ == "__main__":
                             else:
                                 print "\n\n       It's NOT a parsable LEMS file!\n"
                                 count_lems_invalid+=1
-                        else:
-                            print     "                 ---- LEMS ----"
-                    else:
-                        print     "                 -----"
+                        #else:
+                            ##print     "                 ---- LEMS ----"
+                    #else:
+                        #print     "                 -----"
     print
     print "Found %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid)
     print
