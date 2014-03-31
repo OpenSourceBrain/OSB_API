@@ -159,7 +159,7 @@ if __name__ == "__main__":
                     #print("Checking files in: %s: %s"%(github_repo[19:], files))
                 else:
                     files = os.listdir(projFolder)
-                    print("Checking local files in: %s: \n%s"%(projFolder, files))
+                    print("Checking local files in: %s"%(projFolder))
                     
                 
                 for full_file_path in files:
