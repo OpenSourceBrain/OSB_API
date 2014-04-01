@@ -14,25 +14,10 @@ jp = json.loads(p.body_string())
 
 passed = 1
 
-import urllib
-
-def checkFileInRepository(projectId, filename):
-    f = urllib.urlopen("http://www.opensourcebrain.org/projects/"+projectId+"/repository/changes/"+filename)
-    if "The entry or revision was not found in the repository" in f.read():
-        return False
-    else:
-        return True
-    
-def knownExternalRepo(reponame):
-    if "openworm" in reponame or \
-       "neuralgorithm" in reponame or \
-       "Simon-at-Ely" in reponame:
-        return True
-    else:
-        return False
+from __init__ import check_file_in_repository, known_external_repo, get_page
 
 for project in jp["projects"]:
-    print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
+    print "%sProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"])
     #print "    Last updated on:  "+ project["updated_on"]
     status_found = 0
     github_repo = None
@@ -47,7 +32,8 @@ for project in jp["projects"]:
             github_repo = cf['value']
             if github_repo.endswith(".git"):
 		github_repo = github_repo[:-4]
-        if cf['name'] == 'Status info' and cf.has_key('value') and len(cf['value']) > 0:
+        if cf['name'] == 'Status info' and cf.has_key('value') \
+                                       and len(cf['value']) > 0:
             status_found = 1
         if cf['name'] == 'Category' and cf.has_key('value'):
             category = cf['value']
@@ -78,24 +64,24 @@ for project in jp["projects"]:
         #print json.dumps(project, sort_keys=True, indent=4)
 
         if github_repo is not None and len(github_repo) > 0:
-
-            if not checkFileInRepository(project["identifier"], "README") \
-               and not checkFileInRepository(project["identifier"], "README.txt") \
-               and not checkFileInRepository(project["identifier"], "README.md"):
+            identifier = project["identifier"]
+            if not check_file_in_repository(identifier, "README") \
+               and not check_file_in_repository(identifier, "README.txt") \
+               and not check_file_in_repository(identifier, "README.md"):
                 print "No README or README.txt or README.md!"
                 passed = 0
 
             repo = "https://api.github.com/repos/"+github_repo[19:]
-            w = urllib.urlopen(repo)
-            gh = json.loads(w.read())
+            page = get_page(repo)
+            gh = json.loads(page)
             if len(gh) == 1:
                 print("Problem locating repository: "+repo)
             else:
-                if not knownExternalRepo(repo) and gh["has_wiki"]:
-                    print "A wiki is present!"
-                    passed = 0
-                if not knownExternalRepo(repo) and gh["has_issues"]:
-                    print "Issues are present!"
+                if not known_external_repo(repo):
+                    if gh.has_key("has_wiki") and gh["has_wiki"]:
+                        print "A wiki is present!"
+                    if gh.has_key("has_issues") and gh["has_issues"]:
+                        print "Issues are present!"
                     passed = 0
                     
 
