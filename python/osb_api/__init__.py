@@ -15,6 +15,7 @@ import json
 
 USERNAME = None
 PASSWORD = None
+
 for arg in sys.argv[1:]:
     try:
         key,value = arg.split(":")

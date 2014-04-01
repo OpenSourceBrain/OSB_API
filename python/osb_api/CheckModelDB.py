@@ -1,39 +1,32 @@
 '''
-API to OSB tests using restkit...
+Script to check ModelDB references
 '''
 
-from restkit import Resource
-res = Resource('http://www.opensourcebrain.org')
 
-import json
+from __init__ import get_project_list, get_custom_field, print_custom_field
 
-projects = res.get('/projects.json', limit=1000)
+projects = 0
+with_modeldb = 0
+    
+for project in get_project_list():
 
-
-jp = json.loads(projects.body_string())
-
-from __init__ import get_custom_field,print_custom_field
-
-for project in jp["projects"]:
-
-    isProj = False
-    hasMDB = False
-    for cf in project["custom_fields"]:
-        if cf['name'] == 'Category' and cf.has_key('value') \
-                                    and cf['value']=='Project':
-            isProj = True
-        if cf['name'] == 'ModelDB reference' and cf.has_key('value') \
-                                             and len(cf['value'])>0:
-            hasMDB = True
+    isProj = get_custom_field(project, 'Category') == 'Project'
+    mdb = get_custom_field(project, 'ModelDB reference')
+    hasMDB = mdb != None and len(mdb)>0
+    
     
     if isProj:
         print "\n--------   Project: %s\n" % project["name"]
+        projects+=1
 
         if hasMDB:
-            print "\tOSB link:%shttp://opensourcebrain.org/projects/%s" % \
+            print "    OSB link:%shttp://opensourcebrain.org/projects/%s" % \
                                                 (" "*22,project["identifier"])
             print_custom_field(project, 'ModelDB reference')
+            with_modeldb +=1
         else:
-            print "\tNo ModelDB info for model"
+            print "    No ModelDB info for model"
+    
 
+print("\nThere were %i projects, %i of which had ModelDB information\n"%(projects, with_modeldb))
         
