@@ -1,0 +1,16 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+    <rdf:Description rdf:about="muscle_model">
+        <bqmodel:is>
+            <rdf:Bag>
+                <!-- Open Source Brain project identifier: muscle_model -->
+                <rdf:li rdf:resource="http://opensourcebrain.org/projects/muscle_model"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasTaxon>
+            <rdf:Bag>
+                <!-- Open Source Brain species: c. elegans; taxonomy id: 6239 -->
+                <rdf:li rdf:resource="http://identifiers.org/taxonomy/6239"/>
+            </rdf:Bag>
+        </bqbiol:hasTaxon>
+    </rdf:Description>
+</rdf:RDF>

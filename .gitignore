@@ -1,4 +1,7 @@
+/python/osb_api/retrieveNML2.py.orig
+/python/osb_api/github.info
 /python/osb_api/__init__.pyc
 python/test/no
 python/test/NeuroML*
 *.py~
+*.pyc

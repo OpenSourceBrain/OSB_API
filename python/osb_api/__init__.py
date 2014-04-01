@@ -12,9 +12,12 @@ import urllib
 import urllib2
 import base64
 import json
+import os.path
+
 
 USERNAME = None
 PASSWORD = None
+auth_file = "github.info"
 
 for arg in sys.argv[1:]:
     try:
@@ -26,6 +29,14 @@ for arg in sys.argv[1:]:
             USERNAME = value
         if key == "password":
             PASSWORD = value
+
+if os.path.isfile(auth_file):
+    for line in open(auth_file, 'r'):
+        if line.startswith("username:"):
+            USERNAME = line.strip()[9:]
+        if line.startswith("password:"):
+            PASSWORD = line.strip()[9:]
+        
 
 def get_project_list(limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"

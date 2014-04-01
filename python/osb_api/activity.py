@@ -3,82 +3,69 @@ Some quality assurance tests on OSB/GitHub repos
 
 '''
 
-from restkit import Resource
-res = Resource('http://www.opensourcebrain.org')
-
 import json
 
-p = res.get('/projects.json', limit=5000)
+from __init__ import get_project_list, check_file_in_repository, get_page, get_custom_field
 
-jp = json.loads(p.body_string())
+projects = 0
+no_status = 0
+with_issues = 0
+with_wiki = 0
+with_forks = 0
+with_watchers = 0
 
-passed = 1
-
-from __init__ import check_file_in_repository, get_page
-
-for project in jp["projects"]:
+for project in get_project_list(limit=1000):
     print "%s\tProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"])
-    #print "    Last updated on:  "+ project["updated_on"]
-    status_found = 0
-    github_repo = None
-    category = ""
-    spine_check = 0
+
+    projects+=1
     
-    #print project["custom_fields"]
+    github_repo = get_custom_field(project, 'GitHub repository')
+    if github_repo!=None and github_repo.endswith(".git"):
+         github_repo = github_repo[:-4]
+         
+    status = get_custom_field(project, 'Status info')
     
-    for cf in project["custom_fields"]:
-        if cf['name'] == 'GitHub repository' and cf.has_key('value'):
-            #print "    GitHub repository: "+ cf['value']
-            github_repo = cf['value']
-            if github_repo.endswith(".git"):
-		github_repo = github_repo[:-4]
-        if cf['name'] == 'Status info' and cf.has_key('value') \
-                                       and len(cf['value']) > 0:
-            status_found = 1
-        if cf['name'] == 'Category' and cf.has_key('value'):
-            category = cf['value']
-        if cf['name'] == 'Spine classification' and cf.has_key('value'):
-            spine_check = 1
-
-        
+    #category = get_custom_field(project, 'Category')
+    #spine  = get_custom_field(project, 'Spine classification')
     
-           
-    if 1:
 
-            
-        if  status_found == 0:
-            print "No status!"
+    if  status == None or len(status)==0:
+        print "No status!"
+        no_status+=1
 
-        #print json.dumps(project, sort_keys=True, indent=4)
 
-        if github_repo is not None and len(github_repo) > 0:
-            identifier = project["identifier"]
-            if not check_file_in_repository(identifier, "README") \
-               and not check_file_in_repository(identifier, "README.txt") \
-               and not check_file_in_repository(identifier, "README.md"):
-                print "No README or README.txt or README.md!"
-                passed = 0
+    if github_repo is not None and len(github_repo) > 0:
+        identifier = project["identifier"]
+        if not check_file_in_repository(identifier, "README") \
+           and not check_file_in_repository(identifier, "README.txt") \
+           and not check_file_in_repository(identifier, "README.md"):
+            print "No README or README.txt or README.md!"
+            passed = 0
 
-            repo = "https://api.github.com/repos/"+github_repo[19:]
-            print repo
-            page = get_page(repo)
-            gh = json.loads(page)
-            #print json.dumps(gh, sort_keys=True, indent=4)
-            if len(gh) == 1:
-                print("Problem locating repository: "+repo)
-            else:
-                if gh.has_key("has_wiki") and gh["has_wiki"]:
-                    print "A wiki is present!"
-                if gh.has_key("open_issues") and gh["open_issues"] \
-                                             and int(gh["open_issues"])>0:
-                    print "Issues open: %i"%gh["open_issues"]
-                if gh.has_key("forks") and gh["forks"] \
-                                       and int(gh["forks"])>0:
-                    print "Forks: %i"%gh["open_issues"]
-                if gh.has_key("watchers") and gh["watchers"] \
-                                          and int(gh["watchers"])>0:
-                    print "Watchers: %i"%gh["watchers"]
+        repo = "https://api.github.com/repos/"+github_repo[19:]
+        print repo
+        page = get_page(repo)
+        gh = json.loads(page)
+
+        if len(gh) == 1:
+            print("Problem locating repository: "+repo)
+        else:
+            if gh.has_key("has_wiki") and gh["has_wiki"]:
+                print "A wiki is present!"
+                with_wiki +=1
+            if gh.has_key("open_issues") and gh["open_issues"] \
+                                         and int(gh["open_issues"])>0:
+                print "Issues open: %i"%gh["open_issues"]
+                with_issues+=1
+            if gh.has_key("forks") and gh["forks"] \
+                                   and int(gh["forks"])>0:
+                print "Forks: %i"%gh["open_issues"]
+                with_forks +=1
+            if gh.has_key("watchers") and gh["watchers"] \
+                                      and int(gh["watchers"])>0:
+                print "Watchers: %i"%gh["watchers"]
+                with_watchers+=1
 
                     
 
-print
+print("\nFound %i projects, %i with no status, %i with wiki, %i with issues, %i with forks, %i with watchers\n"%(projects, no_status, with_wiki, with_issues, with_forks, with_watchers))

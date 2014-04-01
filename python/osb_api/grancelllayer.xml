@@ -1,0 +1,16 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+    <rdf:Description rdf:about="grancelllayer">
+        <bqmodel:is>
+            <rdf:Bag>
+                <!-- Open Source Brain project identifier: grancelllayer -->
+                <rdf:li rdf:resource="http://opensourcebrain.org/projects/grancelllayer"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasTaxon>
+            <rdf:Bag>
+                <!-- Open Source Brain species: rodent; taxonomy id: 9989 -->
+                <rdf:li rdf:resource="http://identifiers.org/taxonomy/9989"/>
+            </rdf:Bag>
+        </bqbiol:hasTaxon>
+    </rdf:Description>
+</rdf:RDF>

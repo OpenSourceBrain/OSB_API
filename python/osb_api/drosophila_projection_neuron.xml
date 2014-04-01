@@ -1,0 +1,16 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+    <rdf:Description rdf:about="drosophila_projection_neuron">
+        <bqmodel:is>
+            <rdf:Bag>
+                <!-- Open Source Brain project identifier: drosophila_projection_neuron -->
+                <rdf:li rdf:resource="http://opensourcebrain.org/projects/drosophila_projection_neuron"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasTaxon>
+            <rdf:Bag>
+                <!-- Open Source Brain species: drosophila; taxonomy id: 7215 -->
+                <rdf:li rdf:resource="http://identifiers.org/taxonomy/7215"/>
+            </rdf:Bag>
+        </bqbiol:hasTaxon>
+    </rdf:Description>
+</rdf:RDF>
