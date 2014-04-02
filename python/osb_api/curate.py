@@ -1,44 +1,29 @@
 '''
 Some quality assurance tests on OSB/GitHub repos
 
-'''
+Criteria for passing tests are subject to change 
 
-from restkit import Resource
-res = Resource('http://www.opensourcebrain.org')
+'''
 
 import json
 
-p = res.get('/projects.json', limit=1000)
+from __init__ import get_project_list, check_file_in_repository, known_external_repo, get_page, get_custom_field
 
-jp = json.loads(p.body_string())
+passed_projects = 0
+projects = 0
 
-passed = 1
 
-from __init__ import check_file_in_repository, known_external_repo, get_page
-
-for project in jp["projects"]:
+for project in get_project_list(limit=1000):
     print "%sProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"])
-    #print "    Last updated on:  "+ project["updated_on"]
-    status_found = 0
-    github_repo = None
-    category = ""
-    spine_check = 0
+
+    github_repo = get_custom_field(project, 'GitHub repository')
+    if github_repo!=None and github_repo.endswith(".git"):
+         github_repo = github_repo[:-4]
+         
+    status = get_custom_field(project, 'Status info')
     
-    #print project["custom_fields"]
-    
-    for cf in project["custom_fields"]:
-        if cf['name'] == 'GitHub repository' and cf.has_key('value'):
-            #print "    GitHub repository: "+ cf['value']
-            github_repo = cf['value']
-            if github_repo.endswith(".git"):
-		github_repo = github_repo[:-4]
-        if cf['name'] == 'Status info' and cf.has_key('value') \
-                                       and len(cf['value']) > 0:
-            status_found = 1
-        if cf['name'] == 'Category' and cf.has_key('value'):
-            category = cf['value']
-        if cf['name'] == 'Spine classification' and cf.has_key('value'):
-            spine_check = 1
+    category = get_custom_field(project, 'Category')
+    spine  = get_custom_field(project, 'Spine classification')
             
             
         #  README & AUTHORS
@@ -51,47 +36,54 @@ for project in jp["projects"]:
 
         # NML 1/2 native files?
         
-    
            
-    if category == "Project":
-        if  status_found == 0:
-            print "No status!"
+    if category == "Project" or category == "Showcase":
+        projects +=1
+        passed = 1
+        
+        if status == None or len(status)==0:
+            print "  No status!"
             passed = 0
-        if  spine_check == 0:
-            print "Neither vertebrate nor invertebrate!"
-            passed = 0
-
-        #print json.dumps(project, sort_keys=True, indent=4)
+            
+        if category == "Project":
+            if spine == None or len(spine)==0:
+                print "  No spine classification!"
+                passed = 0
+            elif not (spine == 'Vertebrate' or spine == 'Invertebrate'):
+                print "  Neither vertebrate nor invertebrate!"
+                passed = 0
 
         if github_repo is not None and len(github_repo) > 0:
             identifier = project["identifier"]
             if not check_file_in_repository(identifier, "README") \
                and not check_file_in_repository(identifier, "README.txt") \
                and not check_file_in_repository(identifier, "README.md"):
-                print "No README or README.txt or README.md!"
+                print "  No README or README.txt or README.md!"
                 passed = 0
 
             repo = "https://api.github.com/repos/"+github_repo[19:]
             page = get_page(repo)
             gh = json.loads(page)
             if len(gh) == 1:
-                print("Problem locating repository: "+repo)
+                print("  Problem locating repository: "+repo)
             else:
                 if not known_external_repo(repo):
                     if gh.has_key("has_wiki") and gh["has_wiki"]:
-                        print "A wiki is present!"
+                        print "  A wiki is present on GitHub!"
+                        passed = 0
                     if gh.has_key("has_issues") and gh["has_issues"]:
-                        print "Issues are present!"
-                    passed = 0
+                        print "  (Issues are present on GitHub - no longer a failing offence...)"
                     
-
-            
-
+        else:
+            print("  (No GitHub repository)")
+                     
+        passed_projects += passed   
+        
+    else:
+        print("  (Ignoring, as it is category: %s)"%category)
+        
+                        
     
-print
-if  passed == 0:
-    print "    ****   FAILURE!   ****"
-else:
-    print "    ****   SUCCESS!   ****"
+
+print("\nNumber of standard/showcase projects: %i, of which %i pass all tests\n"%(projects, passed_projects))
     
-print
