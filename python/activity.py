@@ -5,7 +5,8 @@ Some quality assurance tests on OSB/GitHub repos
 
 import json
 
-from __init__ import get_project_list, check_file_in_repository, get_page, get_custom_field
+
+import osb
 
 projects = 0
 
@@ -17,26 +18,24 @@ num_forks = 0
 with_watchers = 0
 num_watchers = 0
 
-for project in get_project_list(limit=1000):
+for project in osb.get_project_list(limit=1000):
+    
     print "%s\tProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"])
 
     projects+=1
     
-    github_repo = get_custom_field(project, 'GitHub repository')
+    github_repo = osb.get_custom_field(project, 'GitHub repository')
     if github_repo!=None and github_repo.endswith(".git"):
          github_repo = github_repo[:-4]
          
-    status = get_custom_field(project, 'Status info')
-    
-    #category = get_custom_field(project, 'Category')
-    
+    status = osb.get_custom_field(project, 'Status info')
 
     if github_repo is not None and len(github_repo) > 0:
         identifier = project["identifier"]
         
         repo = "https://api.github.com/repos/"+github_repo[19:]
         print repo
-        page = get_page(repo)
+        page = osb.get_page(repo)
         gh = json.loads(page)
 
         if len(gh) == 1:

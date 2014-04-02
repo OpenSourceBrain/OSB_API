@@ -4,7 +4,7 @@ Generate metadata for an OSB project
 
 project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model']
 
-from __init__ import get_project, get_custom_field
+import osb
 
 from metadata import *
 from known_mappings import *
@@ -18,7 +18,7 @@ def add_simple_qualifier(rdf, type, qualifier, resource, comment=None):
 
 for project_id in project_ids:
     
-    project = get_project(project_id)
+    project = osb.get_project(project_id)
     project_name = project["name"]
     identifier = project["identifier"]
     
@@ -42,7 +42,7 @@ for project_id in project_ids:
                         "It's a computational neuroscience model")
                         
     # Species info
-    species = get_custom_field(project, "Specie").lower()
+    species = osb.get_custom_field(project, "Specie").lower()
     
     if species and known_species.has_key(species):
         add_simple_qualifier(rdf, \
@@ -52,7 +52,7 @@ for project_id in project_ids:
                              "Open Source Brain species: %s; taxonomy id: %s" % (species, known_species[species]))
    
     # Brain region info
-    brain_region = get_custom_field(project, "Brain region").lower()
+    brain_region = osb.get_custom_field(project, "Brain region").lower()
     
     if brain_region and known_brain_regions.has_key(brain_region):
         add_simple_qualifier(rdf, \
