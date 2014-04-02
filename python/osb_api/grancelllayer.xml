@@ -6,11 +6,23 @@
                 <rdf:li rdf:resource="http://opensourcebrain.org/projects/grancelllayer"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
         <bqbiol:hasTaxon>
             <rdf:Bag>
                 <!-- Open Source Brain species: rodent; taxonomy id: 9989 -->
                 <rdf:li rdf:resource="http://identifiers.org/taxonomy/9989"/>
             </rdf:Bag>
         </bqbiol:hasTaxon>
+        <bqbiol:isPartOf>
+            <rdf:Bag>
+                <!-- Open Source Brain: cerebellum; NeuroLex id: birnlex_1489 -->
+                <rdf:li rdf:resource="http://identifiers.org/neurolex/birnlex_1489"/>
+            </rdf:Bag>
+        </bqbiol:isPartOf>
     </rdf:Description>
 </rdf:RDF>

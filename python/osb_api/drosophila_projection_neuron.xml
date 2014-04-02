@@ -6,10 +6,16 @@
                 <rdf:li rdf:resource="http://opensourcebrain.org/projects/drosophila_projection_neuron"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
         <bqbiol:hasTaxon>
             <rdf:Bag>
-                <!-- Open Source Brain species: drosophila; taxonomy id: 7215 -->
-                <rdf:li rdf:resource="http://identifiers.org/taxonomy/7215"/>
+                <!-- Open Source Brain species: drosophila; taxonomy id: 7227 -->
+                <rdf:li rdf:resource="http://identifiers.org/taxonomy/7227"/>
             </rdf:Bag>
         </bqbiol:hasTaxon>
     </rdf:Description>

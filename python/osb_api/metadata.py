@@ -25,8 +25,8 @@ class RDF():
               
         return xml
     
-class Qualifier():
     
+class Qualifier():
     
     def __init__(self, type, qualifier):
         self.type = type
@@ -47,11 +47,13 @@ class Qualifier():
               
         return xml
 
-    
-rdf = RDF("xyx")
-bq = Qualifier('bqbiol','isVersionOf')
-bq.resources.append('http://identifiers.org/bto/BTO:0000131')
-bq.comment = 'Testing'
-rdf.qualifiers.append(bq)
 
-print rdf.to_xml()
+if __name__ == '__main__':
+
+    rdf = RDF("xyx")
+    bq = Qualifier('bqbiol','isVersionOf')
+    bq.resources.append('http://identifiers.org/bto/BTO:0000131')
+    bq.comment = 'Testing'
+    rdf.qualifiers.append(bq)
+
+    print rdf.to_xml()
