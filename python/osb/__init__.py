@@ -13,7 +13,7 @@ import urllib2
 import base64
 import json
 import os.path
-
+import subprocess
 
 USERNAME = None
 PASSWORD = None
@@ -22,13 +22,13 @@ auth_file = "github.info"
 for arg in sys.argv[1:]:
     try:
         key,value = arg.split(":")
-    except ValueError,e:
-        print "Command line argument %s had error %s" % (arg,e.strerror)
-    else:
         if key == "username":            
             USERNAME = value
         if key == "password":
             PASSWORD = value
+    except ValueError,e:
+        ignored_arg = arg
+        #print "Command line argument %s had error %s" % (arg,e.strerror)
 
 if os.path.isfile(auth_file):
     for line in open(auth_file, 'r'):
@@ -36,6 +36,25 @@ if os.path.isfile(auth_file):
             USERNAME = line.strip()[9:]
         if line.startswith("password:"):
             PASSWORD = line.strip()[9:]
+            
+            
+    
+def list_files_in_repo(gh_repo):
+    #rest_url = "https://api.github.com/repos/%s/contents/%s"%(gh_repo, dirname)
+    # GET /repos/:owner/:repo/git/trees/:sha
+    rest_url = "https://api.github.com/repos/%s/git/trees/master?recursive=1"%(gh_repo)
+    print "URL: %s"%rest_url
+    w = urllib.urlopen(rest_url)
+    json_files = json.loads(w.read())
+    if not json_files.has_key('tree'):
+        print("Error!")
+        print json_files
+    files = []
+    tree = json_files["tree"]
+    for entry in tree:
+        files.append(entry["path"])
+    return files
+
         
 
 def get_project_list(limit=1000):
@@ -99,18 +118,42 @@ def list_files_in_repo_dir(gh_repo, dirname):
         files.append(entry["name"])
     return files
 
+
 def copy_file_from_url(url_file, target_file):
+    #print("copy_file_from_url: %s, %s"%(url_file, target_file))
     f = urllib.urlopen(url_file)
+    if '/' in target_file:
+        parent_dir = target_file[:target_file.rfind('/')]
+        check_exists_dir_and_children(parent_dir)
+    
     t = open(target_file, 'w')
     t.write(f.read())
-    print "Created: "+target_file,
+    print "Downloaded: "+target_file
 
-def check_jnml_validates_NeuroML(document):
+def check_exists_dir_and_children(file):
+    #print("check_exists_dir_and_children: %s"%file)
+    if os.path.exists(file): return
+    if '/' in file:
+        parent_dir = file[:file.rfind('/')]
+        check_exists_dir_and_children(parent_dir)
+    if not os.path.exists(file):
+        os.makedirs(file)
+
+def check_jnml_validates_neuroml(document):
     p = subprocess.Popen(["jnml -validate "+ document], 
                           shell=True, 
                           stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
+
+
+lems_suffix = ".xml"
+lems_prefix1 = "Run_"
+lems_prefix2 = "LEMS_"
+
+def is_lems_file(file):
+    return file.endswith(lems_suffix) and (file.startswith(lems_prefix1) or file.startswith(lems_prefix2))
+
 
 def check_jnml_loads_lems(document):
     p = subprocess.Popen(["jnml "+ document+ " -norun"], 
