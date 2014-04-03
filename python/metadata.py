@@ -1,4 +1,9 @@
-
+"""
+    Work in progress towards extracting structured metadata from OSB projects
+    
+    Contact p.gleeson if you are interested in using this. Subject to change without notice!!
+    
+"""
 
 INDENT = "    "
 
@@ -12,10 +17,13 @@ class RDF():
     def __init__(self, about):
         self.about = about
         self.qualifiers = []
+        self.comment = None
     
     def to_xml(self, indent=""):
         xml = indent + '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">\n' + \
               indent + INDENT + '<rdf:Description rdf:about="%s">\n'%self.about
+        if self.comment:
+            xml += indent + INDENT + INDENT + '<!-- %s -->\n'%self.comment
               
         for qualifier in self.qualifiers:
             xml += qualifier.to_xml(indent+INDENT+INDENT)
@@ -51,6 +59,7 @@ class Qualifier():
 if __name__ == '__main__':
 
     rdf = RDF("xyx")
+    rdf.comment ="This is a comment"
     bq = Qualifier('bqbiol','isVersionOf')
     bq.resources.append('http://identifiers.org/bto/BTO:0000131')
     bq.comment = 'Testing'

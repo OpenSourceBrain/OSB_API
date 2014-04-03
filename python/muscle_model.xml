@@ -1,5 +1,12 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <rdf:Description rdf:about="muscle_model">
+        <!-- 
+    This file has been automatically generated from data extracted from OSB project: muscle_model
+    Generated on Thu Apr  3 15:10:03 2014
+
+    Structure of this file subject to change without notice!!
+    Contact P Gleeson for more details
+         -->
         <bqmodel:is>
             <rdf:Bag>
                 <!-- Open Source Brain project identifier: muscle_model -->

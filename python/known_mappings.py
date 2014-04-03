@@ -1,3 +1,9 @@
+"""
+    Work in progress towards extracting structured metadata from OSB projects
+    
+    Contact p.gleeson if you are interested in using this. Subject to change without notice!!
+    
+"""
 
 # From http://www.ncbi.nlm.nih.gov/taxonomy
 known_species = {}

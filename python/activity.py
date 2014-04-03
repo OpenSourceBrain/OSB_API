@@ -26,20 +26,18 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         project_num = int(sys.argv[1])
 
-    for project in osb.get_project_list(min_curation_level="None", limit=project_num):
+    for project in osb.get_projects(min_curation_level="None", limit=project_num):
 
-        print("%s\tProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"]))
+        print("%s\tProject: %s (%s)\n" % ("-"*8, project.name, project.identifier))
 
         projects+=1
 
-        github_repo = osb.get_custom_field(project, 'GitHub repository')
+        github_repo = project.github_repo
         if github_repo!=None and github_repo.endswith(".git"):
              github_repo = github_repo[:-4]
 
-        status = osb.get_custom_field(project, 'Status info')
-
-        if github_repo is not None and len(github_repo) > 0:
-            identifier = project["identifier"]
+        if github_repo:
+            identifier = project.identifier
 
             repo = "https://api.github.com/repos/"+github_repo[19:]
             
