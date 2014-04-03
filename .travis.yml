@@ -1,3 +1,6 @@
 script:
   -  cd python
   -  python CheckModelDB.py
+  -  python activity.py 20
+  -  python curate.py 20
+  -  python retrieveNML2.py 30
