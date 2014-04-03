@@ -8,7 +8,7 @@ import osb
 projects = 0
 with_modeldb = 0
     
-for project in osb.get_project_list():
+for project in osb.get_project_list(min_curation_level="None"):
 
     isProj = osb.get_custom_field(project, 'Category') == 'Project'
     mdb = osb.get_custom_field(project, 'ModelDB reference')

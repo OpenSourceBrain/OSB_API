@@ -11,8 +11,6 @@ from urllib import urlopen
 
 import osb
 
-
-
 if __name__ == "__main__":
     
     project_num = 1000
@@ -49,7 +47,8 @@ if __name__ == "__main__":
     xmlschema_doc = etree.parse(nml_schema_file)
     xmlschema = etree.XMLSchema(xmlschema_doc)
 
-    for project in osb.get_project_list(limit=project_num):
+    for project in osb.get_project_list(min_curation_level="None", limit=project_num):
+        
         print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
         status_found = 0
         github_repo = None

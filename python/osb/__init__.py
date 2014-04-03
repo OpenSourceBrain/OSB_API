@@ -57,16 +57,27 @@ def list_files_in_repo(gh_repo):
 
         
 
-def get_project_list(limit=1000):
+def get_project_list(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
     page = get_page('%s?limit=%d' % (url,limit))
     json_data = json.loads(page)
-    project_list = json_data['projects']
+    project_list_all = json_data['projects']
+    project_list = []
+    for project in project_list_all:
+
+        curation_level = int(get_custom_field(project, "Curation level")) if get_custom_field(project, "Curation level") else 0
+        
+        if (min_curation_level=="None") or \
+           (min_curation_level=="Low" and curation_level>=1)  or \
+           (min_curation_level=="Medium" and curation_level>=2)  or \
+           (min_curation_level=="High" and curation_level>=3):
+            project_list.append(project)
+            
     return project_list
 
 def get_project(project_identifier,project_list=None):
     if project_list is None:
-        project_list = get_project_list()
+        project_list = get_project_list(min_curation_level="None")
     project = None
     for candidate_project in project_list:
         if candidate_project['identifier'] == project_identifier:
