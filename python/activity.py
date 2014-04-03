@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     for project in osb.get_project_list(min_curation_level="None", limit=project_num):
 
-        print "%s\tProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"])
+        print("%s\tProject: %s (%s)\n" % ("-"*8,project["name"],project["identifier"]))
 
         projects+=1
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
             identifier = project["identifier"]
 
             repo = "https://api.github.com/repos/"+github_repo[19:]
-            print repo
+            
             page = osb.get_page(repo)
             gh = json.loads(page)
 
@@ -50,24 +50,24 @@ if __name__ == "__main__":
                 print("Problem locating repository: "+repo)
             else:
                 if gh.has_key("has_wiki") and gh["has_wiki"]:
-                    print "A wiki is present!"
+                    print("A wiki is present!")
                     with_wiki +=1
 
                 if gh.has_key("open_issues") and gh["open_issues"] \
                                              and int(gh["open_issues"])>0:
-                    print "Issues open: %i"%gh["open_issues"]
+                    print("Issues open: %i"%gh["open_issues"])
                     with_issues+=1
                     num_issues += int(gh["open_issues"])
 
                 if gh.has_key("forks") and gh["forks"] \
                                        and int(gh["forks"])>0:
-                    print "Forks: %i"%gh["forks"]
+                    print("Forks: %i"%gh["forks"])
                     with_forks +=1
                     num_forks += int(gh["forks"])
 
                 if gh.has_key("watchers") and gh["watchers"] \
                                           and int(gh["watchers"])>0:
-                    print "Watchers: %i"%gh["watchers"]
+                    print("Watchers: %i"%gh["watchers"])
                     with_watchers+=1
                     num_watchers += int(gh["watchers"])
 

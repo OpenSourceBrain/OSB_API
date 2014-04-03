@@ -7,7 +7,10 @@ import os
 import sys
 
 from lxml import etree
-from urllib import urlopen
+try:
+    from urllib2 import urlopen  # Python 2
+except:
+    from urllib.request import urlopen # Python 3
 
 import osb
 
@@ -32,7 +35,7 @@ if __name__ == "__main__":
     nml2 = True 
 
     if len(sys.argv) == 2 and sys.argv[1] == '-v1':
-        print "Only looking for NeuroML v1 files"
+        print("Only looking for NeuroML v1 files")
         versionFolder = "NeuroML"
         nml_schema_file = urlopen("http://www.neuroml.org/NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1.xsd")
         nml_suffix = ".xml"
@@ -41,7 +44,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1]=='-local':
         local = True
 
-    if local: print "Only checking local NeuroML files"
+    if local: print("Only checking local NeuroML files")
 
 
     xmlschema_doc = etree.parse(nml_schema_file)
@@ -49,7 +52,7 @@ if __name__ == "__main__":
 
     for project in osb.get_project_list(min_curation_level="None", limit=project_num):
         
-        print "--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n"
+        print("--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n")
         status_found = 0
         github_repo = None
         category = ""
@@ -58,14 +61,14 @@ if __name__ == "__main__":
 
         for cf in project["custom_fields"]:
             if cf['name'] == 'GitHub repository' and cf.has_key('value'):
-                print "    GitHub repository: "+ cf['value']
+                print("    GitHub repository: "+ cf['value'])
                 github_repo = cf['value']
             if cf['name'] == 'Endorsement' and cf.has_key('value'):
                 endorsed = int(cf['value'])
                 #print endorsed
                 
-		if github_repo.endswith(".git"):
-			github_repo = github_repo[:-4]
+        if github_repo.endswith(".git"):
+            github_repo = github_repo[:-4]
             if cf['name'] == 'Status info' and cf.has_key('value') and len(cf['value']) > 0:
                 status_found = 1
             if cf['name'] == 'Category' and cf.has_key('value'):
@@ -106,7 +109,7 @@ if __name__ == "__main__":
                             url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], full_file_path)
                             osb.copy_file_from_url(url_file, local_file)
                         else:
-                            print "  Local file:  "+local_file,
+                            print("  Local file:  "+local_file,)
 
 
                         if file_name.endswith(nml_suffix):
@@ -120,10 +123,10 @@ if __name__ == "__main__":
                                 valid = not bool(ret)
 
                             if valid:
-                                print "                 (Valid %s file%s)"%(versionFolder,check)
+                                print("                 (Valid %s file%s)"%(versionFolder,check))
                                 count_nml2+=1
                             else:
-                                print "\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check)
+                                print("\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check))
                                 count_nml2_invalid+=1
                                 
                              
@@ -132,12 +135,12 @@ if __name__ == "__main__":
                     local_file = projFolder+"/"+file_name
 
                     if osb.is_lems_file(file_name):
-                        print "Checking LEMS file: %s"%full_file_path
+                        print("Checking LEMS file: %s"%full_file_path)
                         if not local:
                             url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], full_file_path)
                             osb.copy_file_from_url(url_file, local_file)
                         else:
-                            print "  Local file:  "+local_file,
+                            print("  Local file:  "+local_file,)
 
 
                         if os.getenv('JNML_HOME') is not None:
@@ -145,12 +148,11 @@ if __name__ == "__main__":
                             ret = osb.check_jnml_loads_lems(local_file)
                             valid = not bool(ret)
                             if valid:
-                                print "                 (Parsable LEMS file)"
+                                print("                 (Parsable LEMS file)")
                                 count_lems+=1
                             else:
-                                print "\n\n       It's NOT a parsable LEMS file!\n"
+                                print("\n\n       It's NOT a parsable LEMS file!\n")
                                 count_lems_invalid+=1
-               
-    print
-    print "Found %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid)
-    print
+         
+    print("\nFound %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files\n"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid))
+    

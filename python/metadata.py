@@ -56,4 +56,4 @@ if __name__ == '__main__':
     bq.comment = 'Testing'
     rdf.qualifiers.append(bq)
 
-    print rdf.to_xml()
+    print(rdf.to_xml())

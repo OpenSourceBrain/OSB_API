@@ -22,7 +22,7 @@ for project_id in project_ids:
     project_name = project["name"]
     identifier = project["identifier"]
     
-    print "%s\tProject: %s (%s)\n" % ("-"*8, project_name, identifier)
+    print("%s\tProject: %s (%s)\n" % ("-"*8, project_name, identifier))
     
     
     rdf = RDF(identifier)
@@ -62,7 +62,7 @@ for project_id in project_ids:
                              "Open Source Brain: %s; NeuroLex id: %s" % (brain_region, known_brain_regions[brain_region]))
                          
 
-    print rdf.to_xml()
+    print(df.to_xml())
     file = open('%s.xml'%identifier,'w')
     file.write(rdf.to_xml())
     file.close()
