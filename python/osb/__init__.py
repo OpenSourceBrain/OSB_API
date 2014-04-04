@@ -192,6 +192,11 @@ lems_prefix2 = "LEMS_"
 def is_lems_file(file):
     return file.endswith(lems_suffix) and (file.startswith(lems_prefix1) or file.startswith(lems_prefix2))
 
+nml2_suffix = ".nml"
+
+def is_nml2_file(file):
+    return file.endswith(nml2_suffix)
+
 
 def check_jnml_loads_lems(document):
     p = subprocess.Popen(["jnml "+ document+ " -norun"], 

@@ -7,10 +7,12 @@
 
 project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model']
 
-import osb
+from osb import get_project, is_nml2_file
 
-from metadata import *
-from known_mappings import *
+from osb.metadata import RDF, Description, add_simple_qualifier
+from osb.resources import KNOWN_SPECIES, KNOWN_BRAIN_REGIONS
+
+
 
 import time
 
@@ -19,33 +21,26 @@ info = "\n    This file has been automatically generated from data extracted fro
        "\n    Structure of this file subject to change without notice!!\n" + \
        "    Contact P Gleeson for more details\n        "
 
-
-def add_simple_qualifier(rdf, type, qualifier, resource, comment=None):
-    bq = Qualifier(type,qualifier)
-    bq.resources.append(resource)
-    if comment: 
-        bq.comment = comment
-    rdf.qualifiers.append(bq)
-
 for project_id in project_ids:
     
-    project = osb.get_project(project_id)
+    project = get_project(project_id)
     
     print("%s\tProject: %s (%s)\n" % ("-"*8, project.name, project.identifier))
     
     
-    rdf = RDF(project.identifier)
-    rdf.comment = info%(project.identifier, time.strftime("%c"))
+    rdf = RDF(info%(project.identifier, time.strftime("%c")))
+    desc = Description(project.identifier)
+    rdf.descriptions.append(desc)
     
     # ID of the project on OSB
-    add_simple_qualifier(rdf, \
+    add_simple_qualifier(desc, \
                          'bqmodel', \
                          'is', \
                          "http://opensourcebrain.org/projects/%s" % project.identifier, \
                          "Open Source Brain project identifier: %s" % project.identifier)
     
     # It's a computational neuroscience model
-    add_simple_qualifier(rdf, \
+    add_simple_qualifier(desc, \
                         'bqbiol', \
                         'hasProperty', \
                         'http://identifiers.org/mamo/MAMO_0000026', \
@@ -54,22 +49,33 @@ for project_id in project_ids:
     # Species info
     species = project.species.lower()
     
-    if species and known_species.has_key(species):
-        add_simple_qualifier(rdf, \
+    if species and KNOWN_SPECIES.has_key(species):
+        add_simple_qualifier(desc, \
                              'bqbiol', \
                              'hasTaxon', \
-                             'http://identifiers.org/taxonomy/%s'%known_species[species], \
-                             "Open Source Brain species: %s; taxonomy id: %s" % (species, known_species[species]))
+                             'http://identifiers.org/taxonomy/%s'%KNOWN_SPECIES[species], \
+                             "Open Source Brain species: %s; taxonomy id: %s" % (species, KNOWN_SPECIES[species]))
    
     # Brain region info
     brain_region = project.brain_region.lower()
     
-    if brain_region and known_brain_regions.has_key(brain_region):
-        add_simple_qualifier(rdf, \
+    if brain_region and KNOWN_BRAIN_REGIONS.has_key(brain_region):
+        add_simple_qualifier(desc, \
                              'bqbiol', \
                              'isPartOf', \
-                             'http://identifiers.org/neurolex/%s'%known_brain_regions[brain_region], \
-                             "Open Source Brain: %s; NeuroLex id: %s" % (brain_region, known_brain_regions[brain_region]))
+                             'http://identifiers.org/neurolex/%s'%KNOWN_BRAIN_REGIONS[brain_region], \
+                             "Open Source Brain: %s; NeuroLex id: %s" % (brain_region, KNOWN_BRAIN_REGIONS[brain_region]))
+                             
+    github_repo = project.github_repo
+            
+    if github_repo is not None:
+
+        files = github_repo.list_files_in_repo()
+        for file in files:
+            if is_nml2_file(file):
+                desc = Description(file)
+                desc.comment = "NeuroML 2 file: %s"%file
+                #rdf.descriptions.append(desc)
                          
 
     print(rdf.to_xml())
