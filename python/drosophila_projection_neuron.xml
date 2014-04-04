@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: drosophila_projection_neuron
-    Generated on Fri Apr  4 19:03:56 2014
+    Generated on Fri Apr  4 19:48:24 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -13,17 +13,53 @@
                 <rdf:li rdf:resource="http://opensourcebrain.org/projects/drosophila_projection_neuron"/>
             </rdf:Bag>
         </bqmodel:is>
-        <bqbiol:hasProperty>
-            <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
-            </rdf:Bag>
-        </bqbiol:hasProperty>
         <bqbiol:hasTaxon>
             <rdf:Bag>
                 <!-- Open Source Brain species: drosophila; taxonomy id: 7227 -->
                 <rdf:li rdf:resource="http://identifiers.org/taxonomy/7227"/>
             </rdf:Bag>
         </bqbiol:hasTaxon>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Figure4B1.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure4B1.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Figure4B2.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure4B2.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Figure4B3.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure4B3.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
     </rdf:Description>
 </rdf:RDF>

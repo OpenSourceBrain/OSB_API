@@ -6,12 +6,14 @@
 """
 
 project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model']
+#project_ids = ['granulecell']
 
-from osb import get_project, is_nml2_file
+from osb import get_project, is_nml2_file, get_page
 
 from osb.metadata import RDF, Description, add_simple_qualifier
 from osb.resources import KNOWN_SPECIES, KNOWN_BRAIN_REGIONS
 
+from neuroml.nml.nml import parseString
 
 
 import time
@@ -39,12 +41,6 @@ for project_id in project_ids:
                          "http://opensourcebrain.org/projects/%s" % project.identifier, \
                          "Open Source Brain project identifier: %s" % project.identifier)
     
-    # It's a computational neuroscience model
-    add_simple_qualifier(desc, \
-                        'bqbiol', \
-                        'hasProperty', \
-                        'http://identifiers.org/mamo/MAMO_0000026', \
-                        "It's a computational neuroscience model")
                         
     # Species info
     species = project.species.lower()
@@ -74,8 +70,41 @@ for project_id in project_ids:
         for file in files:
             if is_nml2_file(file):
                 desc = Description(file)
-                desc.comment = "NeuroML 2 file: %s"%file
-                #rdf.descriptions.append(desc)
+                raw_url = github_repo.link_to_raw_file_in_repo(file)
+                comment = "NeuroML 2 file: %s (at %s)"%(file,raw_url)
+                rdf.descriptions.append(desc)
+                
+                # It's a computational neuroscience model
+                add_simple_qualifier(desc, \
+                                    'bqmodel', \
+                                    'is', \
+                                    raw_url, \
+                                    "")
+                
+                # It's a computational neuroscience model
+                add_simple_qualifier(desc, \
+                                    'bqbiol', \
+                                    'hasProperty', \
+                                    'http://identifiers.org/mamo/MAMO_0000026', \
+                                    "It's a computational neuroscience model")
+                                    
+                contents = get_page(raw_url)
+                
+                print("  Building NeuroML doc from: "+raw_url)
+                doc = parseString(contents)
+                if doc.notes:
+                    comment += "\n%s"%doc.notes
+                    
+                for ion_channel in doc.ion_channel:
+                    if ion_channel.notes:
+                        comment += "\n  Ion Channel: %s; %s"%(ion_channel.id, ion_channel.notes)
+                        
+                    print "+++%s+++"%ion_channel.annotation
+                
+                desc.comment = comment
+                
+                print("--------------\n%s\n---------"%comment)
+                
                          
 
     print(rdf.to_xml())

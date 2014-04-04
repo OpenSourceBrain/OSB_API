@@ -65,11 +65,13 @@ class Repository():
     def __str__(self):
         return "%s repository: %s (%s)"%(self.type, self.name, self.html_url)
     
+    def link_to_raw_file_in_repo(self, filename):
+        return self.check_file_template % (self.full_name, filename)
 
     def check_file_in_repository(self, filename):
 
         try:
-            url = self.check_file_template % (self.full_name, filename)
+            url = link_to_raw_file_in_repo(filename)
             #print("Checking: %s"%url)
             urlopen(url)
             return True
@@ -79,7 +81,7 @@ class Repository():
     def copy_file_from_repository(self, filename, local_file):
 
         try:
-            url_file = self.check_file_template % (self.full_name, filename)
+            url_file = link_to_raw_file_in_repo(filename)
             copy_file_from_url(url_file, local_file)
             return True
         except HTTPError:
