@@ -6,15 +6,12 @@ Criteria for passing tests are subject to change
 '''   
 
 # TODO:
-        
 # README & AUTHORS
 # Sci Coord, developers, Sci Advisor
 # NML statuses
 # Simulator statuses
 # NML 1/2 native files?
         
-
-import json
 import sys
 
 import osb

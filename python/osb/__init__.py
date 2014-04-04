@@ -106,18 +106,13 @@ def get_projects(min_curation_level, limit=1000):
             
     return projects
 
-def get_project(project_identifier,project_list=None):
-    if project_list is None:
-        project_list = get_projects(min_curation_level="None")
-    project = None
-    for candidate_project in project_list:
-        #print("Checking...")
-        if candidate_project.identifier == project_identifier:
-            project = candidate_project
-            break
-    if project is None:
-        print("No project found with identifier %s" % project_identifier)
-    return project
+def get_project(project_identifier):
+    
+    url = "http://www.opensourcebrain.org/projects/%s.json"%project_identifier
+    page = get_page('%s' % (url))
+    json_data = json.loads(page)
+    return Project(json_data['project'])
+            
 
 def check_file_in_repository(projectId, filename):
     
