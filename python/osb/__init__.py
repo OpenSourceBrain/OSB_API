@@ -27,8 +27,8 @@ auth_file = "github.info"
 
 auth_info = "\n-----------------------------------------------------------------\n\n"+\
             "  GitHub limits the number of calls to its API for unauthorised users (~60 per hour).\n"+\
-            "  For registered GitHub users, this goes up to (~5000 per hour). To use your GitHub account\n"+\
-            "  details with this, either create a file "+auth_file+" containing the lines:\n\n    username:YOUR_USERNAME\n    password:YOUR_PASSWORD\n\n"+\
+            "  For registered GitHub users, this goes up to ~5000 per hour. To use your GitHub account\n"+\
+            "  details, either create a file "+auth_file+" containing the lines:\n\n    username:YOUR_USERNAME\n    password:YOUR_PASSWORD\n\n"+\
             "  or call with commandline arguments, e.g.:\n"+\
             "\n    python curate.py username:YOUR_USERNAME and password:YOUR_PASSWORD\n\n"+\
             "-----------------------------------------------------------------"
@@ -95,7 +95,7 @@ def get_projects(min_curation_level, limit=1000):
     project_list_all = json_data['projects']
     projects = []
     for project in project_list_all:
-
+        
         curation_level = int(get_custom_field(project, "Curation level")) if get_custom_field(project, "Curation level") else 0
         
         if (min_curation_level=="None") or \
@@ -111,6 +111,7 @@ def get_project(project_identifier,project_list=None):
         project_list = get_projects(min_curation_level="None")
     project = None
     for candidate_project in project_list:
+        #print("Checking...")
         if candidate_project.identifier == project_identifier:
             project = candidate_project
             break
