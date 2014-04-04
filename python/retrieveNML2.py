@@ -17,7 +17,7 @@ import osb
 if __name__ == "__main__":
     
     project_num = 1000
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 2 and sys.argv[1].isdigit():
         project_num = int(sys.argv[1])
 
     count_nml2 = 0
@@ -50,47 +50,38 @@ if __name__ == "__main__":
     xmlschema_doc = etree.parse(nml_schema_file)
     xmlschema = etree.XMLSchema(xmlschema_doc)
 
-    for project in osb.get_project_list(min_curation_level="None", limit=project_num):
+    for project in osb.get_projects(min_curation_level="None", limit=project_num):
         
-        print("--------   Project: "+ project["name"] +" ("+ project["identifier"] +")"+ "\n")
-        status_found = 0
-        github_repo = None
-        category = ""
-        spine_check = 0
-        endorsed = -1
+        print("\n--------   Project: "+ project.name +" ("+ project.identifier +")"+ "\n")
 
-        for cf in project["custom_fields"]:
-            if cf['name'] == 'GitHub repository' and cf.has_key('value'):
-                print("    GitHub repository: "+ cf['value'])
-                github_repo = cf['value']
-                if github_repo.endswith(".git"):
-                    github_repo = github_repo[:-4]
-            if cf['name'] == 'Endorsement' and cf.has_key('value'):
-                endorsed = int(cf['value'])
-            if cf['name'] == 'Status info' and cf.has_key('value') and len(cf['value']) > 0:
-                status_found = 1
-            if cf['name'] == 'Category' and cf.has_key('value'):
-                category = cf['value']
-
-        ignores = []
-        ignores = ['blender-to-neuroml', \
-        'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012']
+        ignores = ['blender-to-neuroml', 'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012']
         
 
-        if category == "Project" and project["identifier"] not in ignores and endorsed == 1:
-
-            if github_repo is not None and len(github_repo) > 0:
+        if not ( project.is_standard_project() or project.is_showcase()):
+            print("  (Ignoring project as its category is: %s)  "%project.category)
+        
+        elif project.identifier in ignores:
+            print("  (Ignoring project)  ")
+        
+        elif project.endorsement != 1:
+            print("  (Ignoring project as its endorsement is: %s)  "%project.endorsement)
+            
+        else:
+            github_repo = project.github_repo
+            if github_repo is None:
+                print("  (No GitHub repository)  ")
+            else:
 
                 if not os.path.exists(versionFolder):
                     os.makedirs(versionFolder)
 
-                projFolder = versionFolder+"/"+project["identifier"]
+                projFolder = versionFolder+"/"+project.identifier
                 if not os.path.exists(projFolder):
                     os.makedirs(projFolder)
 
                 if not local:
-                    files = osb.list_files_in_repo(github_repo[19:])
-                    #print("Checking files in: %s: %s"%(github_repo[19:], files))
+                    files = github_repo.list_files_in_repo()
+                    print("  (Found %i files in repo)"%(len(files)))
                 else:
                     files = os.listdir(projFolder)
                     print("Checking local files in: %s"%(projFolder))
@@ -102,10 +93,9 @@ if __name__ == "__main__":
                     local_file = projFolder+"/"+file_name
 
                     if file_name.endswith(nml_suffix):
-                        #print "Checking NeuroML file: %s"%full_file_path
+                        print "  ...Getting NeuroML file: %s"%full_file_path
                         if not local:
-                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], full_file_path)
-                            osb.copy_file_from_url(url_file, local_file)
+                            github_repo.copy_file_from_repository(full_file_path, local_file)
                         else:
                             print("  Local file:  "+local_file,)
 
@@ -135,8 +125,7 @@ if __name__ == "__main__":
                     if osb.is_lems_file(file_name):
                         print("Checking LEMS file: %s"%full_file_path)
                         if not local:
-                            url_file = "https://raw.github.com/%s/master/%s"%(github_repo[19:], full_file_path)
-                            osb.copy_file_from_url(url_file, local_file)
+                            github_repo.copy_file_from_repository(full_file_path, local_file)
                         else:
                             print("  Local file:  "+local_file,)
 

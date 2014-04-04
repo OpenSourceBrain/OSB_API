@@ -16,9 +16,11 @@ class Repository():
     FORKS = 'forks'
     WATCHERS = 'watchers'
     
-    def __init__(self, info_array, type):
+    def __init__(self, info_array, type, check_file_template, list_files_template):
         self.type = type
         self.info_array = info_array
+        self.check_file_template = check_file_template
+        self.list_files_template = list_files_template
         
         
     def __getattr__(self, name):
@@ -67,18 +69,47 @@ class Repository():
     def check_file_in_repository(self, filename):
 
         try:
-            url = "https://github.com/%s/raw/master/%s" % (self.full_name, filename)
+            url = self.check_file_template % (self.full_name, filename)
             #print("Checking: %s"%url)
             urlopen(url)
             return True
         except HTTPError:
             return False
         
+    def copy_file_from_repository(self, filename, local_file):
+
+        try:
+            url_file = self.check_file_template % (self.full_name, filename)
+            copy_file_from_url(url_file, local_file)
+            return True
+        except HTTPError:
+            return False
+        
+    
+
+    def list_files_in_repo(self):
+        rest_url = self.list_files_template%(self.full_name)
+        #print("URL: %s"%rest_url)
+        w = get_page(rest_url)
+        json_files = json.loads(w)
+        if not json_files.has_key('tree'):
+            print("Error!")
+            print(json_files)
+        files = []
+        tree = json_files["tree"]
+        for entry in tree:
+            files.append(entry["path"])
+        return files
+        
         
 class GitHubRepository(Repository):
     
     def __init__(self, info_array):
-        Repository.__init__(self, info_array, "GitHub")
+        Repository.__init__(self, \
+                            info_array, \
+                            "GitHub", \
+                            "https://github.com/%s/raw/master/%s", \
+                            "https://api.github.com/repos/%s/git/trees/master?recursive=1")
         
     @staticmethod
     def create(github_repo_str):

@@ -70,7 +70,7 @@ def list_files_in_repo(gh_repo):
 
         
 
-def get_project_list(min_curation_level, limit=1000):
+def get_project_array(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
     page = get_page('%s?limit=%d' % (url,limit))
     json_data = json.loads(page)
@@ -166,7 +166,7 @@ def copy_file_from_url(url_file, target_file):
     
     t = open(target_file, 'w')
     t.write(f.read())
-    print("Downloaded: "+target_file)
+    print("  ...Downloaded: "+target_file)
 
 def check_exists_dir_and_children(file):
     #print("check_exists_dir_and_children: %s"%file)

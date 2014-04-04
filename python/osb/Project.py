@@ -31,6 +31,9 @@ class Project(OSBEntity):
     STATUS = 'Status info'
     STATUS_ATTR = 'status'
     
+    ENDORSEMENT = 'Endorsement'
+    ENDORSEMENT_ATTR = 'endorsement'
+    
     SPECIES = 'Specie'
     SPECIE_ATTR = 'specie'
     SPECIES_ATTR = 'species'
@@ -81,6 +84,9 @@ class Project(OSBEntity):
         
         elif name == self.STATUS_ATTR:
             return self.get_custom_field(self.STATUS)
+        
+        elif name == self.ENDORSEMENT_ATTR:
+            return int(self.get_custom_field(self.ENDORSEMENT))
         
         elif name == self.SPECIE_ATTR or name == self.SPECIES_ATTR:
             return self.get_custom_field(self.SPECIES)
