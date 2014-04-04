@@ -8,6 +8,7 @@ class Repository():
     type = "???"
     
     NAME = 'name'
+    FULL_NAME = 'full_name'
     URL = 'url'
     HTML_URL = 'html_url'
     HAS_WIKI = 'has_wiki'
@@ -24,6 +25,9 @@ class Repository():
         
         if name == self.NAME:
             return self.info_array[self.NAME]
+        
+        if name == self.FULL_NAME:
+            return self.info_array[self.FULL_NAME]
         
         if name == self.URL:
             return self.info_array[self.URL]
@@ -58,6 +62,17 @@ class Repository():
         
     def __str__(self):
         return "%s repository: %s (%s)"%(self.type, self.name, self.html_url)
+    
+
+    def check_file_in_repository(self, filename):
+
+        try:
+            url = "https://github.com/%s/raw/master/%s" % (self.full_name, filename)
+            #print("Checking: %s"%url)
+            urlopen(url)
+            return True
+        except HTTPError:
+            return False
         
         
 class GitHubRepository(Repository):
@@ -74,8 +89,12 @@ class GitHubRepository(Repository):
         repo = "https://api.github.com/repos/"+github_repo_str[19:]
         page = get_page(repo)
         gh = json.loads(page)
+        '''for g in gh:
+            print("%s = <<%s>>"%(g, gh[g]))'''
         ghr = GitHubRepository(gh)
         return ghr
+    
+    
         
         
         
@@ -86,5 +105,7 @@ if __name__ == "__main__":
     ghr = GitHubRepository.create('https://github.com/OpenSourceBrain/GranCellLayer')
     
     print ghr
+    
+    print(ghr.check_file_in_repository("README"))
     
     print("Done")

@@ -38,6 +38,10 @@ class Project(OSBEntity):
     BRAIN_REGION = "Brain region"
     BRAIN_REGION_ATTR = "brain_region"
     
+    SPINE_CLASSIFICATION = 'Spine classification'
+    SPINE_CLASSIFICATION_ATTR = 'spine_classification'
+    
+    
     
     def __init__(self, info_array):
         OSBEntity.__init__(self, info_array)
@@ -83,6 +87,9 @@ class Project(OSBEntity):
         
         elif name == self.BRAIN_REGION_ATTR:
             return self.get_custom_field(self.BRAIN_REGION)
+        
+        elif name == self.SPINE_CLASSIFICATION_ATTR:
+            return self.get_custom_field(self.SPINE_CLASSIFICATION)
         
         else: 
             print("-- Could not find attribute: %s"%name)
