@@ -25,6 +25,14 @@ USERNAME = None
 PASSWORD = None
 auth_file = "github.info"
 
+auth_info = "\n-----------------------------------------------------------------\n\n"+\
+            "  GitHub limits the number of calls to its API for unauthorised users (~60 per hour).\n"+\
+            "  For registered GitHub users, this goes up to (~5000 per hour). To use your GitHub account\n"+\
+            "  details with this, either create a file "+auth_file+" containing the lines:\n\n    username:YOUR_USERNAME\n    password:YOUR_PASSWORD\n\n"+\
+            "  or call with commandline arguments, e.g.:\n"+\
+            "\n    python curate.py username:YOUR_USERNAME and password:YOUR_PASSWORD\n\n"+\
+            "-----------------------------------------------------------------"
+
 for arg in sys.argv[1:]:
     try:
         key,value = arg.split(":")
@@ -215,7 +223,8 @@ def get_page(url,username=None,password=None):
     result = ""
     req = Request(url)
     if username and password:
-        auth = base64.urlsafe_b64encode("%s:%s" % (username, password))
+        unamepw = "%s:%s" % (username, password)
+        auth = base64.urlsafe_b64encode(unamepw)
         req.add_header("Authorization", "Basic %s" % auth)
         #req.add_header("Content-Type", "application/json")
         #req.add_header("Accept", "application/json")
@@ -223,6 +232,7 @@ def get_page(url,username=None,password=None):
         response = urlopen(req)
     except HTTPError as e:
         print("URL: %s produced error %d (%s)" % (url,e.code,e.msg))
+        print(auth_info)
     else:
         result = response.read()
     return result
