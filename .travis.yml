@@ -5,7 +5,7 @@ python:
   
 install:
   - "pip install lxml"
-
+  - "pip install libNeuroML" 
 script:
   -  cd python
   -  ./quicktest.sh
