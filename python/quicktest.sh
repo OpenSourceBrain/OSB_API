@@ -1,5 +1,7 @@
 set -e
-python project_metadata.py
+if [ "$1" == "-a" ]; then
+    python project_metadata.py
+fi
 python CheckModelDB.py
 python activity.py 10
 python curate.py 10
