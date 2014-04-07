@@ -5,7 +5,11 @@ python:
   
 install:
   - "pip install lxml"
-  - "pip install libNeuroML" 
+  - "git clone https://github.com/NeuralEnsemble/libNeuroML.git"
+  - "cd libNeuroML"
+  - "git checkout development"
+  - "sudo python setup.py install" 
+  - "cd .."
 script:
   -  cd python
   -  ./quicktest.sh

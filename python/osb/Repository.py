@@ -71,7 +71,7 @@ class Repository():
     def check_file_in_repository(self, filename):
 
         try:
-            url = link_to_raw_file_in_repo(filename)
+            url = self.link_to_raw_file_in_repo(filename)
             #print("Checking: %s"%url)
             urlopen(url)
             return True
@@ -81,7 +81,7 @@ class Repository():
     def copy_file_from_repository(self, filename, local_file):
 
         try:
-            url_file = link_to_raw_file_in_repo(filename)
+            url_file = self.link_to_raw_file_in_repo(filename)
             copy_file_from_url(url_file, local_file)
             return True
         except HTTPError:
