@@ -1,1 +1,3 @@
-Currently being refactored to create a standalone OSB python package
+This is slowly evolving into a standalone Python package for interacting with the Open Source Brain website.
+
+Work in progress
