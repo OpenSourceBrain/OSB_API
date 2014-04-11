@@ -41,6 +41,9 @@ class Project(OSBEntity):
     BRAIN_REGION = "Brain region"
     BRAIN_REGION_ATTR = "brain_region"
     
+    CELL_TYPE = "Cell type"
+    CELL_TYPE_ATTR = "cell_type"
+    
     SPINE_CLASSIFICATION = 'Spine classification'
     SPINE_CLASSIFICATION_ATTR = 'spine_classification'
     
@@ -93,6 +96,9 @@ class Project(OSBEntity):
         
         elif name == self.BRAIN_REGION_ATTR:
             return self.get_custom_field(self.BRAIN_REGION)
+        
+        elif name == self.CELL_TYPE_ATTR:
+            return self.get_custom_field(self.CELL_TYPE)
         
         elif name == self.SPINE_CLASSIFICATION_ATTR:
             return self.get_custom_field(self.SPINE_CLASSIFICATION)

@@ -5,16 +5,15 @@
     
 """
 
-project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model']
+project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model', 'granulecell']
 #project_ids = ['granulecell']
 
 from osb import get_project, is_nml2_file, get_page
 
 from osb.metadata import RDF, Description, add_simple_qualifier
-from osb.resources import KNOWN_SPECIES, KNOWN_BRAIN_REGIONS
+import osb.resources as osbres
 
 from neuroml.nml.nml import parseString
-
 
 import time
 
@@ -22,6 +21,8 @@ info = "\n    This file has been automatically generated from data extracted fro
        "    Generated on %s\n" + \
        "\n    Structure of this file subject to change without notice!!\n" + \
        "    Contact P Gleeson for more details\n        "
+       
+unknowns = ""
 
 for project_id in project_ids:
     
@@ -38,30 +39,49 @@ for project_id in project_ids:
     add_simple_qualifier(desc, \
                          'bqmodel', \
                          'is', \
-                         "http://opensourcebrain.org/projects/%s" % project.identifier, \
+                         osbres.OSB_PROJECT_URL_TEMPLATE % project.identifier, \
                          "Open Source Brain project identifier: %s" % project.identifier)
     
                         
     # Species info
     species = project.species.lower()
     
-    if species and KNOWN_SPECIES.has_key(species):
-        add_simple_qualifier(desc, \
-                             'bqbiol', \
-                             'hasTaxon', \
-                             'http://identifiers.org/taxonomy/%s'%KNOWN_SPECIES[species], \
-                             "Open Source Brain species: %s; taxonomy id: %s" % (species, KNOWN_SPECIES[species]))
+    if species:
+        if osbres.KNOWN_SPECIES.has_key(species):
+            add_simple_qualifier(desc, \
+                                 'bqbiol', \
+                                 'hasTaxon', \
+                                 osbres.NCBI_TAXONOMY_URL_TEMPLATE % osbres.KNOWN_SPECIES[species], \
+                                 "OSB species: %s; taxonomy id: %s" % (species, osbres.KNOWN_SPECIES[species]))
+        else:
+            unknowns += "species: %s\n"%species
    
     # Brain region info
     brain_region = project.brain_region.lower()
     
-    if brain_region and KNOWN_BRAIN_REGIONS.has_key(brain_region):
-        add_simple_qualifier(desc, \
-                             'bqbiol', \
-                             'isPartOf', \
-                             'http://identifiers.org/neurolex/%s'%KNOWN_BRAIN_REGIONS[brain_region], \
-                             "Open Source Brain: %s; NeuroLex id: %s" % (brain_region, KNOWN_BRAIN_REGIONS[brain_region]))
+    if brain_region:
+        if osbres.KNOWN_BRAIN_REGIONS.has_key(brain_region):
+            add_simple_qualifier(desc, \
+                                 'bqbiol', \
+                                 'isPartOf', \
+                                 osbres.NEUROLEX_URL_TEMPLATE % osbres.KNOWN_BRAIN_REGIONS[brain_region], \
+                                 "OSB brain region: %s; NeuroLex id: %s" % (brain_region, osbres.KNOWN_BRAIN_REGIONS[brain_region]))
+        else:
+            unknowns += "brain_region: %s\n"%brain_region
                              
+    # Cell type info
+    cell_type = "%s:%s"%(brain_region, project.cell_type.lower())
+    
+    if cell_type:
+        if osbres.KNOWN_CELL_TYPES.has_key(cell_type):
+            add_simple_qualifier(desc, \
+                                 'bqbiol', \
+                                 'isPartOf', \
+                                 osbres.NEUROLEX_URL_TEMPLATE % osbres.KNOWN_CELL_TYPES[cell_type], \
+                                 "OSB cell type: %s; NeuroLex id: %s" % (cell_type, osbres.KNOWN_CELL_TYPES[cell_type]))
+        else:
+            unknowns += "cell_type: %s\n"%cell_type
+                              
     github_repo = project.github_repo
             
     if github_repo is not None:
@@ -85,7 +105,7 @@ for project_id in project_ids:
                 add_simple_qualifier(desc, \
                                     'bqbiol', \
                                     'hasProperty', \
-                                    'http://identifiers.org/mamo/MAMO_0000026', \
+                                    osbres.MAMO_URL_TEMPLATE % osbres.KNOWN_MAMO_CLASSES['computational neuroscience model'], \
                                     "It's a computational neuroscience model")
                                     
                 contents = get_page(raw_url)
@@ -111,3 +131,8 @@ for project_id in project_ids:
     file = open('%s.xml'%project.identifier,'w')
     file.write(rdf.to_xml())
     file.close()
+    
+
+unknowns_file = open('unknowns','w')
+unknowns_file.write(unknowns)
+unknowns_file.close()

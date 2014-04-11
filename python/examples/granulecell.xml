@@ -1,0 +1,212 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+    <!-- 
+    This file has been automatically generated from data extracted from OSB project: granulecell
+    Generated on Fri Apr 11 12:59:59 2014
+
+    Structure of this file subject to change without notice!!
+    Contact P Gleeson for more details
+         -->
+    <rdf:Description rdf:about="granulecell">
+        <bqmodel:is>
+            <rdf:Bag>
+                <!-- Open Source Brain project identifier: granulecell -->
+                <rdf:li rdf:resource="http://opensourcebrain.org/projects/granulecell"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasTaxon>
+            <rdf:Bag>
+                <!-- OSB species: rodent; taxonomy id: 9989 -->
+                <rdf:li rdf:resource="http://identifiers.org/taxonomy/9989"/>
+            </rdf:Bag>
+        </bqbiol:hasTaxon>
+        <bqbiol:isPartOf>
+            <rdf:Bag>
+                <!-- OSB brain region: cerebellum; NeuroLex id: birnlex_1489 -->
+                <rdf:li rdf:resource="http://identifiers.org/neurolex/birnlex_1489"/>
+            </rdf:Bag>
+        </bqbiol:isPartOf>
+        <bqbiol:isPartOf>
+            <rdf:Bag>
+                <!-- OSB cell type: cerebellum:granule cell; NeuroLex id: nifext_128 -->
+                <rdf:li rdf:resource="http://identifiers.org/neurolex/nifext_128"/>
+            </rdf:Bag>
+        </bqbiol:isPartOf>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml)
+ChannelML file containing a single Channel description
+  Ion Channel: GranPassiveCond; ChannelML file containing a single Channel description -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer
+  Ion Channel: Gran_CaHVA_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+	Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer
+  Ion Channel: Gran_H_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer
+  Ion Channel: Gran_KA_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer
+  Ion Channel: Gran_KCa_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer
+  Ion Channel: Gran_KDr_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml)
+A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer
+  Ion Channel: Gran_NaF_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
+    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/GranuleCell.net.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranuleCell.net.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranuleCell.net.nml)
+
+
+Network structure (NeuroML 2beta3) for project: GranuleCell saved with neuroConstruct v1.7.1 on: 18:14:36, 28-Mar-14
+
+Cell Group: Gran contains 1 cells
+
+
+
+     -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranuleCell.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Granule_98.cell.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Granule_98.cell.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Granule_98.cell.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Granule_98.cell.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+</rdf:RDF>

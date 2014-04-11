@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: muscle_model
-    Generated on Fri Apr 11 11:09:14 2014
+    Generated on Fri Apr 11 12:59:47 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -15,7 +15,7 @@
         </bqmodel:is>
         <bqbiol:hasTaxon>
             <rdf:Bag>
-                <!-- Open Source Brain species: c. elegans; taxonomy id: 6239 -->
+                <!-- OSB species: c. elegans; taxonomy id: 6239 -->
                 <rdf:li rdf:resource="http://identifiers.org/taxonomy/6239"/>
             </rdf:Bag>
         </bqbiol:hasTaxon>
