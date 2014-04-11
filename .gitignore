@@ -1,3 +1,4 @@
+temp
 /python/build
 /python/github.info
 /python/osb_api/retrieveNML2.py.orig
@@ -5,5 +6,7 @@
 /python/osb_api/__init__.pyc
 python/test/no
 python/NeuroML*
+python/examples/NeuroML*
 *.py~
 *.pyc
+github.info

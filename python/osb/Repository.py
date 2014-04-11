@@ -1,5 +1,6 @@
 
 from __init__ import *
+from utils.__init__ import *
 
 import json
 
@@ -86,8 +87,6 @@ class Repository():
             return True
         except HTTPError:
             return False
-        
-    
 
     def list_files_in_repo(self):
         rest_url = self.list_files_template%(self.full_name)

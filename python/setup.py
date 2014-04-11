@@ -7,7 +7,7 @@ long_description = open("README.md").read()
 setup(
     name = "PyOSB",
     version = '0.3.0',
-    packages = ['osb', 'osb.metadata', 'osb.resources'],
+    packages = ['osb', 'osb.metadata', 'osb.resources', 'osb.utils'],
     author = "Padraig Gleeson, Richard Gerkin",
     author_email = "p.gleeson@gmail.com",
     description = "A Python library for interacting with the Open Source Brain repository",

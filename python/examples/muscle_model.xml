@@ -1,0 +1,125 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+    <!-- 
+    This file has been automatically generated from data extracted from OSB project: muscle_model
+    Generated on Fri Apr 11 11:09:14 2014
+
+    Structure of this file subject to change without notice!!
+    Contact P Gleeson for more details
+         -->
+    <rdf:Description rdf:about="muscle_model">
+        <bqmodel:is>
+            <rdf:Bag>
+                <!-- Open Source Brain project identifier: muscle_model -->
+                <rdf:li rdf:resource="http://opensourcebrain.org/projects/muscle_model"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasTaxon>
+            <rdf:Bag>
+                <!-- Open Source Brain species: c. elegans; taxonomy id: 6239 -->
+                <rdf:li rdf:resource="http://identifiers.org/taxonomy/6239"/>
+            </rdf:Bag>
+        </bqbiol:hasTaxon>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Figure2A.net.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure2A.net.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2A.net.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2A.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Figure2B.net.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure2B.net.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2B.net.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2B.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Leak.channel.nml">
+        <!-- NeuroML 2 file: NeuroML2/Leak.channel.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/Leak.channel.nml)
+ChannelML file containing a single Channel description for a passive leak conductance -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/Leak.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/SingleCompMuscle.cell.nml">
+        <!-- NeuroML 2 file: NeuroML2/SingleCompMuscle.cell.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/SingleCompMuscle.cell.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/SingleCompMuscle.cell.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/ca_boyle.channel.nml">
+        <!-- NeuroML 2 file: NeuroML2/ca_boyle.channel.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/ca_boyle.channel.nml)
+  Ion Channel: ca_boyle; Ca channel from Boyle and Cohen 2008 -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/ca_boyle.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/k_fast.channel.nml">
+        <!-- NeuroML 2 file: NeuroML2/k_fast.channel.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/k_fast.channel.nml)
+  Ion Channel: k_fast; K fast channel from Boyle and Cohen 2008 -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/k_fast.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/k_slow.channel.nml">
+        <!-- NeuroML 2 file: NeuroML2/k_slow.channel.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/k_slow.channel.nml)
+  Ion Channel: k_slow; K slow channel from Boyle and Cohen 2008 -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/k_slow.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It's a computational neuroscience model -->
+                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+</rdf:RDF>
