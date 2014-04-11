@@ -20,10 +20,12 @@ KNOWN_SPECIES['rodent'] = '9989'
 KNOWN_SPECIES['drosophila'] = '7227'
 KNOWN_SPECIES['c. elegans'] = '6239'
 KNOWN_SPECIES['caenorhabditis elegans'] = '6239'
+KNOWN_SPECIES['human'] = '1758'
 # as used by Channelpedia
 KNOWN_SPECIES['xenopus'] = '262014'
 KNOWN_SPECIES['chinese hamster'] = '10029'
 KNOWN_SPECIES['crab'] = '6752'  # Brachyura, short-tailed crabs
+KNOWN_SPECIES['squid'] = '551290' # Teuthida, cephalopods
 
 
 NEUROLEX_URL_TEMPLATE = 'http://identifiers.org/neurolex/%s'
@@ -42,6 +44,8 @@ KNOWN_CELL_TYPES['cerebellum:purkinje cell'] = 'sao471801888'
 # as used by Channelpedia
 KNOWN_CELL_TYPES['cerebellar purkinje'] = 'sao471801888'
 KNOWN_CELL_TYPES['dorsal root ganglion'] = 'birnlex_2596'
+KNOWN_CELL_TYPES['neocortical l5pc'] = 'nifext_50'        # Neocortex pyramidal cell layer 5-6
+KNOWN_CELL_TYPES['l5pc'] = 'nifext_50'                    # Neocortex pyramidal cell layer 5-6
 
 
 MAMO_URL_TEMPLATE = 'http://identifiers.org/mamo/%s'
