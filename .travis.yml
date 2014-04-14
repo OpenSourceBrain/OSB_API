@@ -15,4 +15,4 @@ install:
   - "pwd"
 script:
   -  cd python/examples
-  -  python CheckModelDB.py
+  -  ./quicktest.sh
