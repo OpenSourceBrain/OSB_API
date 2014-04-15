@@ -6,11 +6,11 @@
 """
 
 project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model', 'granulecell']
-#project_ids = ['granulecell']
+#project_ids = ['grancelllayer']
 
 from osb import get_project, is_nml2_file, get_page
 
-from osb.metadata import RDF, Description, add_simple_qualifier
+from osb.metadata import RDF, Description, add_simple_qualifier, parse_for_metadata
 import osb.resources as osbres
 
 from neuroml.nml.nml import parseString
@@ -101,25 +101,58 @@ for project_id in project_ids:
                                     raw_url, \
                                     "")
                 
-                # It's a computational neuroscience model
-                add_simple_qualifier(desc, \
-                                    'bqbiol', \
-                                    'hasProperty', \
-                                    osbres.MAMO_URL_TEMPLATE % osbres.KNOWN_MAMO_CLASSES['computational neuroscience model'], \
-                                    "It's a computational neuroscience model")
                                     
                 contents = get_page(raw_url)
                 
                 print("  Building NeuroML doc from: "+raw_url)
+                cno_type = None
                 doc = parseString(contents)
                 if doc.notes:
                     comment += "\n%s"%doc.notes
                     
                 for ion_channel in doc.ion_channel:
+                    cno_type = 'ionic current model'
                     if ion_channel.notes:
                         comment += "\n  Ion Channel: %s; %s"%(ion_channel.id, ion_channel.notes)
+                    
+                    channel_type = 'ion channel complex'
+                    if ion_channel.species:
+                        if ion_channel.species == "ca":
+                            channel_type = 'calcium channel complex'
+                        elif ion_channel.species == "na":
+                            channel_type = 'sodium channel complex'
+                        elif ion_channel.species == "k":
+                            channel_type = 'potassium channel complex'
+                            
+                    add_simple_qualifier(desc, \
+                                    'bqbiol', \
+                                    'is', \
+                                    osbres.GO_URL_TEMPLATE % osbres.KNOWN_GO_TERMS[channel_type], \
+                                    "It is a model of the GO entity: %s (species through ion channel: %s)" % (channel_type, ion_channel.species))
                         
-                    print "+++%s+++"%ion_channel.annotation
+                    metadata = parse_for_metadata(contents)
+                    if metadata.has_key(ion_channel.id):
+                        desc.free_text += "        <!-- Metadata extracted from NeuroML file -->\n"+metadata[ion_channel.id]
+                    
+                for cell in doc.cells:
+                    cno_type = 'biophysical spiking model'
+                    if cell.notes:
+                        comment += "\n  Cell: %s; %s"%(cell.id, cell.notes)
+                    if cell.neuro_lex_id:
+                        url = osbres.NEUROLEX_URL_TEMPLATE % cell.neuro_lex_id
+                        add_simple_qualifier(desc, \
+                                    'bqbiol', \
+                                    'is', \
+                                    url, \
+                                    "It is a model of the NeuroLex entity: %s"%cell.neuro_lex_id)
+                        
+                
+                if cno_type:
+                    add_simple_qualifier(desc, \
+                                        'bqbiol', \
+                                        'hasProperty', \
+                                        osbres.CNO_URL_TEMPLATE % osbres.KNOWN_CNO_TERMS[cno_type], \
+                                        "It is of type: %s (CNO ID: %s)"%(cno_type, osbres.KNOWN_CNO_TERMS[cno_type]))
                 
                 desc.comment = comment
                 

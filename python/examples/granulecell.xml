@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: granulecell
-    Generated on Fri Apr 11 12:59:59 2014
+    Generated on Tue Apr 15 18:34:59 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -22,13 +22,13 @@
         <bqbiol:isPartOf>
             <rdf:Bag>
                 <!-- OSB brain region: cerebellum; NeuroLex id: birnlex_1489 -->
-                <rdf:li rdf:resource="http://identifiers.org/neurolex/birnlex_1489"/>
+                <rdf:li rdf:resource="http://neurolex.org/wiki/birnlex_1489"/>
             </rdf:Bag>
         </bqbiol:isPartOf>
         <bqbiol:isPartOf>
             <rdf:Bag>
                 <!-- OSB cell type: cerebellum:granule cell; NeuroLex id: nifext_128 -->
-                <rdf:li rdf:resource="http://identifiers.org/neurolex/nifext_128"/>
+                <rdf:li rdf:resource="http://neurolex.org/wiki/nifext_128"/>
             </rdf:Bag>
         </bqbiol:isPartOf>
     </rdf:Description>
@@ -41,12 +41,30 @@ ChannelML file containing a single Channel description
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: ion channel complex (species through ion channel: None) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034702"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml)
@@ -59,12 +77,38 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: calcium channel complex (species through ion channel: ca) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034704"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+           Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+           cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Calcium channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table1"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml)
@@ -75,12 +119,6 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaPool_98.nml"/>
             </rdf:Bag>
         </bqmodel:is>
-        <bqbiol:hasProperty>
-            <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
-            </rdf:Bag>
-        </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml)
@@ -93,12 +131,30 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: ion channel complex (species through ion channel: h) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034702"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+           Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+           cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/21829333"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml)
@@ -111,12 +167,38 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: potassium channel complex (species through ion channel: k) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034705"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+           Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+           cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>K channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table3"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml)
@@ -129,12 +211,38 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: potassium channel complex (species through ion channel: k) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034705"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+           Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+           cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>K channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml)
@@ -147,12 +255,38 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: potassium channel complex (species through ion channel: k) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034705"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+           Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+           cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>K channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml)
@@ -165,12 +299,38 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: sodium channel complex (species through ion channel: na) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034706"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+        <!-- Metadata extracted from NeuroML file -->
+
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Maex, R and De Schutter, E. 
+           Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
+           cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Na channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table2"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/GranuleCell.net.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranuleCell.net.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranuleCell.net.nml)
@@ -188,24 +348,25 @@ Cell Group: Gran contains 1 cells
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranuleCell.net.nml"/>
             </rdf:Bag>
         </bqmodel:is>
-        <bqbiol:hasProperty>
-            <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
-            </rdf:Bag>
-        </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Granule_98.cell.nml">
-        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Granule_98.cell.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Granule_98.cell.nml) -->
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Granule_98.cell.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Granule_98.cell.nml)
+  Cell: Granule_98; An implementation using ChannelML of the Granule cell mode from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer, 1998 -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/Granule_98.cell.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the NeuroLex entity: nifext_128 -->
+                <rdf:li rdf:resource="http://neurolex.org/wiki/nifext_128"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>

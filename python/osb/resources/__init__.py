@@ -28,7 +28,9 @@ KNOWN_SPECIES['crab'] = '6752'  # Brachyura, short-tailed crabs
 KNOWN_SPECIES['squid'] = '551290' # Teuthida, cephalopods
 
 
-NEUROLEX_URL_TEMPLATE = 'http://identifiers.org/neurolex/%s'
+# This is not working for all neurolex ids, e.g. http://identifiers.org/neurolex/nifext_128 
+#NEUROLEX_URL_TEMPLATE = 'http://identifiers.org/neurolex/%s'
+NEUROLEX_URL_TEMPLATE = 'http://neurolex.org/wiki/%s'
 
 # Use NeuroLex IDs
 KNOWN_BRAIN_REGIONS = {}
@@ -52,3 +54,19 @@ MAMO_URL_TEMPLATE = 'http://identifiers.org/mamo/%s'
 
 KNOWN_MAMO_CLASSES = {}
 KNOWN_MAMO_CLASSES['computational neuroscience model'] = 'MAMO_0000026'
+
+
+GO_URL_TEMPLATE = 'http://identifiers.org/go/%s'
+
+KNOWN_GO_TERMS = {}
+KNOWN_GO_TERMS['ion channel complex'] = 'GO:0034702'
+KNOWN_GO_TERMS['calcium channel complex'] = 'GO:0034704'
+KNOWN_GO_TERMS['potassium channel complex'] = 'GO:0034705'
+KNOWN_GO_TERMS['sodium channel complex'] = 'GO:0034706'
+
+
+CNO_URL_TEMPLATE = 'http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#%s'
+
+KNOWN_CNO_TERMS = {}
+KNOWN_CNO_TERMS['ionic current model'] = 'cno_0000047'
+KNOWN_CNO_TERMS['biophysical spiking model'] = 'cno_0000017'

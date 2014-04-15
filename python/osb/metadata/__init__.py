@@ -36,6 +36,7 @@ class Description():
         self.about = about
         self.qualifiers = []
         self.comment = None
+        self.free_text = ""
     
     def to_xml(self, indent=""):
         xml = indent + '<rdf:Description rdf:about="%s">\n'%self.about
@@ -44,6 +45,9 @@ class Description():
               
         for qualifier in self.qualifiers:
             xml += qualifier.to_xml(indent+INDENT)
+            
+        if self.free_text and len(self.free_text):
+            xml += self.free_text+"\n"
                    
         xml += indent + "</rdf:Description>\n"
               
@@ -78,7 +82,33 @@ def add_simple_qualifier(description, type, qualifier, resource, comment=None):
     if comment: 
         bq.comment = comment
     description.qualifiers.append(bq)
+    
+    
+def parse_for_metadata(xml_contents):
+    lines = xml_contents.split('\n')
+    metadata = {}
+    count = 0
+    while count<len(lines):
+        line = lines[count].strip()
+        #print("Checking <<%s>>"+line)
+        if '<rdf:Description rdf:about=' in line:
+            about_info = line[line.index('rdf:about=')+10: line.index('>')]
+            about = about_info.strip().replace("'","").replace('"',"").split('\s')[0]
+            desc = ""
+            line = lines[count]
+            in_desc = True
+            while in_desc:
+                count+=1
+                line = lines[count]
+                in_desc = '</rdf:Description>' not in line
+                if in_desc: desc+="\n"+line
+                
+            #print("{{%s}}"%about) 
+            #print("{{%s}}"%desc) 
+            metadata[about] = desc
+        count+=1
 
+    return metadata
 
 if __name__ == '__main__':
 
@@ -87,9 +117,13 @@ if __name__ == '__main__':
     rdf.descriptions.append(desc)
     
     desc.comment ="This is a comment"
+    desc.free_text = "<!-- The end -->"
     bq = Qualifier('bqbiol','isVersionOf')
     bq.resources.append('http://identifiers.org/bto/BTO:0000131')
     bq.comment = 'Testing'
     desc.qualifiers.append(bq)
 
-    print(rdf.to_xml())
+    xml = rdf.to_xml()
+    print(xml)
+    
+    print parse_for_metadata(xml)

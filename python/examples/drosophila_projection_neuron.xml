@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: drosophila_projection_neuron
-    Generated on Fri Apr 11 12:59:00 2014
+    Generated on Tue Apr 15 18:34:28 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -21,7 +21,8 @@
         </bqbiol:hasTaxon>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/Figure4B1.nml">
-        <!-- NeuroML 2 file: NeuroML2/Figure4B1.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml) -->
+        <!-- NeuroML 2 file: NeuroML2/Figure4B1.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml)
+  Cell: Figure4B1; Cell: dm1_combined_11_0 exported from NEURON ModelView -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml"/>
@@ -29,13 +30,14 @@
         </bqmodel:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/Figure4B2.nml">
-        <!-- NeuroML 2 file: NeuroML2/Figure4B2.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml) -->
+        <!-- NeuroML 2 file: NeuroML2/Figure4B2.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml)
+  Cell: Figure4B2; Cell: dm1_combined_12_0 exported from NEURON ModelView -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml"/>
@@ -43,13 +45,14 @@
         </bqmodel:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/Figure4B3.nml">
-        <!-- NeuroML 2 file: NeuroML2/Figure4B3.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml) -->
+        <!-- NeuroML 2 file: NeuroML2/Figure4B3.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml)
+  Cell: Figure4B3; Cell: dm1_combined_13_0 exported from NEURON ModelView -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml"/>
@@ -57,8 +60,8 @@
         </bqmodel:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>

@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: muscle_model
-    Generated on Fri Apr 11 12:59:47 2014
+    Generated on Tue Apr 15 18:34:54 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -27,12 +27,6 @@
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2A.net.nml"/>
             </rdf:Bag>
         </bqmodel:is>
-        <bqbiol:hasProperty>
-            <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
-            </rdf:Bag>
-        </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/Figure2B.net.nml">
         <!-- NeuroML 2 file: NeuroML2/Figure2B.net.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2B.net.nml) -->
@@ -41,12 +35,6 @@
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/Figure2B.net.nml"/>
             </rdf:Bag>
         </bqmodel:is>
-        <bqbiol:hasProperty>
-            <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
-            </rdf:Bag>
-        </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/Leak.channel.nml">
         <!-- NeuroML 2 file: NeuroML2/Leak.channel.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/Leak.channel.nml)
@@ -56,15 +44,22 @@ ChannelML file containing a single Channel description for a passive leak conduc
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/Leak.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: ion channel complex (species through ion channel: None) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034702"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/SingleCompMuscle.cell.nml">
-        <!-- NeuroML 2 file: NeuroML2/SingleCompMuscle.cell.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/SingleCompMuscle.cell.nml) -->
+        <!-- NeuroML 2 file: NeuroML2/SingleCompMuscle.cell.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/SingleCompMuscle.cell.nml)
+  Cell: SingleCompMuscleCell; Only muscle cell body... -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/SingleCompMuscle.cell.nml"/>
@@ -72,8 +67,8 @@ ChannelML file containing a single Channel description for a passive leak conduc
         </bqmodel:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
@@ -85,10 +80,16 @@ ChannelML file containing a single Channel description for a passive leak conduc
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/ca_boyle.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: potassium channel complex (species through ion channel: k) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034705"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
@@ -100,10 +101,16 @@ ChannelML file containing a single Channel description for a passive leak conduc
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/k_fast.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: potassium channel complex (species through ion channel: k) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034705"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
@@ -115,10 +122,16 @@ ChannelML file containing a single Channel description for a passive leak conduc
                 <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/k_slow.channel.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: potassium channel complex (species through ion channel: k) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034705"/>
+            </rdf:Bag>
+        </bqbiol:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
-                <!-- It's a computational neuroscience model -->
-                <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000026"/>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
