@@ -10,9 +10,9 @@ install:
   - "git checkout development"
   - "sudo python setup.py install" 
   - "cd ../python"
-  - "sudo python setup.py install"
+  - "pip install ."
   - "cd .."
   - "pwd"
 script:
   -  cd python/examples
-  -  python CheckModelDB.py
+  -  ./quicktest.sh
