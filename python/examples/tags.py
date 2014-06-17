@@ -12,7 +12,7 @@ tags = {}
     
 for project in osb.get_projects(min_curation_level="Low"):
 
-    if project.is_standard_project():
+    if project.is_standard_project() or project.is_showcase():
         
         print "\n--------   Project: %s\n" % project.name
         projects+=1
