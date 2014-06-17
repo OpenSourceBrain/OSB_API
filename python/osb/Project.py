@@ -20,6 +20,9 @@ class Project(OSBEntity):
     CATEGORY_GUIDE = 'Guide'
     CATEGORY_THEME = 'Theme'
     
+    TAGS = 'Tags'
+    TAGS_ATTR = 'tags'
+    
     MODELDB_REFERENCE = 'ModelDB reference'
     MODELDB_REFERENCE_ATTR = 'modeldb_reference'
     
@@ -70,6 +73,10 @@ class Project(OSBEntity):
         
         elif name == self.CATEGORY_ATTR:
             return self.get_custom_field(self.CATEGORY)
+        
+        elif name == self.TAGS_ATTR:
+            tag_str = self.get_custom_field(self.TAGS)
+            return str(tag_str).split(",") if tag_str is not None else []
         
         elif name == self.MODELDB_REFERENCE_ATTR:
             return self.get_custom_field(self.MODELDB_REFERENCE)
