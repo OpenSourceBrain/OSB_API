@@ -92,15 +92,35 @@ class Project(OSBEntity):
         return self.category == self.CATEGORY_SHOWCASE
     
     @classmethod
-    def get_data(cls,project_identifier):
+    def get_data(cls, project_identifier, fuzzy=False):
+        result = None
         url = "http://www.opensourcebrain.org/projects/%s.json"%project_identifier
         page = utils.get_page('%s' % (url))
         json_data = json.loads(page)
-        return json_data['project']
-        
+        if 'project' in json_data:
+            result = json_data['project']
+        if result is None:
+            print "No project with identifier %s" % project_identifier
+            if fuzzy:
+                projects_identifiers = get_projects_identifiers()
+                for candidate_project_identifier in projects_identifiers:
+                    p = project_identifier.lower()
+                    c = candidate_project_identifier
+                    match = (p in c) or (c in p) or \
+                            (p.replace('-','') in c) or \
+                            (c in p.replace('-','')) or \
+                            (p.replace('_','') in c) or \
+                            (c in p.replace('_',''))
+                    if match:
+                        print "Using project with similar identifier %s" \
+                                            % c
+                        result = cls.get_data(c)
+                        break
+        return result
+
     @classmethod
-    def get(cls,project_identifier):
-        project_data = cls.get_data(project_identifier)
+    def get(cls, project_identifier, fuzzy=False):
+        project_data = cls.get_data(project_identifier, fuzzy=fuzzy)
         return cls(project_data)
     
         
