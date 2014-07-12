@@ -1,5 +1,5 @@
 
-class OSBEntity():
+class OSBEntity(object):
     
     def __init__(self, info_array):
         self.info_array = info_array

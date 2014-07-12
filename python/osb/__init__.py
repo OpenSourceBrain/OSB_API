@@ -16,7 +16,7 @@ import json
 import os.path
 import subprocess
 
-from Project import *
+import Project#from Project import *
 
 USERNAME = None
 PASSWORD = None
@@ -93,7 +93,7 @@ def get_project(project_identifier):
     url = "http://www.opensourcebrain.org/projects/%s.json"%project_identifier
     page = utils.get_page('%s' % (url))
     json_data = json.loads(page)
-    return Project(json_data['project'])
+    return Project.Project(json_data['project'])
             
 
 def known_external_repo(reponame):

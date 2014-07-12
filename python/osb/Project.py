@@ -5,114 +5,78 @@ from Repository import *
 
 class Project(OSBEntity):
     
-    IDENTIFIER = 'identifier'
-    NAME = 'name'
-    ID = 'id'
-    DESCRIPTION = 'description'
-    CREATED_ON = 'created_on'
-    UPDATED_ON = 'updated_on'
+    attrs = {
+        'IDENTIFIER': 'identifier',
+        'NAME': 'name',
+        'ID': 'id',
+        'DESCRIPTION': 'description',
+        'CREATED_ON': 'created_on',
+        'UPDATED_ON': 'updated_on',
     
-    CATEGORY = 'Category'
-    CATEGORY_ATTR = 'category'
-    CATEGORY_OSB = 'OSB'
-    CATEGORY_PROJECT = 'Project'
-    CATEGORY_SHOWCASE = 'Showcase'
-    CATEGORY_GUIDE = 'Guide'
-    CATEGORY_THEME = 'Theme'
+        'CATEGORY': 'Category',
+        'CATEGORY_ATTR': 'category',
+        'CATEGORY_OSB': 'OSB',
+        'CATEGORY_PROJECT': 'Project',
+        'CATEGORY_SHOWCASE': 'Showcase',
+        'CATEGORY_GUIDE': 'Guide',
+        'CATEGORY_THEME': 'Theme',
     
-    TAGS = 'Tags'
-    TAGS_ATTR = 'tags'
+        'TAGS': 'Tags',
+
+        'MODELDB_REFERENCE': 'ModelDB reference',
+        
+        'GITHUB_REPO_ATTR': "GitHub repository",
+        'GITHUB_REPO_OBJ': "GitHub repository",
     
-    MODELDB_REFERENCE = 'ModelDB reference'
-    MODELDB_REFERENCE_ATTR = 'modeldb_reference'
-    
-    GITHUB_REPO_CF = "GitHub repository"
-    GITHUB_REPO_ATTR = "github_repo_str"
-    
-    GITHUB_REPO_OBJ = "github_repo"
-    
-    STATUS = 'Status info'
-    STATUS_ATTR = 'status'
-    
-    ENDORSEMENT = 'Endorsement'
-    ENDORSEMENT_ATTR = 'endorsement'
-    
-    SPECIES = 'Specie'
-    SPECIE_ATTR = 'specie'
-    SPECIES_ATTR = 'species'
-    
-    BRAIN_REGION = "Brain region"
-    BRAIN_REGION_ATTR = "brain_region"
-    
-    CELL_TYPE = "Cell type"
-    CELL_TYPE_ATTR = "cell_type"
-    
-    SPINE_CLASSIFICATION = 'Spine classification'
-    SPINE_CLASSIFICATION_ATTR = 'spine_classification'
-    
-    
-    
+        'STATUS': 'Status info',
+        
+        'ENDORSEMENT': 'Endorsement',
+        
+        'SPECIES': 'Specie',
+        'SPECIE': 'specie',
+        
+        'BRAIN_REGION': "Brain region",
+        
+        'CELL_TYPE': "Cell type",
+        
+        'SPINE_CLASSIFICATION': 'Spine classification',
+        
+        'NEUROLEX_IDS_CELLS': 'NeuroLex Ids: Cells',
+        }
+
     def __init__(self, info_array):
         OSBEntity.__init__(self, info_array)
     
     def __getattr__(self, name):
         #print("Checking for attr %s..."%(name))
         #print self.info_array.keys()
-        if name == self.IDENTIFIER:
-            return self.info_array[self.IDENTIFIER]
-        elif name == self.NAME:
-            return self.info_array[self.NAME]
-        elif name == self.ID:
-            return self.info_array[self.ID]
-        elif name == self.DESCRIPTION:
-            return self.info_array[self.DESCRIPTION]
-        elif name == self.CREATED_ON:
-            return self.info_array[self.CREATED_ON]
-        elif name == self.UPDATED_ON:
-            return self.info_array[self.UPDATED_ON]
+        value = None
+
+        name = name.upper().replace(' ','_').replace(':','')
+        if name in self.attrs:
+            attr = self.attrs[name]
+            try:
+                value = self.info_array[attr]
+            except:
+                value = self.get_custom_field(attr)
+
+        if name == 'TAGS':
+            value = str(value).split(",") if value is not None else []
         
-        elif name == self.CATEGORY_ATTR:
-            return self.get_custom_field(self.CATEGORY)
-        
-        elif name == self.TAGS_ATTR:
-            tag_str = self.get_custom_field(self.TAGS)
-            return str(tag_str).split(",") if tag_str is not None else []
-        
-        elif name == self.MODELDB_REFERENCE_ATTR:
-            return self.get_custom_field(self.MODELDB_REFERENCE)
-        
-        elif name == self.GITHUB_REPO_ATTR:
-            return self.get_custom_field(self.GITHUB_REPO_CF)
-        
-        elif name == self.GITHUB_REPO_OBJ:
-            repo = self.get_custom_field(self.GITHUB_REPO_CF)
-            if repo:
-                ghr = GitHubRepository.create(repo)
-                return ghr
+        elif name == 'GITHUB_REPO_OBJ':
+            if value: # A repository.  
+                value = GitHubRepository.create(value)
             else:
-                return None
+                value = None
         
-        elif name == self.STATUS_ATTR:
-            return self.get_custom_field(self.STATUS)
-        
-        elif name == self.ENDORSEMENT_ATTR:
-            return int(self.get_custom_field(self.ENDORSEMENT))
-        
-        elif name == self.SPECIE_ATTR or name == self.SPECIES_ATTR:
-            return self.get_custom_field(self.SPECIES)
-        
-        elif name == self.BRAIN_REGION_ATTR:
-            return self.get_custom_field(self.BRAIN_REGION)
-        
-        elif name == self.CELL_TYPE_ATTR:
-            return self.get_custom_field(self.CELL_TYPE)
-        
-        elif name == self.SPINE_CLASSIFICATION_ATTR:
-            return self.get_custom_field(self.SPINE_CLASSIFICATION)
-        
-        else: 
-            print("-- Could not find attribute: %s"%name)
-            return None
+        if value is None: 
+            try:
+                value = super(Project,self).__getattr__(name)
+            except:
+                #print("-- Could not find attribute: %s"%name)
+                pass
+
+        return value
         
     def __getitem__(self, name):
         #print("Checking for item %s..."%(name))
@@ -127,13 +91,22 @@ class Project(OSBEntity):
     def is_showcase(self):
         return self.category == self.CATEGORY_SHOWCASE
     
+    @classmethod
+    def get_data(cls,project_identifier):
+        url = "http://www.opensourcebrain.org/projects/%s.json"%project_identifier
+        page = utils.get_page('%s' % (url))
+        json_data = json.loads(page)
+        return json_data['project']
         
+    @classmethod
+    def get(cls,project_identifier):
+        project_data = cls.get_data(project_identifier)
+        return cls(project_data)
+    
         
 if __name__ == "__main__":
-
-    project_array = get_project('grancelllayer')
-    
-    project = Project(project_array)
+   
+    project = Project.get('grancelllayer')
     print project.id
     
     #print("Project %s, %s: %s"%(project.id, project.identifier, project.name))
