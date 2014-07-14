@@ -12,21 +12,15 @@ class Project(OSBEntity):
         'DESCRIPTION': 'description',
         'CREATED_ON': 'created_on',
         'UPDATED_ON': 'updated_on',
-    
+
         'CATEGORY': 'Category',
-        'CATEGORY_ATTR': 'category',
-        'CATEGORY_OSB': 'OSB',
-        'CATEGORY_PROJECT': 'Project',
-        'CATEGORY_SHOWCASE': 'Showcase',
-        'CATEGORY_GUIDE': 'Guide',
-        'CATEGORY_THEME': 'Theme',
     
         'TAGS': 'Tags',
 
         'MODELDB_REFERENCE': 'ModelDB reference',
         
         'GITHUB_REPO_ATTR': "GitHub repository",
-        'GITHUB_REPO_OBJ': "GitHub repository",
+        'GITHUB_REPO': "GitHub repository",
     
         'STATUS': 'Status info',
         
@@ -44,6 +38,15 @@ class Project(OSBEntity):
         'NEUROLEX_IDS_CELLS': 'NeuroLex Ids: Cells',
         }
 
+    labels = {
+        'CATEGORY_ATTR': 'category',
+        'CATEGORY_OSB': 'OSB',
+        'CATEGORY_PROJECT': 'Project',
+        'CATEGORY_SHOWCASE': 'Showcase',
+        'CATEGORY_GUIDE': 'Guide',
+        'CATEGORY_THEME': 'Theme',
+    }
+
     def __init__(self, info_array):
         OSBEntity.__init__(self, info_array)
     
@@ -51,6 +54,9 @@ class Project(OSBEntity):
         #print("Checking for attr %s..."%(name))
         #print self.info_array.keys()
         value = None
+
+        if name in self.labels:
+            value = self.labels[name]
 
         name = name.upper().replace(' ','_').replace(':','')
         if name in self.attrs:
@@ -63,7 +69,7 @@ class Project(OSBEntity):
         if name == 'TAGS':
             value = str(value).split(",") if value is not None else []
         
-        elif name == 'GITHUB_REPO_OBJ':
+        elif name == 'GITHUB_REPO':
             if value: # A repository.  
                 value = GitHubRepository.create(value)
             else:

@@ -56,9 +56,12 @@ def get_projects_data(min_curation_level, limit=1000):
     projects_data = []
     for project_data in projects_data_all:
         
-        curation_level = int(utils.get_custom_field(project, "Curation level")) if utils.get_custom_field(project, "Curation level") else 0
+        curation_level = 0
+        text = "Curation level"
+        if utils.get_custom_field(project_data, text):
+            curation_level = int(utils.get_custom_field(project_data, text)) 
         
-        if (min_curation_level=="None") or \
+        if (min_curation_level in ["None",None,"",0]) or \
            (min_curation_level=="Low" and curation_level>=1)  or \
            (min_curation_level=="Medium" and curation_level>=2)  or \
            (min_curation_level=="High" and curation_level>=3):
@@ -68,7 +71,7 @@ def get_projects_data(min_curation_level, limit=1000):
 
 def get_projects(min_curation_level, limit=1000):
     projects_data = get_projects_data(min_curation_level, limit=limit)
-    projects = [Project(project_data) for project_data in projects_data]
+    projects = [Project.Project(project_data) for project_data in projects_data]
     return projects
 
 def get_projects_identifiers(min_curation_level, limit=1000):
