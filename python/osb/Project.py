@@ -82,7 +82,12 @@ class Project(OSBEntity):
                 #print("-- Could not find attribute: %s"%name)
                 pass
 
-        return value
+        try:
+            return float(value)
+        except ValueError:
+            return value
+        except TypeError:
+            return value
         
     def __getitem__(self, name):
         #print("Checking for item %s..."%(name))
@@ -135,9 +140,10 @@ if __name__ == "__main__":
     project = Project.get('grancelllayer')
     print project.id
     
-    #print("Project %s, %s: %s"%(project.id, project.identifier, project.name))
-    #print("Category: %s (Standard project? %s)"%(project.category, project.is_standard_project()))
-    #print("ModelDB reference: %s"%(project.modeldb_reference))
-    #print("GitHub repo: %s"%(project.github_repo_str))
+    print("Project %s, %s: %s"%(project.id, project.identifier, project.name))
+    print("Category: %s (Standard project? %s)"%(project.category, project.is_standard_project()))
+    print("ModelDB reference: %s"%(project.modeldb_reference))
+    print("GitHub repo: %s"%(project.github_repo_str))
+    print("Endorsement: %i"%(project.endorsement==1))
     
     print("Done")

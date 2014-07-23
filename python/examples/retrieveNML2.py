@@ -107,7 +107,7 @@ if __name__ == "__main__":
                                 valid = xmlschema.validate(doc)
                             else:
                                 check = ' against jNeuroML'
-                                ret = osb.check_jnml_validates_neuroml(local_file)
+                                ret = osb.utils.check_jnml_validates_neuroml(local_file)
                                 valid = not bool(ret)
 
                             if valid:
@@ -122,7 +122,7 @@ if __name__ == "__main__":
                     file_name = full_file_path.split('/')[-1]
                     local_file = projFolder+"/"+file_name
 
-                    if osb.is_lems_file(file_name):
+                    if osb.utils.is_lems_file(file_name):
                         print("Checking LEMS file: %s"%full_file_path)
                         if not local:
                             github_repo.copy_file_from_repository(full_file_path, local_file)
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 
                         if os.getenv('JNML_HOME') is not None:
 
-                            ret = osb.check_jnml_loads_lems(local_file)
+                            ret = osb.utils.check_jnml_loads_lems(local_file)
                             valid = not bool(ret)
                             if valid:
                                 print("                 (Parsable LEMS file)")
