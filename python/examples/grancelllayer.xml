@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: grancelllayer
-    Generated on Tue Apr 15 18:34:36 2014
+    Generated on Wed Jul 23 14:28:14 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -86,6 +86,23 @@ Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in 
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_98.cell.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Golgi_98_3D.cell.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_98_3D.cell.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_98_3D.cell.nml)
+  Cell: Golgi_98_3D; An extension in 3D using ChannelML of the Granule cell model from:
+
+Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer, 1998 -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_98_3D.cell.nml"/>
             </rdf:Bag>
         </bqmodel:is>
         <bqbiol:is>
@@ -371,7 +388,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranCellLayer.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GranCellLayer.net.nml)
 
 
-Network structure (NeuroML 2beta3) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 12:06:00, 15-Apr-14
+Network structure (NeuroML 2beta3) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 11:14:11, 18-Jul-14
 
 Cell Group: Golgis contains 4 cells
 Cell Group: Grans contains 75 cells
@@ -697,6 +714,25 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Granule_98.cell.nml"/>
             </rdf:Bag>
         </bqmodel:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Granule_98_3D.cell.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Granule_98_3D.cell.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Granule_98_3D.cell.nml)
+  Cell: Granule_98_3D; An extension to 3D of the Granule cell model from:
+
+Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer, 1998
+
+incorporating channel mechanisms based on ChannelML -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Granule_98_3D.cell.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
         <bqbiol:is>
             <rdf:Bag>
                 <!-- It is a model of the NeuroLex entity: nifext_128 -->
@@ -709,6 +745,28 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                 <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/Large3DNetwork.net.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Large3DNetwork.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Large3DNetwork.net.nml)
+
+
+Network structure (NeuroML 2beta3) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 18:15:30, 10-Jun-14
+
+Cell Group: GoC_3D contains 32 cells
+Cell Group: MF_3D contains 96 cells
+Cell Group: GrC_3D contains 600 cells
+
+Network connection: NetConnMFGrC contains 2499 individual synaptic connections
+Network connection: NetConnGoCGrC contains 600 individual synaptic connections
+Network connection: NetConnGrCGoC contains 2400 individual synaptic connections
+
+
+     -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Large3DNetwork.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml)

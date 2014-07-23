@@ -16,7 +16,7 @@ import json
 import os.path
 import subprocess
 
-from Project import *
+import Project#from Project import *
 
 USERNAME = None
 PASSWORD = None
@@ -47,54 +47,38 @@ if os.path.isfile(auth_file):
         if line.startswith("password:"):
             PASSWORD = line.strip()[9:]
             
-            
-        
 
-def get_project_array(min_curation_level, limit=1000):
+def get_projects_data(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
     page = utils.get_page('%s?limit=%d' % (url,limit))
     json_data = json.loads(page)
-    project_list_all = json_data['projects']
-    project_list = []
-    for project in project_list_all:
-
-        curation_level = int(utils.get_custom_field(project, "Curation level")) if utils.get_custom_field(project, "Curation level") else 0
+    projects_data_all = json_data['projects']
+    projects_data = []
+    for project_data in projects_data_all:
         
-        if (min_curation_level=="None") or \
+        curation_level = 0
+        text = "Curation level"
+        if utils.get_custom_field(project_data, text):
+            curation_level = int(utils.get_custom_field(project_data, text)) 
+        
+        if (min_curation_level in ["None",None,"",0]) or \
            (min_curation_level=="Low" and curation_level>=1)  or \
            (min_curation_level=="Medium" and curation_level>=2)  or \
            (min_curation_level=="High" and curation_level>=3):
-            project_list.append(project)
+            projects_data.append(project_data)
             
-    return project_list
-
+    return projects_data
 
 def get_projects(min_curation_level, limit=1000):
-    url = "http://www.opensourcebrain.org/projects.json"
-    page = utils.get_page('%s?limit=%d' % (url,limit))
-    json_data = json.loads(page)
-    project_list_all = json_data['projects']
-    projects = []
-    for project in project_list_all:
-        
-        curation_level = int(utils.get_custom_field(project, "Curation level")) if utils.get_custom_field(project, "Curation level") else 0
-        
-        if (min_curation_level=="None") or \
-           (min_curation_level=="Low" and curation_level>=1)  or \
-           (min_curation_level=="Medium" and curation_level>=2)  or \
-           (min_curation_level=="High" and curation_level>=3):
-            projects.append(Project(project))
-            
+    projects_data = get_projects_data(min_curation_level, limit=limit)
+    projects = [Project.Project(project_data) for project_data in projects_data]
     return projects
 
+def get_projects_identifiers(min_curation_level, limit=1000):
+    projects = get_projects(min_curation_level, limit=limit)
+    projects_identifiers = [project.identifier for project in projects]
+    return projects_identifiers
 
-def get_project(project_identifier):
-    
-    url = "http://www.opensourcebrain.org/projects/%s.json"%project_identifier
-    page = utils.get_page('%s' % (url))
-    json_data = json.loads(page)
-    return Project(json_data['project'])
-            
 
 def known_external_repo(reponame):
     if "openworm" in reponame or \

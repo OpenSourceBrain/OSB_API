@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: granulecell
-    Generated on Tue Apr 15 18:34:59 2014
+    Generated on Wed Jul 23 14:28:52 2014
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -336,7 +336,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranuleCell.net.nml (at https://github.com/OpenSourceBrain/GranuleCell/raw/master/neuroConstruct/generatedNeuroML2/GranuleCell.net.nml)
 
 
-Network structure (NeuroML 2beta3) for project: GranuleCell saved with neuroConstruct v1.7.1 on: 18:14:36, 28-Mar-14
+Network structure (NeuroML 2beta3) for project: GranuleCell saved with neuroConstruct v1.7.1 on: 17:47:34, 16-Apr-14
 
 Cell Group: Gran contains 1 cells
 
