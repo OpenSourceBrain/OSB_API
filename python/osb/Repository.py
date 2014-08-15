@@ -29,42 +29,51 @@ class Repository():
         if name == self.NAME:
             return self.info_array[self.NAME]
         
-        if name == self.FULL_NAME:
+        elif name == self.FULL_NAME:
             return self.info_array[self.FULL_NAME]
         
-        if name == self.URL:
+        elif name == self.URL:
             return self.info_array[self.URL]
         
-        if name == self.HTML_URL:
+        elif name == self.HTML_URL:
             return self.info_array[self.HTML_URL]
         
-        if name == self.OPEN_ISSUES:
+        elif name == self.OPEN_ISSUES:
             oi = self.info_array[self.OPEN_ISSUES]
             if oi is not None:
                 return int(oi)
             else:
                 return 0
-        if name == self.HAS_WIKI:
+
+        elif name == self.HAS_WIKI:
             return self.info_array[self.HAS_WIKI]
         
-        if name == self.FORKS:
+        elif name == self.FORKS:
             f = self.info_array[self.FORKS]
             if f is not None:
                 return int(f)
             else:
                 return 0
             
-        if name == self.WATCHERS:
+        elif name == self.WATCHERS:
             w = self.info_array[self.WATCHERS]
             if w is not None:
                 return int(w)
             else:
                 return 0
+
+        elif name == '__float__':
+            return None
+
         else:
+	    print("Could not find attr in Repository: %s"%name)
             return None
         
-    def __str__(self):
+    def __unicode__(self):
         return "%s repository: %s (%s)"%(self.type, self.name, self.html_url)
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
     
     def link_to_raw_file_in_repo(self, filename):
         return self.check_file_template % (self.full_name, filename)
@@ -114,7 +123,10 @@ class GitHubRepository(Repository):
         
     @staticmethod
     def create(github_repo_str):
-        
+
+        if github_repo_str is None:
+	    return None
+
         if github_repo_str.endswith(".git"):
              github_repo_str = github_repo_str[:-4]
 
@@ -126,7 +138,6 @@ class GitHubRepository(Repository):
         ghr = GitHubRepository(gh)
         return ghr
     
-    
         
         
         
@@ -137,6 +148,7 @@ if __name__ == "__main__":
     ghr = GitHubRepository.create('https://github.com/OpenSourceBrain/GranCellLayer')
     
     print ghr
+    print "Repo: %s"%ghr
     
     print(ghr.check_file_in_repository("README"))
     

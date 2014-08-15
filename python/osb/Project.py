@@ -20,7 +20,10 @@ class Project(OSBEntity):
         'MODELDB_REFERENCE': 'ModelDB reference',
         
         'GITHUB_REPO_ATTR': "GitHub repository",
-        'GITHUB_REPO': "GitHub repository",
+        'GITHUB_REPO_STR': "GitHub repository",
+
+        'GITHUB_REPO': "github_repo", # Used for GitHubRepository object
+
     
         'STATUS': 'Status info',
         
@@ -59,6 +62,7 @@ class Project(OSBEntity):
             value = self.labels[name]
 
         name = name.upper().replace(' ','_').replace(':','')
+        #print("Checking for attr %s..."%(name))
         if name in self.attrs:
             attr = self.attrs[name]
             try:
@@ -70,20 +74,25 @@ class Project(OSBEntity):
             value = str(value).split(",") if value is not None else []
         
         elif name == 'GITHUB_REPO':
-            if value: # A repository.  
-                value = GitHubRepository.create(value)
-            else:
-                value = None
-        
+	    repo_str = self.get_custom_field('GitHub repository')
+            #print repo_str
+            value = GitHubRepository.create(repo_str)
+
+        #print("  --- value: %s"%str(value))
         if value is None: 
             try:
                 value = super(Project,self).__getattr__(name)
-            except:
-                #print("-- Could not find attribute: %s"%name)
+            except Exception as e:
+                #print e
+                #print("  --- Could not find attribute in Project: %s"%name)
                 pass
 
         try:
-            return float(value)
+            v = float(value)
+	    if v == int(v):
+		return int(v)
+	    else:
+		return v
         except ValueError:
             return value
         except TypeError:
@@ -137,13 +146,13 @@ class Project(OSBEntity):
         
 if __name__ == "__main__":
    
-    project = Project.get('grancelllayer')
-    print project.id
+    project = Project.get('thalamocortical')
     
     print("Project %s, %s: %s"%(project.id, project.identifier, project.name))
     print("Category: %s (Standard project? %s)"%(project.category, project.is_standard_project()))
     print("ModelDB reference: %s"%(project.modeldb_reference))
-    print("GitHub repo: %s"%(project.github_repo_str))
     print("Endorsement: %i"%(project.endorsement==1))
+    print("GitHub repo str: %s"%(project.github_repo_str))
+    print("GitHub repo: %s"%(project.github_repo))
     
     print("Done")

@@ -6,7 +6,7 @@ class OSBEntity(object):
     
     def get_custom_field(self, cf_name):
         result = None
-        #print self.info_array["custom_fields"]
+        #print "Checking for %s in custom fields: %s" % (cf_name, self.info_array["custom_fields"])
         for cf in self.info_array["custom_fields"]:
             if cf['name'] == cf_name and cf.has_key('value'):  
                 result = cf['value']
