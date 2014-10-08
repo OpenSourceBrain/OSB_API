@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
     count_nml2 = 0
     count_lems = 0
+    count_projs = 0
     count_nml2_invalid = 0
     count_lems_invalid = 0
 
@@ -71,6 +72,8 @@ if __name__ == "__main__":
             if github_repo is None:
                 print("  (No GitHub repository)  ")
             else:
+                
+                some_valid = False
 
                 if not os.path.exists(versionFolder):
                     os.makedirs(versionFolder)
@@ -113,6 +116,7 @@ if __name__ == "__main__":
                             if valid:
                                 print("                 (Valid %s file%s)"%(versionFolder,check))
                                 count_nml2+=1
+                                some_valid = True
                             else:
                                 print("\n\n       It's NOT a valid %s file%s!\n"%(versionFolder,check))
                                 count_nml2_invalid+=1
@@ -137,9 +141,15 @@ if __name__ == "__main__":
                             if valid:
                                 print("                 (Parsable LEMS file)")
                                 count_lems+=1
+                                some_valid = True
                             else:
                                 print("\n\n       It's NOT a parsable LEMS file!\n")
                                 count_lems_invalid+=1
+                                
+                if some_valid:
+                    count_projs +=1
+                                
+            print("\nSo far %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files.\n%i projects with some valid NeuroML2/LEMS\n"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid, count_projs))
          
-    print("\nFound %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files\n"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid))
+    print("\nFound %i valid (%i invalid) NeuroML 2 files and %i parsable (%i not parsable) LEMS files.\n%i projects with some valid NeuroML2/LEMS\n"%(count_nml2, count_nml2_invalid,count_lems, count_lems_invalid, count_projs))
     
