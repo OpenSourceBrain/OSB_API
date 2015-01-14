@@ -126,4 +126,4 @@ if __name__ == '__main__':
     xml = rdf.to_xml()
     print(xml)
     
-    print parse_for_metadata(xml)
+    print(parse_for_metadata(xml))

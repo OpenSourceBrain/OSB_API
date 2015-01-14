@@ -74,7 +74,7 @@ class Project(OSBEntity):
             value = str(value).split(",") if value is not None else []
         
         elif name == 'GITHUB_REPO':
-	    repo_str = self.get_custom_field('GitHub repository')
+            repo_str = self.get_custom_field('GitHub repository')
             #print repo_str
             value = GitHubRepository.create(repo_str)
 
@@ -89,10 +89,10 @@ class Project(OSBEntity):
 
         try:
             v = float(value)
-	    if v == int(v):
-		return int(v)
-	    else:
-		return v
+            if v == int(v):
+                return int(v)
+            else:
+                return v
         except ValueError:
             return value
         except TypeError:
@@ -120,7 +120,7 @@ class Project(OSBEntity):
         if 'project' in json_data:
             result = json_data['project']
         if result is None:
-            print "No project with identifier %s" % project_identifier
+            print("No project with identifier %s" % project_identifier)
             if fuzzy:
                 projects_identifiers = get_projects_identifiers()
                 for candidate_project_identifier in projects_identifiers:
@@ -132,8 +132,8 @@ class Project(OSBEntity):
                             (p.replace('_','') in c) or \
                             (c in p.replace('_',''))
                     if match:
-                        print "Using project with similar identifier %s" \
-                                            % c
+                        print("Using project with similar identifier %s" \
+                                            % c)
                         result = cls.get_data(c)
                         break
         return result

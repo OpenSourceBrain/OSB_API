@@ -66,7 +66,7 @@ class Repository():
             return None
 
         else:
-	    print("Could not find attr in Repository: %s"%name)
+            print("Could not find attr in Repository: %s"%name)
             return None
         
     def __unicode__(self):
@@ -125,7 +125,7 @@ class GitHubRepository(Repository):
     def create(github_repo_str):
 
         if github_repo_str is None:
-	    return None
+            return None
 
         if github_repo_str.endswith(".git"):
              github_repo_str = github_repo_str[:-4]
@@ -147,8 +147,8 @@ if __name__ == "__main__":
         
     ghr = GitHubRepository.create('https://github.com/OpenSourceBrain/GranCellLayer')
     
-    print ghr
-    print "Repo: %s"%ghr
+    print(ghr)
+    print("Repo: %s" % ghr)
     
     print(ghr.check_file_in_repository("README"))
     
