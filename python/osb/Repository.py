@@ -1,6 +1,6 @@
 
 from __init__ import *
-from utils.__init__ import *
+from .utils.__init__ import *
 
 import json
 

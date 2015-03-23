@@ -4,7 +4,7 @@ Main helper methods for accessing OSB API
 """
 
 import sys
-import utils
+from osb import utils
 
 try:
     from urllib2 import urlopen, HTTPError, Request  # Python 2
@@ -16,7 +16,7 @@ import json
 import os.path
 import subprocess
 
-import Project#from Project import *
+from osb import Project#from Project import *
 
 USERNAME = None
 PASSWORD = None
