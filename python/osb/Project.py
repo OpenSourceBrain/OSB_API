@@ -21,6 +21,7 @@ class Project(OSBEntity):
 
         'GITHUB_REPO_ATTR': "GitHub repository",
         'GITHUB_REPO_STR': "GitHub repository",
+        'GITHUB_REPO_NAME': "Github repository name",
 
         'GITHUB_REPO': "github_repo", # Used for GitHubRepository object
 
@@ -76,6 +77,13 @@ class Project(OSBEntity):
             repo_str = self.get_custom_field('GitHub repository')
             #print repo_str
             value = GitHubRepository.create(repo_str)
+
+        elif name == 'GITHUB_REPO_NAME':
+            repo_str = self.get_custom_field('GitHub repository')
+            if repo_str:
+                value = repo_str.split('/')[-1].replace('.git','')
+            else:
+                value = ''
 
         #print("  --- value: %s"%str(value))
         if value is None: 

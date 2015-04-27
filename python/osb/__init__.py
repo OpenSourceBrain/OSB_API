@@ -4,7 +4,6 @@ Main helper methods for accessing OSB API
 """
 
 import sys
-from osb import utils
 
 try:
     from urllib2 import urlopen, HTTPError, Request  # Python 2
@@ -15,8 +14,6 @@ import base64
 import json
 import os.path
 import subprocess
-
-from osb import Project#from Project import *
 
 USERNAME = None
 PASSWORD = None
@@ -47,10 +44,12 @@ if os.path.isfile(auth_file):
         if line.startswith("password:"):
             PASSWORD = line.strip()[9:]
             
+from . import utils
+from . import Project#from Project import *
 
 def get_projects_data(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
-    page = utils.get_page('%s?limit=%d' % (url,limit))
+    page = utils.get_page('%s?limit=%d' % (url,limit)).decode('utf-8')
     json_data = json.loads(page)
     projects_data_all = json_data['projects']
     projects_data = []
@@ -62,9 +61,9 @@ def get_projects_data(min_curation_level, limit=1000):
             curation_level = int(utils.get_custom_field(project_data, text)) 
         
         if (min_curation_level in ["None",None,"",0]) or \
-           (min_curation_level=="Low" and curation_level>=1)  or \
-           (min_curation_level=="Medium" and curation_level>=2)  or \
-           (min_curation_level=="High" and curation_level>=3):
+           (min_curation_level in ["Low",1] and curation_level>=1)  or \
+           (min_curation_level in ["Medium",2] and curation_level>=2)  or \
+           (min_curation_level in ["High",3] and curation_level>=3):
             projects_data.append(project_data)
             
     return projects_data
@@ -79,6 +78,17 @@ def get_projects_identifiers(min_curation_level, limit=1000):
     projects_identifiers = [project.identifier for project in projects]
     return projects_identifiers
 
+def get_project_with_identifier(identifier,projects=None):
+    if projects is None:
+        projects = get_projects(None)
+    result = None
+    identifier = identifier.lower()
+    for project in projects:
+        if identifier in [project.identifier.lower(),
+                          project.GITHUB_REPO_NAME.lower()]:
+            result = project
+            break
+    return result 
 
 def known_external_repo(reponame):
     if "openworm" in reponame or \
