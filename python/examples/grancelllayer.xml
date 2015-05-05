@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: grancelllayer
-    Generated on Wed Jul 23 14:28:14 2014
+    Generated on Tue May  5 13:37:38 2015
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -47,7 +47,7 @@ ChannelML file describing a synaptic mechanism -->
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/GolgiPassiveCond.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GolgiPassiveCond.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GolgiPassiveCond.channel.nml)
 ChannelML file containing a single Channel description
-  Ion Channel: GolgiPassiveCond; ChannelML file containing a single Channel description -->
+  Ion Channel: GolgiPassiveCond; Passive Conductance on Golgi cell -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GolgiPassiveCond.channel.nml"/>
@@ -122,8 +122,7 @@ Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_CaHVA_CML.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_CaHVA_CML.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Golgi_CaHVA_CML; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Golgi_CaHVA_CML; High voltage Activated Ca2+ channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_CaHVA_CML.channel.nml"/>
@@ -176,8 +175,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_H_CML.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_H_CML.channel.nml)
 A channel from Maex, R and De Schutter, E. 
     Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Golgi_H_CML; A channel from Maex, R and De Schutter, E. 
-    Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Golgi_H_CML; Anomalous inward rectifying H conductance -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_H_CML.channel.nml"/>
@@ -212,8 +210,7 @@ A channel from Maex, R and De Schutter, E.
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_KA_CML.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_KA_CML.channel.nml)
 A channel from Maex, R and De Schutter, E. 
     Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Golgi_KA_CML; A channel from Maex, R and De Schutter, E. 
-    Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Golgi_KA_CML; A-type K channel, with rate equations expressed in tau and inf form -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_KA_CML.channel.nml"/>
@@ -256,8 +253,7 @@ A channel from Maex, R and De Schutter, E.
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_KCa_CML.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_KCa_CML.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Golgi_KCa_CML; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Golgi_KCa_CML; Calcium dependent K+ channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_KCa_CML.channel.nml"/>
@@ -300,8 +296,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_KDr_CML.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_KDr_CML.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Golgi_KDr_CML; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Golgi_KDr_CML; Delayed rectifyer K channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_KDr_CML.channel.nml"/>
@@ -344,8 +339,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Golgi_NaF_CML.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_NaF_CML.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Golgi_NaF_CML; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Golgi_NaF_CML; Inactivating fast Na+ channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Golgi_NaF_CML.channel.nml"/>
@@ -388,7 +382,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranCellLayer.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GranCellLayer.net.nml)
 
 
-Network structure (NeuroML 2beta3) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 11:14:11, 18-Jul-14
+Network structure (NeuroML 2beta4) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 16:16:17, 11-Mar-15
 
 Cell Group: Golgis contains 4 cells
 Cell Group: Grans contains 75 cells
@@ -409,7 +403,7 @@ Network connection: NetConn_Grans_Golgis contains 300 individual synaptic connec
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml)
 ChannelML file containing a single Channel description
-  Ion Channel: GranPassiveCond; ChannelML file containing a single Channel description -->
+  Ion Channel: GranPassiveCond; Simple leak conductance for Granule cell -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GranPassiveCond.channel.nml"/>
@@ -444,8 +438,7 @@ ChannelML file containing a single Channel description
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Gran_CaHVA_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Gran_CaHVA_98; A High Voltage Activated Ca2+ channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_CaHVA_98.channel.nml"/>
@@ -498,8 +491,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Gran_H_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Gran_H_98; Anomalous inward rectifying H conductance -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_H_98.channel.nml"/>
@@ -534,8 +526,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Gran_KA_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Gran_KA_98; A-type K channel, with rate equations expressed in tau and inf form -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_KA_98.channel.nml"/>
@@ -578,8 +569,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Gran_KCa_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Gran_KCa_98; Calcium dependent K+ channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_KCa_98.channel.nml"/>
@@ -622,8 +612,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Gran_KDr_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Gran_KDr_98; Delayed rectifyer K channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_KDr_98.channel.nml"/>
@@ -666,8 +655,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml)
 A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
     Detailed Network Model of the Cerebellar Granule Cell Layer
-  Ion Channel: Gran_NaF_98; A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a 
-    Detailed Network Model of the Cerebellar Granule Cell Layer -->
+  Ion Channel: Gran_NaF_98; Fast inactivating Na+ channel -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/Gran_NaF_98.channel.nml"/>
@@ -768,10 +756,33 @@ Network connection: NetConnGrCGoC contains 2400 individual synaptic connections
             </rdf:Bag>
         </bqmodel:is>
     </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/LargeGCL.net.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/LargeGCL.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/LargeGCL.net.nml)
+
+
+Network structure (NeuroML 2beta3) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 11:14:11, 18-Jul-14
+
+Cell Group: Golgis contains 4 cells
+Cell Group: Grans contains 75 cells
+Cell Group: Mossies contains 12 cells
+
+Network connection: NetConn_Golgis_Grans contains 75 individual synaptic connections
+Network connection: NetConn_Mossies_Grans contains 300 individual synaptic connections
+Network connection: NetConn_Grans_Golgis contains 300 individual synaptic connections
+
+
+     -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/LargeGCL.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+    </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml)
 ChannelML file containing a single Channel description
-  Ion Channel: MFFastLeakCond; ChannelML file containing a single Channel description -->
+  Ion Channel: MFFastLeakCond; Simple example of a leak/passive conductance. Note: for GENESIS cells with a single leak conductance,
+        it is better to use the Rm and Em variables for a passive current. -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml"/>
@@ -789,6 +800,15 @@ ChannelML file containing a single Channel description
                 <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/MFSpikeSyn.synapse.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/MFSpikeSyn.synapse.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MFSpikeSyn.synapse.nml)
+ChannelML file describing a synaptic mechanism -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MFSpikeSyn.synapse.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
     </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/MF_AMPA.synapse.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/MF_AMPA.synapse.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MF_AMPA.synapse.nml)
