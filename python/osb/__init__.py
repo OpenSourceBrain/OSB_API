@@ -17,6 +17,10 @@ import subprocess
 
 USERNAME = None
 PASSWORD = None
+
+from .utils import get_page, get_custom_field
+from .Project import *
+
 auth_file = "github.info"
 
 auth_info = "\n-----------------------------------------------------------------\n\n"+\
@@ -44,12 +48,9 @@ if os.path.isfile(auth_file):
         if line.startswith("password:"):
             PASSWORD = line.strip()[9:]
             
-from . import utils
-from . import Project#from Project import *
-
 def get_projects_data(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
-    page = utils.get_page('%s?limit=%d' % (url,limit)).decode('utf-8')
+    page = get_page('%s?limit=%d' % (url,limit)).decode('utf-8')
     json_data = json.loads(page)
     projects_data_all = json_data['projects']
     projects_data = []
@@ -57,8 +58,8 @@ def get_projects_data(min_curation_level, limit=1000):
         
         curation_level = 0
         text = "Curation level"
-        if utils.get_custom_field(project_data, text):
-            curation_level = int(utils.get_custom_field(project_data, text)) 
+        if get_custom_field(project_data, text):
+            curation_level = int(get_custom_field(project_data, text)) 
         
         if (min_curation_level in ["None",None,"",0]) or \
            (min_curation_level in ["Low",1] and curation_level>=1)  or \
@@ -70,7 +71,7 @@ def get_projects_data(min_curation_level, limit=1000):
 
 def get_projects(min_curation_level, limit=1000):
     projects_data = get_projects_data(min_curation_level, limit=limit)
-    projects = [Project.Project(project_data) for project_data in projects_data]
+    projects = [Project(project_data) for project_data in projects_data]
     return projects
 
 def get_projects_identifiers(min_curation_level, limit=1000):

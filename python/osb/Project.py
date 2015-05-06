@@ -1,6 +1,6 @@
 from .OSBEntity import OSBEntity
 
-from __init__ import *
+from .__init__ import *
 from .Repository import *
 
 class Project(OSBEntity):
