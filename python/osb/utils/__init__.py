@@ -15,7 +15,7 @@ import json
 import os.path
 import subprocess
 
-from osb.Project import *
+from .. import USERNAME,PASSWORD
 
 LEMS_SUFFIX = ".xml"
 LEMS_PREFIX1 = "Run_"
@@ -50,7 +50,7 @@ def check_jnml_loads_lems(document):
 def get_custom_field(project_array, cfName):
     result = None
     for cf in project_array["custom_fields"]:
-        if cf['name'] == cfName and cf.has_key('value'):
+        if cf['name'] == cfName and 'value' in cf:
             result = cf['value']
     return result
 

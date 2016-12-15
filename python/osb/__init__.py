@@ -4,7 +4,6 @@ Main helper methods for accessing OSB API
 """
 
 import sys
-import utils
 
 try:
     from urllib2 import urlopen, HTTPError, Request  # Python 2
@@ -16,10 +15,12 @@ import json
 import os.path
 import subprocess
 
-import Project#from Project import *
-
 USERNAME = None
 PASSWORD = None
+
+from .utils import get_page, get_custom_field
+from .Project import *
+
 auth_file = "github.info"
 
 auth_info = "\n-----------------------------------------------------------------\n\n"+\
@@ -47,10 +48,9 @@ if os.path.isfile(auth_file):
         if line.startswith("password:"):
             PASSWORD = line.strip()[9:]
             
-
 def get_projects_data(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
-    page = utils.get_page('%s?limit=%d' % (url,limit))
+    page = get_page('%s?limit=%d' % (url,limit)).decode('utf-8')
     json_data = json.loads(page)
     projects_data_all = json_data['projects']
     projects_data = []
@@ -58,20 +58,20 @@ def get_projects_data(min_curation_level, limit=1000):
         
         curation_level = 0
         text = "Curation level"
-        if utils.get_custom_field(project_data, text):
-            curation_level = int(utils.get_custom_field(project_data, text)) 
+        if get_custom_field(project_data, text):
+            curation_level = int(get_custom_field(project_data, text)) 
         
         if (min_curation_level in ["None",None,"",0]) or \
-           (min_curation_level=="Low" and curation_level>=1)  or \
-           (min_curation_level=="Medium" and curation_level>=2)  or \
-           (min_curation_level=="High" and curation_level>=3):
+           (min_curation_level in ["Low",1] and curation_level>=1)  or \
+           (min_curation_level in ["Medium",2] and curation_level>=2)  or \
+           (min_curation_level in ["High",3] and curation_level>=3):
             projects_data.append(project_data)
             
     return projects_data
 
 def get_projects(min_curation_level, limit=1000):
     projects_data = get_projects_data(min_curation_level, limit=limit)
-    projects = [Project.Project(project_data) for project_data in projects_data]
+    projects = [Project(project_data) for project_data in projects_data]
     return projects
 
 def get_projects_identifiers(min_curation_level, limit=1000):
@@ -79,6 +79,17 @@ def get_projects_identifiers(min_curation_level, limit=1000):
     projects_identifiers = [project.identifier for project in projects]
     return projects_identifiers
 
+def get_project_with_identifier(identifier,projects=None):
+    if projects is None:
+        projects = get_projects(None)
+    result = None
+    identifier = identifier.lower()
+    for project in projects:
+        if identifier in [project.identifier.lower(),
+                          project.GITHUB_REPO_NAME.lower()]:
+            result = project
+            break
+    return result 
 
 def known_external_repo(reponame):
     if "openworm" in reponame or \

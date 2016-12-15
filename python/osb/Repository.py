@@ -1,6 +1,6 @@
 
-from __init__ import *
-from utils.__init__ import *
+from .__init__ import *
+from .utils.__init__ import *
 
 import json
 
@@ -158,14 +158,13 @@ class GitHubRepository(Repository):
 
 
 if __name__ == "__main__":
-
     ghr = GitHubRepository.create('https://github.com/NeuroML/NeuroML2')
     ghr = GitHubRepository.create('https://github.com/NeuroML/NeuroML2.git')
 
-    print ghr
-    print "Repo: %s"%ghr
-
+    print(ghr)
+    print("Repo: %s"%ghr)
     print(ghr.clone_url)
+
     print(ghr.check_file_in_repository("README"))
     print(ghr.check_file_in_repository("README.md"))
 
