@@ -57,9 +57,12 @@ if __name__ == "__main__":
 
         ignores = ['blender-to-neuroml', 
                    'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012',
-                   'miglioreetal14_olfactorybulb3d', # Lots of NML2... 
                    'neurosciences-repository']
         
+        if project_num<30:
+                   ignores += ['miglioreetal14_olfactorybulb3d', # Lots of NML2... 
+                   'alleninstituteneuroml', # Lots of NML2... 
+                   'blue-brain-project-showcase'] # Lots of NML2... 
 
         if not ( project.is_standard_project() or project.is_showcase()):
             print("  (Ignoring project as its category is: %s)  "%project.category)
