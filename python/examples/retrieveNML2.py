@@ -103,7 +103,7 @@ if __name__ == "__main__":
                     local_file = projFolder+"/"+file_name
 
                     if file_name.endswith(nml_suffix):
-                        print "  ...Getting NeuroML file: %s"%full_file_path
+                        print("  ...Getting NeuroML file: %s"%full_file_path)
                         if not local:
                             github_repo.copy_file_from_repository(full_file_path, local_file)
                         else:

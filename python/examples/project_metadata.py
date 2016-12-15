@@ -56,7 +56,7 @@ if __name__ == "__main__":
         species = project.species.lower()
 
         if species:
-            if osbres.KNOWN_SPECIES.has_key(species):
+            if species in osbres.KNOWN_SPECIES:
                 add_simple_qualifier(desc, \
                                      'bqbiol', \
                                      'hasTaxon', \
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         brain_region = project.brain_region.lower()
 
         if brain_region:
-            if osbres.KNOWN_BRAIN_REGIONS.has_key(brain_region):
+            if brain_region in osbres.KNOWN_BRAIN_REGIONS:
                 add_simple_qualifier(desc, \
                                      'bqbiol', \
                                      'isPartOf', \
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         cell_type = "%s:%s"%(brain_region, project.cell_type.lower())
 
         if cell_type:
-            if osbres.KNOWN_CELL_TYPES.has_key(cell_type):
+            if cell_type in osbres.KNOWN_CELL_TYPES:
                 add_simple_qualifier(desc, \
                                      'bqbiol', \
                                      'isPartOf', \
@@ -110,10 +110,10 @@ if __name__ == "__main__":
                                         raw_url, \
                                         "")
 
-
-                    contents = get_page(raw_url)
-
                     print("  Building NeuroML doc from: "+raw_url)
+
+                    contents = get_page(raw_url, utf8=True)
+
                     cno_type = None
                     doc = parseString(contents)
                     if doc.notes:
@@ -140,7 +140,7 @@ if __name__ == "__main__":
                                         "It is a model of the GO entity: %s (species through ion channel: %s)" % (channel_type, ion_channel.species))
 
                         metadata = parse_for_metadata(contents)
-                        if metadata.has_key(ion_channel.id):
+                        if ion_channel.id in metadata:
                             desc.free_text += "        <!-- Metadata extracted from NeuroML file -->\n"+metadata[ion_channel.id]
 
                     for cell in doc.cells:

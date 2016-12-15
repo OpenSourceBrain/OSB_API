@@ -26,7 +26,7 @@ github_auth_info = "\n----------------------------------------------------------
             "  details, either create a file "+github_auth_file+" containing the lines:\n\n    username:YOUR_USERNAME\n    password:YOUR_PASSWORD\n\n"+\
             "  or call with commandline arguments, e.g.:\n"+\
             "\n    python curate.py username:YOUR_USERNAME and password:YOUR_PASSWORD\n\n"+\
-            "\n\n    Remember too, if you have 2 stage authentication you'll have to generate a new token as your password.\n\n"+\
+            "\n    Remember too, if you have 2 stage authentication you'll have to generate a new token as your password.\n\n"+\
             "-----------------------------------------------------------------"
             
 
@@ -56,7 +56,7 @@ from osb.Project import Project
 
 def get_projects_data(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
-    page = get_page('%s?limit=%d' % (url,limit)).decode('utf-8')
+    page = get_page('%s?limit=%d' % (url,limit), utf8=True)
     json_data = json.loads(page)
     projects_data_all = json_data['projects']
     projects_data = []

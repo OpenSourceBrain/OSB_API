@@ -107,9 +107,9 @@ class Repository():
     def list_files_in_repo(self):
         rest_url = self.list_files_template%(self.full_name)
         #print("URL: %s"%rest_url)
-        w = get_page(rest_url)
+        w = get_page(rest_url, utf8=True)
         json_files = json.loads(w)
-        if not json_files.has_key('tree'):
+        if not 'tree' in json_files:
             print("Error!")
             print(json_files)
         files = []
@@ -148,7 +148,7 @@ class GitHubRepository(Repository):
             
 
         repo = "https://api.github.com/repos/"+github_repo_str[19:]
-        page = get_page(repo)
+        page = get_page(repo, utf8=True)
         gh = json.loads(page)
         '''for g in gh:
             print("%s = <<%s>>"%(g, gh[g]))'''

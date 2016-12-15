@@ -124,7 +124,7 @@ class Project(OSBEntity):
     def get_data(cls, project_identifier, fuzzy=False):
         result = None
         url = "http://www.opensourcebrain.org/projects/%s.json"%project_identifier
-        page = get_page('%s' % (url))
+        page = get_page('%s' % (url), utf8=True)
         json_data = json.loads(page)
         if 'project' in json_data:
             result = json_data['project']

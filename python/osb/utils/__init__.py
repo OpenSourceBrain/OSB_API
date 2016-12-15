@@ -84,7 +84,7 @@ def build_request(url):
     return Request(url, auth)
 
 
-def get_page(url, username=None, password=None):
+def get_page(url, username=None, password=None, utf8=False):
     if 'api.github.com' in url:
         url = url.replace('/tree/master/neuroConstruct', '')
         # This cruft was in some of the urls. 
@@ -98,21 +98,25 @@ def get_page(url, username=None, password=None):
             password = GITHUB_PASSWORD
 
     result = ""
-    #print(">>> Getting URL: %s (username=%s)" % (url, username))
+    print(">>> Getting URL: %s (username=%s)" % (url, username))
     req = Request(url)
     if username and password:
-        unamepw = "%s:%s" % (username, password)
+        unamepw = bytearray('%s:%s' % (username, password), 'utf-8')
         auth = base64.urlsafe_b64encode(unamepw)
-        req.add_header("Authorization", "Basic %s" % auth)
+        req.add_header("Authorization", "Basic %s" % str(auth.decode("utf-8")))
         #req.add_header("Content-Type", "application/json")
         #req.add_header("Accept", "application/json")
     try:
         response = urlopen(req)
     except HTTPError as e:
         print("URL: %s produced error %d (%s)" % (url, e.code, e.msg))
+        print("Request: (%s)" % (req.headers))
         if e.code != 404:
             print(github_auth_info)
     else:
-        result = response.read()
-    #print(">>> Returning: %s..."%result[0: min(len(result), 20)])
+        if utf8:
+            result = str(response.read().decode("utf-8"))
+        else:
+            result = response.read()
+    print(">>> Returning: %s..."%result[0: min(len(result), 20)])
     return result
