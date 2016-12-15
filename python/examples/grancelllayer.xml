@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: grancelllayer
-    Generated on Tue May  5 13:37:38 2015
+    Generated on Thu Dec 15 17:25:00 2016
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -382,7 +382,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/GranCellLayer.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/GranCellLayer.net.nml)
 
 
-Network structure (NeuroML 2beta4) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 16:16:17, 11-Mar-15
+Network structure (NeuroML 2beta4) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 14:47:41, 21-Mar-16
 
 Cell Group: Golgis contains 4 cells
 Cell Group: Grans contains 75 cells
@@ -426,10 +426,10 @@ ChannelML file containing a single Channel description
                     
                     <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
                         <rdf:Bag>
-                            <rdf:li>Maex, R and De Schutter, E.
-            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the
+                            <rdf:li>Maex, R and De Schutter, E. 
+            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
             cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -464,7 +464,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                             <rdf:li>Maex, R and De Schutter, E. 
            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -472,7 +472,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>Calcium channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table1"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table1"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -517,7 +517,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                             <rdf:li>Maex, R and De Schutter, E. 
            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/21829333"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -552,7 +552,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                             <rdf:li>Maex, R and De Schutter, E. 
            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -560,7 +560,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>K channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table3"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -595,7 +595,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                             <rdf:li>Maex, R and De Schutter, E. 
            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -603,7 +603,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>K channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table3"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -638,7 +638,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                             <rdf:li>Maex, R and De Schutter, E. 
            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -646,7 +646,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>K channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table3"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -681,7 +681,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                             <rdf:li>Maex, R and De Schutter, E. 
            Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the 
            cerebellar Granule Cell Layer. J Neurophysiol, Nov 1998; 80: 2521 - 2537</rdf:li>
-                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9819260&amp;dopt=Abstract"/>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/9819260"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -689,7 +689,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>Na channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table2"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table2"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -756,28 +756,6 @@ Network connection: NetConnGrCGoC contains 2400 individual synaptic connections
             </rdf:Bag>
         </bqmodel:is>
     </rdf:Description>
-    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/LargeGCL.net.nml">
-        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/LargeGCL.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/LargeGCL.net.nml)
-
-
-Network structure (NeuroML 2beta3) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 11:14:11, 18-Jul-14
-
-Cell Group: Golgis contains 4 cells
-Cell Group: Grans contains 75 cells
-Cell Group: Mossies contains 12 cells
-
-Network connection: NetConn_Golgis_Grans contains 75 individual synaptic connections
-Network connection: NetConn_Mossies_Grans contains 300 individual synaptic connections
-Network connection: NetConn_Grans_Golgis contains 300 individual synaptic connections
-
-
-     -->
-        <bqmodel:is>
-            <rdf:Bag>
-                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/LargeGCL.net.nml"/>
-            </rdf:Bag>
-        </bqmodel:is>
-    </rdf:Description>
     <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml">
         <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/MFFastLeakCond.channel.nml)
 ChannelML file containing a single Channel description
@@ -840,6 +818,25 @@ ChannelML file describing a synaptic mechanism -->
         <bqmodel:is>
             <rdf:Bag>
                 <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/NMDA.synapse.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+    </rdf:Description>
+    <rdf:Description rdf:about="neuroConstruct/generatedNeuroML2/TestNet.net.nml">
+        <!-- NeuroML 2 file: neuroConstruct/generatedNeuroML2/TestNet.net.nml (at https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/TestNet.net.nml)
+
+
+Network structure (NeuroML 2beta4) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 15:01:12, 21-Mar-16
+
+Cell Group: SingleGranule contains 1 cells
+Cell Group: Mossies contains 12 cells
+
+Network connection: NetConn_Mossies_SingleGranule contains 12 individual synaptic connections
+
+
+     -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/GranCellLayer/raw/master/neuroConstruct/generatedNeuroML2/TestNet.net.nml"/>
             </rdf:Bag>
         </bqmodel:is>
     </rdf:Description>

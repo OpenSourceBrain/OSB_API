@@ -24,9 +24,9 @@ NML2_SUFFIX = ".nml"
 
 
 def check_jnml_validates_neuroml(document):
-    p = subprocess.Popen(["jnml -validate "+ document], 
-                          shell=True, 
-                          stdout=subprocess.PIPE)
+    p = subprocess.Popen(["jnml -validate " + document], 
+                         shell=True, 
+                         stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
 
@@ -40,9 +40,9 @@ def is_nml2_file(file):
 
 
 def check_jnml_loads_lems(document):
-    p = subprocess.Popen(["jnml "+ document+ " -norun"], 
-                          shell=True, 
-                          stdout=subprocess.PIPE)
+    p = subprocess.Popen(["jnml " + document + " -norun"], 
+                         shell=True, 
+                         stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
 
@@ -61,10 +61,10 @@ def copy_file_from_url(url_file, target_file):
     if '/' in target_file:
         parent_dir = target_file[:target_file.rfind('/')]
         check_exists_dir_and_children(parent_dir)
-    
+
     t = open(target_file, 'w')
     t.write(f.read())
-    print("  ...Downloaded: "+target_file)
+    print("  ...Downloaded: " + target_file)
 
 
 def check_exists_dir_and_children(file):
@@ -84,17 +84,19 @@ def build_request(url):
     return Request(url, auth)
 
 
-def get_page(url,username=None,password=None):
+def get_page(url, username=None, password=None):
     if 'api.github.com' in url:
-        url = url.replace('/tree/master/neuroConstruct','')
-        # This cruft was in some of the urls.  
-    request = Request(url)
-    if username is None:
-        username = USERNAME
-    if password is None:
-        password = PASSWORD
+        url = url.replace('/tree/master/neuroConstruct', '')
+        # This cruft was in some of the urls. 
     
+    if 'github' in url:
+        if username is None:
+            username = USERNAME
+        if password is None:
+            password = PASSWORD
+
     result = ""
+    #print(">>> Getting URL: %s (username=%s)" % (url, username))
     req = Request(url)
     if username and password:
         unamepw = "%s:%s" % (username, password)
@@ -105,8 +107,10 @@ def get_page(url,username=None,password=None):
     try:
         response = urlopen(req)
     except HTTPError as e:
-        print("URL: %s produced error %d (%s)" % (url,e.code,e.msg))
-        print(auth_info)
+        print("URL: %s produced error %d (%s)" % (url, e.code, e.msg))
+        if e.code != 404:
+            print(auth_info)
     else:
         result = response.read()
+    #print(">>> Returning: %s..."%result[0: min(len(result), 20)])
     return result

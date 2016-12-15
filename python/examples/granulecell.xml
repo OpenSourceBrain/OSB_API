@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: granulecell
-    Generated on Tue May  5 13:38:16 2015
+    Generated on Thu Dec 15 17:25:23 2016
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -235,7 +235,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>K channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table3"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -278,7 +278,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>K channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table3"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -321,7 +321,7 @@ A channel from Maex, R and De Schutter, E. Synchronization of Golgi and Granule 
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>Na channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table2"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table2"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 

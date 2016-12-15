@@ -1,19 +1,21 @@
 set -e
-if [ "$1" == "-a" ]; then
-    python project_metadata.py
-fi
+
 echo "=== CheckModelDB ==="
 python CheckModelDB.py
+
 echo "=== activity ==="
 python activity.py 10
+
 echo "=== curate ==="
 python curate.py 10
+
 echo "=== retreiveNML2 ==="
-python retrieveNML2.py 20
-# Requires libNeuroML development version...
-#echo "=== project_metadata ==="
-#python project_metadata.py 1
+python retrieveNML2.py 29
+
 echo "=== tags ==="
 python tags.py
 
-
+if [ "$1" == "-a" ]; then
+    echo "=== project_metadata ==="
+    python project_metadata.py
+fi

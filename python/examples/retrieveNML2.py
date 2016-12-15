@@ -62,7 +62,8 @@ if __name__ == "__main__":
         if project_num<30:
                    ignores += ['miglioreetal14_olfactorybulb3d', # Lots of NML2... 
                    'alleninstituteneuroml', # Lots of NML2... 
-                   'blue-brain-project-showcase'] # Lots of NML2... 
+                   'blue-brain-project-showcase', # Lots of NML2... 
+                   'ca1-pv-fast-firing-cell-ferguson-et-al-2013']
 
         if not ( project.is_standard_project() or project.is_showcase()):
             print("  (Ignoring project as its category is: %s)  "%project.category)
@@ -70,7 +71,7 @@ if __name__ == "__main__":
         elif project.identifier in ignores:
             print("  (Ignoring project)  ")
         
-        elif project.endorsement != 1:
+        elif project.endorsement < 1:
             print("  (Ignoring project as its endorsement is: %s)  "%project.endorsement)
             
         else:

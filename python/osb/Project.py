@@ -65,9 +65,9 @@ class Project(OSBEntity):
         if name in self.attrs:
             attr = self.attrs[name]
             try:
-                value = self.info_array[attr]
+                value = str(self.info_array[attr])
             except:
-                value = self.get_custom_field(attr)
+                value = str(self.get_custom_field(attr))
 
         if name == 'TAGS':
             value = str(value).split(",") if value is not None else []
@@ -145,13 +145,20 @@ class Project(OSBEntity):
 
 if __name__ == "__main__":
 
-    project = Project.get('thalamocortical')
+    project_names = ['thalamocortical',
+                     'balanced-plastic-networks',
+                     'alleninstituteneuroml']
+    
+    for pn in project_names:
+        project = Project.get(pn)
 
-    print("Project %s, %s: %s"%(project.id, project.identifier, project.name))
-    print("Category: %s (Standard project? %s)"%(project.category, project.is_standard_project()))
-    print("ModelDB reference: %s"%(project.modeldb_reference))
-    print("Endorsement: %i"%(project.endorsement==1))
-    print("GitHub repo str: %s"%(project.github_repo_str))
-    print("GitHub repo: %s"%(project.github_repo))
+        print("Project %s, %s: %s"%(project.id, project.identifier, project.name))
+        print("Category: %s (Standard project? %s)"%(project.category, project.is_standard_project()))
+        print("ModelDB reference: %s"%(project.modeldb_reference))
+        print("Endorsement: %i"%(project.endorsement==1))
+        print("GitHub repo str: %s"%(project.github_repo_str))
+        print("GitHub repo: %s"%(project.github_repo))
+        print("Tags: %s"%(project.tags))
+        print("----------------------------------------")
 
     print("Done")
