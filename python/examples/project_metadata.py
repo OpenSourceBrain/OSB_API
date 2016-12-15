@@ -8,7 +8,7 @@
 project_ids = ['drosophila_projection_neuron', 'grancelllayer', 'muscle_model', 'granulecell']
 #project_ids = ['grancelllayer']
 
-import osb.Project
+from osb.Project import Project
 from osb.utils import is_nml2_file, get_page
 
 from osb.metadata import RDF, Description, add_simple_qualifier, parse_for_metadata
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     for project_id in project_ids:
 
-        project = osb.Project.Project.get(project_id)
+        project = Project.get(project_id)
 
         print("%s\tProject: %s (%s)\n" % ("-"*8, project.name, project.identifier))
 
