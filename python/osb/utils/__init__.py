@@ -15,7 +15,7 @@ import json
 import os.path
 import subprocess
 
-from .. import USERNAME,PASSWORD
+from osb import get_github_auth, github_auth_info
 
 LEMS_SUFFIX = ".xml"
 LEMS_PREFIX1 = "Run_"
@@ -90,10 +90,12 @@ def get_page(url, username=None, password=None):
         # This cruft was in some of the urls. 
     
     if 'github' in url:
+        
+        GITHUB_USERNAME, GITHUB_PASSWORD = get_github_auth()
         if username is None:
-            username = USERNAME
+            username = GITHUB_USERNAME
         if password is None:
-            password = PASSWORD
+            password = GITHUB_PASSWORD
 
     result = ""
     #print(">>> Getting URL: %s (username=%s)" % (url, username))
@@ -109,7 +111,7 @@ def get_page(url, username=None, password=None):
     except HTTPError as e:
         print("URL: %s produced error %d (%s)" % (url, e.code, e.msg))
         if e.code != 404:
-            print(auth_info)
+            print(github_auth_info)
     else:
         result = response.read()
     #print(">>> Returning: %s..."%result[0: min(len(result), 20)])

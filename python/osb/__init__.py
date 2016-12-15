@@ -15,39 +15,45 @@ import json
 import os.path
 import subprocess
 
-USERNAME = None
-PASSWORD = None
+GITHUB_USERNAME = None
+GITHUB_PASSWORD = None
 
-from .utils import get_page, get_custom_field
-from .Project import *
+github_auth_file = "github.info"
 
-auth_file = "github.info"
-
-auth_info = "\n-----------------------------------------------------------------\n\n"+\
+github_auth_info = "\n-----------------------------------------------------------------\n\n"+\
             "  GitHub limits the number of calls to its API for unauthorised users (~60 per hour).\n"+\
             "  For registered GitHub users, this goes up to ~5000 per hour. To use your GitHub account\n"+\
-            "  details, either create a file "+auth_file+" containing the lines:\n\n    username:YOUR_USERNAME\n    password:YOUR_PASSWORD\n\n"+\
+            "  details, either create a file "+github_auth_file+" containing the lines:\n\n    username:YOUR_USERNAME\n    password:YOUR_PASSWORD\n\n"+\
             "  or call with commandline arguments, e.g.:\n"+\
             "\n    python curate.py username:YOUR_USERNAME and password:YOUR_PASSWORD\n\n"+\
+            "\n\n    Remember too, if you have 2 stage authentication you'll have to generate a new token as your password.\n\n"+\
             "-----------------------------------------------------------------"
+            
+
 
 for arg in sys.argv[1:]:
     try:
         key,value = arg.split(":")
         if key == "username":            
-            USERNAME = value
+            GITHUB_USERNAME = value
         if key == "password":
-            PASSWORD = value
+            GITHUB_PASSWORD = value
     except ValueError as e:
         ignored_arg = arg
 
-if os.path.isfile(auth_file):
-    for line in open(auth_file, 'r'):
+if os.path.isfile(github_auth_file):
+    for line in open(github_auth_file, 'r'):
         if line.startswith("username:"):
-            USERNAME = line.strip()[9:]
+            GITHUB_USERNAME = line.strip()[9:]
         if line.startswith("password:"):
-            PASSWORD = line.strip()[9:]
+            GITHUB_PASSWORD = line.strip()[9:]
             
+def get_github_auth():
+    return GITHUB_USERNAME, GITHUB_PASSWORD
+
+from osb.utils import get_page, get_custom_field
+from osb.Project import Project
+
 def get_projects_data(min_curation_level, limit=1000):
     url = "http://www.opensourcebrain.org/projects.json"
     page = get_page('%s?limit=%d' % (url,limit)).decode('utf-8')

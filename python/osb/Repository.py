@@ -1,6 +1,6 @@
 
-from .__init__ import *
-from .utils.__init__ import *
+from osb import HTTPError, urlopen
+from osb.utils import get_page, copy_file_from_url
 
 import json
 
