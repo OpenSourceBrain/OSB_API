@@ -4,11 +4,7 @@ python:
   - "2.7"
   
 install:
-  - "pip install lxml"
-  - "git clone https://github.com/NeuralEnsemble/libNeuroML.git"
-  - "cd libNeuroML"
-  - "git checkout development"
-  - "sudo python setup.py install" 
+  - "pip install libNeuroML"
   - "cd ../python"
   - "pip install ."
   - "cd .."

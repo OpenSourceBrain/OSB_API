@@ -55,7 +55,10 @@ if __name__ == "__main__":
         
         print("\n--------   Project: "+ project.name +" ("+ project.identifier +")"+ "\n")
 
-        ignores = ['blender-to-neuroml', 'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012']
+        ignores = ['blender-to-neuroml', 
+                   'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012',
+                   'miglioreetal14_olfactorybulb3d', # Lots of NML2... 
+                   'neurosciences-repository']
         
 
         if not ( project.is_standard_project() or project.is_showcase()):
