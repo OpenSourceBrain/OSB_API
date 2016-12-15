@@ -63,7 +63,7 @@ def copy_file_from_url(url_file, target_file):
         check_exists_dir_and_children(parent_dir)
 
     t = open(target_file, 'w')
-    t.write(f.read())
+    t.write(str(f.read().decode("utf-8")))
     print("  ...Downloaded: " + target_file)
 
 
@@ -98,7 +98,7 @@ def get_page(url, username=None, password=None, utf8=False):
             password = GITHUB_PASSWORD
 
     result = ""
-    print(">>> Getting URL: %s (username=%s)" % (url, username))
+    #print(">>> Getting URL: %s (username=%s)" % (url, username))
     req = Request(url)
     if username and password:
         unamepw = bytearray('%s:%s' % (username, password), 'utf-8')
@@ -118,5 +118,5 @@ def get_page(url, username=None, password=None, utf8=False):
             result = str(response.read().decode("utf-8"))
         else:
             result = response.read()
-    print(">>> Returning: %s..."%result[0: min(len(result), 20)])
+    #print(">>> Returning: %s..."%result[0: min(len(result), 20)])
     return result
