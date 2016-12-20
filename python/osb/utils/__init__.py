@@ -114,9 +114,17 @@ def get_page(url, username=None, password=None, utf8=False):
         if e.code != 404:
             print(github_auth_info)
     else:
+        read_resp = response.read()
         if utf8:
-            result = str(response.read().decode("utf-8"))
+            try:
+                result = str(read_resp.decode("utf-8"))
+            except Exception as e:
+                print("Error converting response to utf-8. Original response from: %s:"%url)
+                print("=====================================================")
+                print(read_resp)
+                print("=====================================================")
+                print(e)
         else:
-            result = response.read()
-    #print(">>> Returning: %s..."%result[0: min(len(result), 20)])
+            result = read_resp
+    #print(">>> Returning: [[%s]]..."%result[0: min(len(result), 40)])
     return result
