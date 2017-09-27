@@ -23,10 +23,18 @@ projects = 0
 if __name__ == "__main__":
     
     project_num = 1000
-    if len(sys.argv) == 2:
+    if len(sys.argv) >= 2:
         project_num = int(sys.argv[1])
+        
+    url = 'http://www.opensourcebrain.org/projects.json'
+    
+    if '-comodl' in sys.argv:
+        url = 'http://www.comodl.org/projects.json'
+    if '-local' in sys.argv:
+        url = 'http://localhost:3000/projects.json'
+        
 
-    for project in osb.get_projects(min_curation_level="Low", limit=project_num):
+    for project in osb.get_projects(min_curation_level="Low", limit=project_num, url=url, verbose=True):
 
         print("\n%sProject: %s (%s)\n" % ("-"*8,project.name,project.identifier))
 

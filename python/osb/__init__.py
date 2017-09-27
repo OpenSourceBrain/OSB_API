@@ -15,6 +15,8 @@ import json
 import os.path
 import subprocess
 
+LIVE_URL = 'http://www.opensourcebrain.org/projects.json'
+
 GITHUB_USERNAME = None
 GITHUB_PASSWORD = None
 
@@ -29,7 +31,6 @@ github_auth_info = "\n----------------------------------------------------------
             "\n    Remember too, if you have 2 stage authentication you'll have to generate a new token as your password.\n\n"+\
             "-----------------------------------------------------------------"
             
-
 
 for arg in sys.argv[1:]:
     try:
@@ -48,15 +49,20 @@ if os.path.isfile(github_auth_file):
         if line.startswith("password:"):
             GITHUB_PASSWORD = line.strip()[9:]
             
+            
 def get_github_auth():
     return GITHUB_USERNAME, GITHUB_PASSWORD
 
 from osb.utils import get_page, get_custom_field
 from osb.Project import Project
 
-def get_projects_data(min_curation_level, limit=1000):
-    url = "http://www.opensourcebrain.org/projects.json"
-    page = get_page('%s?limit=%d' % (url,limit), utf8=True)
+
+def get_projects_data(min_curation_level, limit=1000, url = LIVE_URL, verbose=False):
+    
+    page_url = '%s?limit=%d' % (url,limit)
+    if verbose:
+        print("> Requesting page: %s..."%page_url)
+    page = get_page(page_url, utf8=True)
     json_data = json.loads(page)
     projects_data_all = json_data['projects']
     projects_data = []
@@ -75,15 +81,18 @@ def get_projects_data(min_curation_level, limit=1000):
             
     return projects_data
 
-def get_projects(min_curation_level, limit=1000):
-    projects_data = get_projects_data(min_curation_level, limit=limit)
+
+def get_projects(min_curation_level, limit=1000, url = LIVE_URL, verbose=False):
+    projects_data = get_projects_data(min_curation_level, limit=limit, url=url, verbose=verbose)
     projects = [Project(project_data) for project_data in projects_data]
     return projects
+
 
 def get_projects_identifiers(min_curation_level, limit=1000):
     projects = get_projects(min_curation_level, limit=limit)
     projects_identifiers = [project.identifier for project in projects]
     return projects_identifiers
+
 
 def get_project_with_identifier(identifier,projects=None):
     if projects is None:
@@ -96,6 +105,7 @@ def get_project_with_identifier(identifier,projects=None):
             result = project
             break
     return result 
+
 
 def known_external_repo(reponame):
     if "openworm" in reponame or \
