@@ -117,7 +117,7 @@ def get_page(url, username=None, password=None, utf8=False):
         read_resp = response.read()
         if utf8:
             try:
-                result = str(read_resp.decode("utf-8"))
+                result = read_resp.decode("utf-8")
             except Exception as e:
                 print("Error converting response to utf-8. Original response from: %s:"%url)
                 print("=====================================================")
