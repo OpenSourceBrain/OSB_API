@@ -121,13 +121,20 @@ def get_page(url, username=None, password=None, utf8=False):
         read_resp = response.read()
         if utf8:
             try:
-                result = read_resp.decode("utf-8")
+                try:
+                    result = str(read_resp.decode("utf-8"))
+                except UnicodeEncodeError:
+                    result = str(read_resp)
+                    
             except Exception as e:
                 print("Error converting response to utf-8. Original response from: %s:"%url)
                 print("=====================================================")
                 print(read_resp)
                 print("=====================================================")
+                print(type(e))
                 print(e)
+                print("=====================================================")
+                return None
         else:
             result = read_resp
     #print(">>> Returning: [[%s]]..."%result[0: min(len(result), 40)])

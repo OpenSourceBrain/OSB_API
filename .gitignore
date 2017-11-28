@@ -11,3 +11,4 @@ python/examples/NeuroML*
 *.py~
 *.pyc
 github.info
+/python/private
