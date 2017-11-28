@@ -10,7 +10,7 @@ echo "=== curate ==="
 python curate.py 10
 
 echo "=== retreiveNML2 ==="
-python retrieveNML2.py 29
+python retrieveNML2.py 16
 
 echo "=== tags ==="
 python tags.py
