@@ -4,6 +4,7 @@ Methods useful for all test scripts.
 """
 
 import sys
+import codecs
 
 try:
     from urllib2 import urlopen, HTTPError, Request  # Python 2
@@ -62,8 +63,11 @@ def copy_file_from_url(url_file, target_file):
         parent_dir = target_file[:target_file.rfind('/')]
         check_exists_dir_and_children(parent_dir)
 
-    t = open(target_file, 'w')
-    t.write(str(f.read().decode("utf-8")))
+    with codecs.open(target_file, 'w', encoding="utf-8") as t:
+        try:
+            t.write(f.read().decode("utf-8"))
+        except UnicodeDecodeError:
+            t.write(f.read().decode("latin-1"))
     print("  ...Downloaded: " + target_file)
 
 
