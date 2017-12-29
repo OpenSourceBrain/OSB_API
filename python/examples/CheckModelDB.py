@@ -17,7 +17,7 @@ for project in osb.get_projects(min_curation_level="None"):
 
         if project.modeldb_reference and project.modeldb_reference != 'None':
             print("    OSB link:%shttp://opensourcebrain.org/projects/%s" % (" "*22, project.identifier))
-            print("    ModelDB link:%shttp://senselab.med.yale.edu/ModelDB/ShowModel.asp?model=%s" % (' '*18, project.modeldb_reference))
+            print("    ModelDB link:%shttp://senselab.med.yale.edu/ModelDB/ShowModel?model=%s" % (' '*18, project.modeldb_reference))
             with_modeldb +=1
         else:
             print("    No ModelDB info for model")
