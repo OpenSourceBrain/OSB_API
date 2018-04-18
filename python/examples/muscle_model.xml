@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: muscle_model
-    Generated on Thu Dec 15 17:25:17 2016
+    Generated on Wed Apr 18 13:20:46 2018
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -65,6 +65,14 @@ ChannelML file containing a single Channel description for a passive leak conduc
                 <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/MuscleStim.net.nml">
+        <!-- NeuroML 2 file: NeuroML2/MuscleStim.net.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/MuscleStim.net.nml) -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/openworm/muscle_model/raw/master/NeuroML2/MuscleStim.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
     </rdf:Description>
     <rdf:Description rdf:about="NeuroML2/NeuronMuscle.net.nml">
         <!-- NeuroML 2 file: NeuroML2/NeuronMuscle.net.nml (at https://github.com/openworm/muscle_model/raw/master/NeuroML2/NeuronMuscle.net.nml) -->
