@@ -1,7 +1,7 @@
 set -e
 
 echo "=== CheckModelDB ==="
-python CheckModelDB.py 50
+python CheckModelDB.py 10
 
 echo "=== activity ==="
 python activity.py 10
