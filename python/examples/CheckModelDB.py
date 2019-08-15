@@ -20,8 +20,8 @@ if __name__ == "__main__":
 
             print("\n--------   Project: %s\n" % project.name)
             projects+=1
-
-            if project.modeldb_reference:
+            
+            if project.modeldb_reference and project.modeldb_reference != 'None':
                 print("    OSB link:%shttp://opensourcebrain.org/projects/%s" % (" "*22, project.identifier))
                 print("    ModelDB link:%shttp://senselab.med.yale.edu/ModelDB/ShowModel.asp?model=%s" % (' '*18, project.modeldb_reference))
                 with_modeldb +=1

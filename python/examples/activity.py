@@ -17,6 +17,8 @@ num_forks = 0
 with_watchers = 0
 num_watchers = 0
 
+from retrieveNML2 import ignores
+
 if __name__ == "__main__":
     
     project_num = 1000
@@ -24,33 +26,38 @@ if __name__ == "__main__":
         project_num = int(sys.argv[1])
 
     for project in osb.get_projects(min_curation_level="None", limit=project_num):
-
+        
         print("\n%s\tProject: %s (%s)\n" % ("-"*8, project.name, project.identifier))
-
-        projects+=1
         
-        github_repo = project.github_repo
-        
-        if github_repo is not None:
- 
-            if github_repo.has_wiki:
-                print("  A wiki is present!")
-                with_wiki +=1
+        if project.identifier in ignores:
+            print("Ignoring...")
             
-            if github_repo.open_issues > 0:
-                print("  Issues open: %i" % github_repo.open_issues)
-                with_issues+=1
-                num_issues += github_repo.open_issues
-                
-            if github_repo.forks > 0:
-                print("  Forks: %i" % github_repo.forks)
-                with_forks +=1
-                num_forks += github_repo.forks
-                
-            if github_repo.watchers > 0:
-                print("  Watchers: %i"%github_repo.watchers)
-                with_watchers+=1
-                num_watchers += github_repo.watchers
+        else:
+            
+            projects+=1
+
+            github_repo = project.github_repo
+
+            if github_repo is not None:
+
+                if github_repo.has_wiki:
+                    print("  A wiki is present!")
+                    with_wiki +=1
+
+                if github_repo.open_issues > 0:
+                    print("  Issues open: %i" % github_repo.open_issues)
+                    with_issues+=1
+                    num_issues += github_repo.open_issues
+
+                if github_repo.forks > 0:
+                    print("  Forks: %i" % github_repo.forks)
+                    with_forks +=1
+                    num_forks += github_repo.forks
+
+                if github_repo.watchers > 0:
+                    print("  Watchers: %i"%github_repo.watchers)
+                    with_watchers+=1
+                    num_watchers += github_repo.watchers
 
 
 

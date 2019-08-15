@@ -14,6 +14,15 @@ except:
 
 import osb
 
+ignores = ['blender-to-neuroml', 
+           'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012',
+           'neurosciences-repository',
+           'test',
+           'ionl-testing',
+           'salomon-muller',
+           'test_net',
+           'zetterbergjansenritmodel']
+
 if __name__ == "__main__":
     
     project_num = 1000
@@ -54,10 +63,6 @@ if __name__ == "__main__":
     for project in osb.get_projects(min_curation_level="None", limit=project_num):
         
         print("\n--------   Project: "+ project.name +" ("+ project.identifier +")"+ "\n")
-
-        ignores = ['blender-to-neuroml', 
-                   'olfactory-bulb-network-model-o-connor-angelo-and-jacob-2012',
-                   'neurosciences-repository']
         
         if project_num<30:
                    ignores += ['miglioreetal14_olfactorybulb3d', # Lots of NML2... 
