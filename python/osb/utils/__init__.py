@@ -137,5 +137,20 @@ def get_page(url, username=None, password=None, utf8=False):
                 return None
         else:
             result = read_resp
-    #print(">>> Returning: [[%s]]..."%result[0: min(len(result), 40)])
+            
+    if not isinstance(result, str):
+        result = str(result.decode())
+    #print(">>> Returning: [[%s...]] which is a %s"%(result[0: min(len(result), 40)],type(result)))
     return result
+
+
+if __name__ == "__main__":
+    
+    urls = ['http://www.neuroconstruct.org/download/index.html',
+            'https://www.opensourcebrain.org/projects.json',
+            'https://www.opensourcebrain.org/projects/thalamocortical.json']
+    
+    for url in urls:
+        p = get_page(url)
+
+        print('Successfully retrieved: %s'%url)

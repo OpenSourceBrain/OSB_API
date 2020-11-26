@@ -112,10 +112,10 @@ if __name__ == "__main__":
 
                     print("  Building NeuroML doc from: "+raw_url)
 
-                    contents = get_page(raw_url, utf8=True)
+                    contents = get_page(raw_url)
 
                     cno_type = None
-                    doc = parseString(contents)
+                    doc = parseString(contents.encode('ascii'))
                     if doc.notes:
                         comment += "\n%s"%doc.notes
 

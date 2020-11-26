@@ -1,7 +1,7 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
     <!-- 
     This file has been automatically generated from data extracted from OSB project: drosophila_projection_neuron
-    Generated on Thu Sep 27 15:10:14 2018
+    Generated on Thu Nov 26 14:12:16 2020
 
     Structure of this file subject to change without notice!!
     Contact P Gleeson for more details
@@ -10,7 +10,7 @@
         <bqmodel:is>
             <rdf:Bag>
                 <!-- Open Source Brain project identifier: drosophila_projection_neuron -->
-                <rdf:li rdf:resource="http://opensourcebrain.org/projects/drosophila_projection_neuron"/>
+                <rdf:li rdf:resource="https://www.opensourcebrain.org/projects/drosophila_projection_neuron"/>
             </rdf:Bag>
         </bqmodel:is>
         <bqbiol:hasTaxon>
@@ -20,12 +20,31 @@
             </rdf:Bag>
         </bqbiol:hasTaxon>
     </rdf:Description>
-    <rdf:Description rdf:about="NeuroML2/Figure4B1.nml">
-        <!-- NeuroML 2 file: NeuroML2/Figure4B1.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml)
+    <rdf:Description rdf:about="NeuroML2/Drosophila_Projection_Neuron.net.nml">
+        <!-- NeuroML 2 file: NeuroML2/Drosophila_Projection_Neuron.net.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Drosophila_Projection_Neuron.net.nml)
+
+
+Network structure (NeuroML 2beta5) for project: Drosophila_Projection_Neuron saved with neuroConstruct v1.7.1 on: 17:28:55, 29-Nov-18
+
+Cell Group: F4B3 contains 1 cells
+Cell Group: F4B2 contains 1 cells
+Cell Group: F4B1 contains 1 cells
+
+
+
+     -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Drosophila_Projection_Neuron.net.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/Figure4B1.cell.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure4B1.cell.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.cell.nml)
   Cell: Figure4B1; Cell: dm1_combined_11_0 exported from NEURON ModelView -->
         <bqmodel:is>
             <rdf:Bag>
-                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.nml"/>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B1.cell.nml"/>
             </rdf:Bag>
         </bqmodel:is>
         <bqbiol:hasProperty>
@@ -35,12 +54,12 @@
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
-    <rdf:Description rdf:about="NeuroML2/Figure4B2.nml">
-        <!-- NeuroML 2 file: NeuroML2/Figure4B2.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml)
+    <rdf:Description rdf:about="NeuroML2/Figure4B2.cell.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure4B2.cell.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.cell.nml)
   Cell: Figure4B2; Cell: dm1_combined_12_0 exported from NEURON ModelView -->
         <bqmodel:is>
             <rdf:Bag>
-                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.nml"/>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B2.cell.nml"/>
             </rdf:Bag>
         </bqmodel:is>
         <bqbiol:hasProperty>
@@ -50,18 +69,41 @@
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>
-    <rdf:Description rdf:about="NeuroML2/Figure4B3.nml">
-        <!-- NeuroML 2 file: NeuroML2/Figure4B3.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml)
+    <rdf:Description rdf:about="NeuroML2/Figure4B3.cell.nml">
+        <!-- NeuroML 2 file: NeuroML2/Figure4B3.cell.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.cell.nml)
   Cell: Figure4B3; Cell: dm1_combined_13_0 exported from NEURON ModelView -->
         <bqmodel:is>
             <rdf:Bag>
-                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.nml"/>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/Figure4B3.cell.nml"/>
             </rdf:Bag>
         </bqmodel:is>
         <bqbiol:hasProperty>
             <rdf:Bag>
                 <!-- It is of type: biophysical spiking model (CNO ID: cno_0000017) -->
                 <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000017"/>
+            </rdf:Bag>
+        </bqbiol:hasProperty>
+    </rdf:Description>
+    <rdf:Description rdf:about="NeuroML2/LeakConductance.channel.nml">
+        <!-- NeuroML 2 file: NeuroML2/LeakConductance.channel.nml (at https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/LeakConductance.channel.nml)
+ChannelML file containing a single Channel description
+  Ion Channel: LeakConductance; Simple example of a leak/passive conductance. Note: for GENESIS cells with a single leak conductance,
+        it is better to use the Rm and Em variables for a passive current. -->
+        <bqmodel:is>
+            <rdf:Bag>
+                <rdf:li rdf:resource="https://github.com/OpenSourceBrain/Drosophila_Projection_Neuron/raw/master/NeuroML2/LeakConductance.channel.nml"/>
+            </rdf:Bag>
+        </bqmodel:is>
+        <bqbiol:is>
+            <rdf:Bag>
+                <!-- It is a model of the GO entity: ion channel complex (species through ion channel: None) -->
+                <rdf:li rdf:resource="http://identifiers.org/go/GO:0034702"/>
+            </rdf:Bag>
+        </bqbiol:is>
+        <bqbiol:hasProperty>
+            <rdf:Bag>
+                <!-- It is of type: ionic current model (CNO ID: cno_0000047) -->
+                <rdf:li rdf:resource="http://purl.org/incf/ontology/Computational_Neurosciences/cno_alpha.owl#cno_0000047"/>
             </rdf:Bag>
         </bqbiol:hasProperty>
     </rdf:Description>

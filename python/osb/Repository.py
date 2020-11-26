@@ -77,10 +77,10 @@ class Repository():
         return "%s repository: %s (%s)"%(self.type, self.name, self.html_url)
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return self.__unicode__()
 
     def __repr__(self):
-        return unicode(self).encode('utf-8')
+        return self.__unicode__()
 
     def link_to_raw_file_in_repo(self, filename):
         return self.check_file_template % (self.full_name, filename)

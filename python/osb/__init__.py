@@ -15,7 +15,7 @@ import json
 import os.path
 import subprocess
 
-LIVE_URL = 'http://www.opensourcebrain.org/projects.json'
+LIVE_URL = 'https://www.opensourcebrain.org/projects.json'
 
 GITHUB_USERNAME = None
 GITHUB_PASSWORD = None
@@ -113,4 +113,4 @@ def known_external_repo(reponame):
        "Simon-at-Ely" in reponame:
         return True
     else:
-        return False
+        return False    

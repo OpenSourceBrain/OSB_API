@@ -5,7 +5,7 @@
     
 """
 
-OSB_PROJECT_URL_TEMPLATE = "http://opensourcebrain.org/projects/%s"
+OSB_PROJECT_URL_TEMPLATE = "https://www.opensourcebrain.org/projects/%s"
 
 PUBMED_URL_TEMPLATE = "http://identifiers.org/pubmed/%s"
 
