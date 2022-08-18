@@ -14,6 +14,7 @@ setup(
     long_description = long_description,
     license = "GPLv3",
     url="https://github.com/OpenSourceBrain/OSB_API",
+    install_requires=["lxml"],
     classifiers = [
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: GPLv3 License',
