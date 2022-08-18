@@ -5,6 +5,5 @@ APIs in various languages to access contents of Open Source Brain repository.
 
 Python is initial target. See [here](python) for details.
 
-[![Build Status](https://travis-ci.com/OpenSourceBrain/OSB_API.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/OSB_API)
-
+[![Continuous testing](https://github.com/OpenSourceBrain/OSB_API/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenSourceBrain/OSB_API/actions/workflows/ci.yml)
 
