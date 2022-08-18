@@ -25,8 +25,8 @@ NML2_SUFFIX = ".nml"
 
 
 def check_jnml_validates_neuroml(document):
-    p = subprocess.Popen(["jnml -validate " + document], 
-                         shell=True, 
+    p = subprocess.Popen(["jnml -validate " + document],
+                         shell=True,
                          stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
@@ -41,8 +41,8 @@ def is_nml2_file(file):
 
 
 def check_jnml_loads_lems(document):
-    p = subprocess.Popen(["jnml " + document + " -norun"], 
-                         shell=True, 
+    p = subprocess.Popen(["jnml " + document + " -norun"],
+                         shell=True,
                          stdout=subprocess.PIPE)
     p.communicate()
     return p.returncode
@@ -91,10 +91,10 @@ def build_request(url):
 def get_page(url, username=None, password=None, utf8=False):
     if 'api.github.com' in url:
         url = url.replace('/tree/master/neuroConstruct', '')
-        # This cruft was in some of the urls. 
-    
+        # This cruft was in some of the urls.
+
     if 'github' in url:
-        
+
         GITHUB_USERNAME, GITHUB_PASSWORD = get_github_auth()
         if username is None:
             username = GITHUB_USERNAME
@@ -117,6 +117,8 @@ def get_page(url, username=None, password=None, utf8=False):
         print("Request: (%s)" % (req.headers))
         if e.code != 404:
             print(github_auth_info)
+        else:
+            raise Exception('Page not found...')
     else:
         read_resp = response.read()
         if utf8:
@@ -125,7 +127,7 @@ def get_page(url, username=None, password=None, utf8=False):
                     result = str(read_resp.decode("utf-8"))
                 except UnicodeEncodeError:
                     result = str(read_resp)
-                    
+
             except Exception as e:
                 print("Error converting response to utf-8. Original response from: %s:"%url)
                 print("=====================================================")
@@ -137,7 +139,7 @@ def get_page(url, username=None, password=None, utf8=False):
                 return None
         else:
             result = read_resp
-            
+
     if not isinstance(result, str):
         result = str(result.decode())
     #print(">>> Returning: [[%s...]] which is a %s"%(result[0: min(len(result), 40)],type(result)))
@@ -145,11 +147,11 @@ def get_page(url, username=None, password=None, utf8=False):
 
 
 if __name__ == "__main__":
-    
+
     urls = ['http://www.neuroconstruct.org/download/index.html',
             'https://www.opensourcebrain.org/projects.json',
             'https://www.opensourcebrain.org/projects/thalamocortical.json']
-    
+
     for url in urls:
         p = get_page(url)
 

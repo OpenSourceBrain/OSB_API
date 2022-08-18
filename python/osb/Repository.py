@@ -107,7 +107,10 @@ class Repository():
     def list_files_in_repo(self):
         rest_url = self.list_files_template%(self.full_name)
         #print("URL: %s"%rest_url)
-        w = get_page(rest_url, utf8=True)
+        try:
+            w = get_page(rest_url, utf8=True)
+        except:
+            return []
         json_files = json.loads(w)
         if not 'tree' in json_files:
             print("Error!")
@@ -141,11 +144,11 @@ class GitHubRepository(Repository):
         if not github_repo_str.startswith('https://github.com'):
             print("Incorrectly formatted github_repo_str: %s"%github_repo_str)
             return None
-        
+
         if not len(github_repo_str.split('/')) == 5:
             print("Incorrectly formatted github_repo_str: %s"%github_repo_str)
             return None
-            
+
 
         repo = "https://api.github.com/repos/"+github_repo_str[19:]
         page = get_page(repo, utf8=True)
