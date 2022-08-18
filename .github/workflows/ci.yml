@@ -30,6 +30,8 @@ jobs:
       run: |
           cd python
           python setup.py install
+          cd examples
+          ./quicktest.sh
 
         
     - name: Final version info
