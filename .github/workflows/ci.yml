@@ -29,6 +29,7 @@ jobs:
     - name: Install and test
       run: |
           cd python
+          pip install lxml
           python setup.py install
           cd examples
           ./quicktest.sh
