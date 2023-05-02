@@ -12,3 +12,4 @@ python/examples/NeuroML*
 *.pyc
 github.info
 /python/private
+/python/PyOSB.egg-info
