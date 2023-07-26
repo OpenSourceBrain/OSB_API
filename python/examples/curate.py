@@ -26,7 +26,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 2:
         project_num = int(sys.argv[1])
         
-    url = 'https://www.opensourcebrain.org/projects.json'
+    url = 'https://v1.opensourcebrain.org/projects.json'
     
     if '-comodl' in sys.argv:
         url = 'http://www.comodl.org/projects.json'

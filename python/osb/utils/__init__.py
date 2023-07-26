@@ -148,9 +148,9 @@ def get_page(url, username=None, password=None, utf8=False):
 
 if __name__ == "__main__":
 
-    urls = ['http://www.neuroconstruct.org/download/index.html',
-            'https://www.opensourcebrain.org/projects.json',
-            'https://www.opensourcebrain.org/projects/thalamocortical.json']
+    urls = ['https://www.neuroconstruct.org/download/index.html',
+            'https://v1.opensourcebrain.org/projects.json',
+            'https://v1.opensourcebrain.org/projects/thalamocortical.json']
 
     for url in urls:
         p = get_page(url)
