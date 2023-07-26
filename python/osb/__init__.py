@@ -15,7 +15,7 @@ import json
 import os.path
 import subprocess
 
-LIVE_URL = 'https://www.opensourcebrain.org/projects.json'
+LIVE_URL = 'https://v1.opensourcebrain.org/projects.json'
 
 GITHUB_USERNAME = None
 GITHUB_PASSWORD = None
