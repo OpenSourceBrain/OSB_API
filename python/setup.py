@@ -6,7 +6,7 @@ long_description = open("README.md").read()
 
 setup(
     name = "PyOSB",
-    version = '0.5.1',
+    version = '0.5.2',
     packages = ['osb', 'osb.metadata', 'osb.resources', 'osb.utils'],
     author = "Padraig Gleeson, Richard Gerkin",
     author_email = "p.gleeson@gmail.com",
