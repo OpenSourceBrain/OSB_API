@@ -25,7 +25,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         project_num = int(sys.argv[1])
 
-    for project in osb.get_projects(min_curation_level="None", limit=project_num):
+    for project in osb.get_projects(min_curation_level="Low", limit=project_num):
         
         print("\n%s\tProject: %s (%s)\n" % ("-"*8, project.name, project.identifier))
         

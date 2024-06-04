@@ -13,3 +13,4 @@ python/examples/NeuroML*
 github.info
 /python/private
 /python/PyOSB.egg-info
+/python/examples/github.auth
